@@ -12,8 +12,8 @@ export default async function HomePage() {
   if (!session) redirect('/signin')
 
   return (
-    <div className='mx-4'>
-      <h2 className='text-stone-700 text-3xl my-10 font-semibold text-center font-serif'>E-Books Ready for Instant Access</h2>
+    <div className='mx-4 overflow-x-hidden'>
+      <h2 className='text-stone-700 text-3xl my-10 font-semibold text-center font-serif'>E-Books Ready for Instant Access📚</h2>
 
       <Categories />
       <hr className='my-5' />
