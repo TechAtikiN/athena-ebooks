@@ -28,7 +28,7 @@ export default function Categories() {
                     index % 6 === 4 ? 'from-slate-200 via-cyan-200 to-cyan-500' :
                       index % 6 === 5 ? 'from-slate-200 via-indigo-200 to-indigo-500' :
                         'from-blue-200 to-blue-500'}
-              ${categoryState === category ? 'border-2 border-slate-300 underline' : 'border-2 border-transparent'}
+              ${categoryState === category.toLowerCase() ? 'border-2 border-slate-300 underline' : 'border-2 border-transparent'}
             `
           }
         >
