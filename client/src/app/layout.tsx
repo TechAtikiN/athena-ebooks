@@ -2,13 +2,20 @@
 import type { Metadata } from 'next';
 
 // style imports
-import { Inter } from 'next/font/google';
+import { Lato } from 'next/font/google';
 import './globals.css'
 
 // default imports
 import Providers from '@/components/providers/Providers';
 
-const inter = Inter({ subsets: ['latin'] });
+const lato = Lato(
+  {
+    weight: ['400', '700'],
+    style: ['normal', 'italic'],
+    subsets: ['latin'],
+    display: 'swap',
+  }
+);
 
 export const metadata: Metadata = {
   title: 'Athena E-books',
@@ -22,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body className={lato.className}>
         <Providers>
           <div className=''>
             {children}
