@@ -8,14 +8,14 @@ import Link from 'next/link'
 export default function BookDetailsPage({ params }: { params: { bookId: string } }) {
   return (
     <div className=''>
-      <div className='relative w-full h-[265px] backdrop-filter backdrop-blur-3xl shadow-inner'>
+      <div className='relative w-full h-[265px]'>
         <Image
           className='object-cover'
           src='https://images.unsplash.com/photo-1464618663641-bbdd760ae84a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
           alt='background'
           layout='fill'
         />
-        <div className='absolute top-0 left-0 flex items-center'>
+        <div className='flex items-center absolute top-10 left-10 sm:top-0 sm:left-0'>
           <div className='relative h-[170px] w-[120px] sm:h-[270px] sm:w-[220px] rounded-lg'>
             <Image
               src='https://images.unsplash.com/photo-1517685633466-403d6955aeab?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
@@ -24,12 +24,12 @@ export default function BookDetailsPage({ params }: { params: { bookId: string }
               layout='fill'
             />
           </div>
-          <div className='space-y-3'>
-            <h1 className='text-2xl font-bold text-white'>The monk who sold his Ferrari</h1>
+          <div className='pl-5 sm:pl-0 space-y-3'>
+            <h2 className='text-2xl font-bold text-white'>The monk who sold his Ferrari</h2>
             <p className='text-white'>Author:&nbsp;<span className='font-semibold'>Adam Jones</span></p>
 
             {/* Favorite and Download button */}
-            <div className='flex space-x-4'>
+            <div className='sm:flex block sm:space-x-4 sm:space-y-0 space-y-3'>
               <button className='outline-btn '>
                 <ArrowDownTrayIcon className='h-5 w-5' />
                 <span>Download</span>

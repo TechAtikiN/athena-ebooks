@@ -44,7 +44,7 @@
   }
 
   .outline-btn {
-    @apply px-3 py-1 flex items-center justify-center space-x-2 text-white border border-white;
+    @apply px-3 py-1 flex items-center justify-center space-x-2 text-white border border-white hover:opacity-90;
   }
 
   .badge {

@@ -1,6 +1,3 @@
-// named imports
-import { HeartIcon } from '@heroicons/react/24/outline'
-
 // default imports
 import Image from 'next/image'
 import Link from 'next/link'
@@ -19,7 +16,6 @@ export default function BookItem({ book }: Props) {
           className='p-0 sm:p-9'
           layout='fill'
         />
-        {/* <HeartIcon className='h-6 w-6 text-slate-500 group/edit invisible group-hover/item:visible absolute m-2 top-0 right-0 z-10' /> */}
       </div>
       <div className='space-y-2'>
         <p className='font-semibold text-center text-slate-700'>{book.name}</p>
