@@ -22,7 +22,6 @@ export default function AuthLayout(
             Athena is a platform that allows you to access a wide range of books and resources to help you grow and share your wisdom.
           </p>
         </div>
-
       </div>
       <div className='col-span-6'>
         {children}

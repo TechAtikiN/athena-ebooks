@@ -1,10 +1,17 @@
+
+// named imports
+import { getServerSession } from 'next-auth'
+
 // default imports
-import GoogleSignInBtn from '@/components/auth/GoogleSignInBtn';
+import GoogleSignInBtn from '@/components/auth/GoogleSignInBtn'
 import Image from 'next/image'
 
-export default function Login() {
+export default async function Login() {
+  const session = await getServerSession()
+  console.log(session)
+
   return (
-    <div className='my-16'>
+    <div className='my-24'>
       <Image className='mx-auto flex flex-col' src='/images/logo.png' alt='logo' height={300} width={300} />
       <hr className='mx-16 pb-7' />
       <div className='space-y-6 w-1/2 mx-auto flex flex-col items-center'>
