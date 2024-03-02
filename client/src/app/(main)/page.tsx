@@ -3,7 +3,6 @@ import { Session, getServerSession } from 'next-auth'
 
 export default async function Home() {
   const session: Session | null = await getServerSession(authOptions)
-  console.log(session)
 
   return (
     <div>
