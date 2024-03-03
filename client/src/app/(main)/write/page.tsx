@@ -51,6 +51,13 @@ export default function CreateBook() {
                 rows={4} className='form-input'></textarea>
             </div>
 
+            <div className='flex flex-col space-y-1 col-span-2'>
+              <label className='form-label' htmlFor="authorDescription">About the Author</label>
+              <textarea
+                style={{ resize: 'none' }}
+                rows={2} className='form-input'></textarea>
+            </div>
+
             <div className='flex flex-col space-y-1'>
               <label className='form-label' htmlFor="cover">Cover Image of the Book</label>
               <input type="file" id='cover' className='form-input text-sm' />
@@ -62,7 +69,7 @@ export default function CreateBook() {
             </div>
           </div>
 
-          <button type='submit' className='px-3 py-2 bg-accent/85 hover:bg-accent/80 w-full rounded-sm font-bold border border-accent'>Publish</button>
+          <button type='submit' className='cta-btn'>Publish</button>
         </div>
       </form>
     </div>

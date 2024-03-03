@@ -50,4 +50,8 @@
   .badge {
     @apply p-1 text-xs w-1/2 rounded-full bg-gray-100 text-center font-bold;
   }
+
+  .cta-btn {
+    @apply px-3 py-2 bg-accent/85 hover:bg-accent/80 w-full rounded-sm font-bold border border-accent
+  }
 }

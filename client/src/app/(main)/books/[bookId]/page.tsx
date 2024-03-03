@@ -10,7 +10,9 @@ const book = {
   description: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum dolorem, omnis nesciunt corporis eius voluptate a quaerat consequuntur alias minus officiis accusamus iure nemo pariatur doloribus iusto sed dignissimos, excepturi sint ut? Fugit tempora quisquam eos ducimus consequuntur debitis, aperiam voluptatibus accusamus. Magni, modi. Veniam sequi aspernatur porro totam eos! Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis omnis, nostrum neque ipsa, fugiat, commodi sit rem provident sint ea culpa alias quibusdam ipsam minus quae quidem recusandae esse? Suscipit fugit, quam architecto ipsum vitae sunt quod repellat qui atque sit magnam neque unde, mollitia cum similique numquam earum enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo blanditiis qui deserunt laudantium incidunt natus veritatis perferendis rem voluptate molestiae quasi, sed reprehenderit cupiditate in, maiores corporis unde. Animi, nobis!',
   author: {
     name: 'Adam Jones',
-    id: 3
+    id: 3,
+    email: 'adamjones@gmail.com',
+    description: 'lorem ipsum dolor sit amet Veniam sequi aspernatur porro totam eos! Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis omnis, nostrum neque ipsa, fugiat, commodi sit rem provident sint ea culpa alias quibusdam ipsam minus quae quidem recusandae esse? Suscipit fugit, quam architecto ipsum vitae sunt quod repellat qui atque sit magnam neque unde, mollitia cum similique numquam earum enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo blanditiis qui deserunt laudantium incidunt natus veritatis perferendis rem voluptate molestiae quasi, sed reprehenderit cupiditate in, maiores corporis unde. Animi, nobis!'
   }
 }
 
@@ -59,9 +61,11 @@ export default function BookDetailsPage({ params }: { params: { bookId: string }
           {/* <span className='text-sm p-1 px-2 my-2 bg-gray-100 rounded-full'>Motivational</span> */}
           <p>{book.description}</p>
         </div>
-        <div>
+        <div className='space-y-2'>
           <h3 className='text-2xl font-semibold text-slate-700'>Author Details</h3>
           <Link href={`/authors/${book.author.id}`} className='font-semibold underline text-accent py-2'>Adam Smith</Link>
+          <p>{book.author.description}</p>
+          <p>Email:&nbsp;{book.author.email}</p>
         </div>
       </div>
     </div>
