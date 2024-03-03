@@ -50,7 +50,7 @@ export default function Categories() {
       <div className='absolute inset-0 bg-gradient-to-r from-transparent to-white z-[-1]'></div>
 
       <div className='flex items-center space-x-4 overflow-x-scroll py-2 thin-scrollbar'>
-        {[...categories, ...categories].map((category, index) => (
+        {[...categories].map((category, index) => (
           <div
             key={`${category}_${index}`}
             className={`p-[2px] rounded-md shadow bg-gradient-to-br ${getColor(index, 'base')} ${getColor(index, 'active')} backdrop-filter backdrop-blur-3xl shadow-inner transition-all duration-150 ease-in-out hover:bg-opacity-90 hover:scale-105 hover:rotate-1 hover:z-10`}
