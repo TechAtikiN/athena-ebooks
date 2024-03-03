@@ -1,5 +1,6 @@
 // named imports
 import { ArrowDownTrayIcon, HeartIcon } from '@heroicons/react/24/outline'
+import { getServerSession } from 'next-auth'
 
 // default imports
 import Image from 'next/image'
@@ -16,7 +17,9 @@ const book = {
   }
 }
 
-export default function BookDetailsPage({ params }: { params: { bookId: string } }) {
+export default async function BookDetailsPage({ params }: { params: { bookId: string } }) {
+  const session = await getServerSession()
+
   return (
     <div className=''>
       <div className='relative w-full h-[265px]'>
@@ -40,16 +43,22 @@ export default function BookDetailsPage({ params }: { params: { bookId: string }
             <p className='text-white'>Author:&nbsp;<span className='font-semibold'>{book.author.name}</span></p>
 
             {/* Favorite and Download button */}
-            <div className='sm:flex block sm:space-x-4 sm:space-y-0 space-y-3'>
-              <button className='outline-btn '>
-                <ArrowDownTrayIcon className='h-5 w-5' />
-                <span>Download</span>
-              </button>
-              <button className='outline-btn'>
-                <HeartIcon className='h-5 w-5' />
-                <span>Mark As Favorite</span>
-              </button>
-            </div>
+            {/* display buttons only if user is logged in or else display login button */}
+            {session ? (
+              <div className='flex space-x-2'>
+                <button className='flex items-center space-x-1 p-2 bg-accent text-white rounded-lg'>
+                  <HeartIcon className='h-5' />
+                  <span>Favorite</span>
+                </button>
+                <button className='flex items-center space-x-1 p-2 bg-accent text-white rounded-lg'>
+                  <ArrowDownTrayIcon className='h-5' />
+                  <span>Download</span>
+                </button>
+              </div>
+            ) : (
+              <Link href='/signin' className='outline-btn'>Sign in for Instant Download</Link>
+            )}
+
           </div>
         </div>
       </div>

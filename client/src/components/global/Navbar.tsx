@@ -2,7 +2,8 @@
 // named imports
 import { useState } from 'react'
 import { navLinks } from '@/constants/navLink'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
+import { ArrowRightCircleIcon, ArrowRightIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
+import { useSession } from 'next-auth/react'
 
 // default imports
 import Image from 'next/image'
@@ -11,6 +12,7 @@ import Link from 'next/link'
 
 export default function Navbar() {
   const [showNavLinks, setShowNavLinks] = useState(false)
+  const { data: session } = useSession()
 
   return (
     <nav className='p-2 bg-slate-50  border border-b'>
@@ -30,9 +32,27 @@ export default function Navbar() {
 
         {/* desktop navlinks */}
         <ul className='hidden sm:flex'>
-          {navLinks.map((link, index) => (
-            <Navlink key={index} link={link} />
-          ))}
+          {session ? (
+            <div className='flex items-center'>
+              {
+                navLinks.map((link, index) => (
+                  <Navlink key={index} link={link} />
+                ))}
+              {/* user avatar */}
+              <Link href='/profile' className='flex items-center space-x-2'>
+                <Image src={session?.user?.image!} alt='user' width={40} height={40} className='border border-slate-600 rounded-full' />
+                {/* <span className='text-sm font-semibold'>{session?.user?.name}</span> */}
+              </Link>
+            </div>
+          ) : (
+            <div className='flex items-center'>
+              <Link href={'/books'} className={`px-5 text-sm font-semibold `}>Books</Link>
+              <Link href={'/signin'} className='px-3 py-1 flex items-center hover:text-accent font-semibold rounded-md space-x-1'>
+                <span>Sign In</span>
+                <ArrowRightIcon className='w-4 h-4' />
+              </Link>
+            </div>
+          )}
         </ul>
 
         {/* mobile menu */}

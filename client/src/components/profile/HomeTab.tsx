@@ -2,8 +2,10 @@
 
 // named imports
 import { signOut, useSession } from 'next-auth/react'
-import Image from 'next/image'
 import { redirect } from 'next/navigation'
+
+// default imports
+import Image from 'next/image'
 
 export default function HomeTab() {
   const { data: session } = useSession()
