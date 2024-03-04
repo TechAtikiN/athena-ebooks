@@ -22,15 +22,15 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className='p-5 grid grid-cols-10 h-screen'>
+    <div className='p-5 sm:grid sm:grid-cols-10 h-screen'>
       {/* Left Section */}
-      <div className='col-span-2 border-r border-accent/15'>
-        <div className='flex flex-col gap-3'>
+      <div className='sm:col-span-2 border-r border-accent/15'>
+        <div className='flex sm:flex-col gap-3'>
           {tabs.map((tab, index) => (
             <button
               key={index}
               onClick={() => handleTabChange(tab.name)}
-              className={`flex items-center font-semibold px-3 py-2 mr-5 -ml-2 rounded-r-full ${activeTab === tab.name ? 'bg-accent/30' : ''}`}
+              className={`flex items-center font-semibold px-3 py-2 mr-5 -ml-2 sm:rounded-r-full ${activeTab === tab.name ? 'bg-accent/30' : ''}`}
             >
               {/* tab icon  */}
               <div className={`${activeTab === tab.name ? 'text-accent' : ''}`}>{tab.icon}</div>
@@ -42,7 +42,7 @@ export default function ProfilePage() {
       </div>
 
       {/* Right Section */}
-      <div className='col-span-8 px-5'>
+      <div className='sm:col-span-8 px-5 py-3 sm:py-0'>
         {/* tab content */}
         {activeTab === 'Home' && <HomeTab />}
         {activeTab === 'My Books' && <MyBooksTab />}

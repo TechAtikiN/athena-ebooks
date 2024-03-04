@@ -9,10 +9,11 @@ import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Navlink from './Navlink'
 import Link from 'next/link'
+import UserAvatar from './UserAvatar'
 
 export default function Navbar() {
   const [showNavLinks, setShowNavLinks] = useState(false)
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
 
   return (
     <nav className='p-2 bg-slate-50  border border-b'>
@@ -32,17 +33,13 @@ export default function Navbar() {
 
         {/* desktop navlinks */}
         <ul className='hidden sm:flex'>
-          {session ? (
+          {session && session ? (
             <div className='flex items-center'>
-              {
-                navLinks.map((link, index) => (
-                  <Navlink key={index} link={link} />
-                ))}
+              {navLinks.map((link, index) => (
+                <Navlink key={index} link={link} />
+              ))}
               {/* user avatar */}
-              <Link href='/profile' className='flex items-center space-x-2'>
-                <Image src={session?.user?.image!} alt='user' width={40} height={40} className='border border-slate-600 rounded-full' />
-                {/* <span className='text-sm font-semibold'>{session?.user?.name}</span> */}
-              </Link>
+              <UserAvatar session={session} />
             </div>
           ) : (
             <div className='flex items-center'>
@@ -68,12 +65,13 @@ export default function Navbar() {
       </div>
 
       {/* mobile navlinks */}
-      {showNavLinks && (
-        <div className='sm:hidden flex justify-between' id='navbar-multi-level'>
+      {session && showNavLinks && (
+        <div className='sm:hidden flex justify-between'>
           <ul className='flex flex-col space-y-2 p-2 bg-slate-50'>
             {navLinks.map((link, index) => (
-              <Link key={index} href={link.href} className='px-5 text-sm font-semibold text-accent'>{link.name}</Link>
+              <Navlink key={index} link={link} />
             ))}
+            <Navlink link={{ name: 'Profile', href: '/profile' }} />
           </ul>
           <button onClick={() => setShowNavLinks(false)} type='button' className='inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg sm:hidden'>
             <XMarkIcon className='w-5 h-5' />

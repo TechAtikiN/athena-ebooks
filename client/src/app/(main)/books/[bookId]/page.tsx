@@ -45,12 +45,12 @@ export default async function BookDetailsPage({ params }: { params: { bookId: st
             {/* Favorite and Download button */}
             {/* display buttons only if user is logged in or else display login button */}
             {session ? (
-              <div className='flex space-x-2'>
-                <button className='flex items-center space-x-1 p-2 bg-accent text-white rounded-lg'>
+              <div className='flex space-x-4'>
+                <button className='outline-btn'>
                   <HeartIcon className='h-5' />
                   <span>Favorite</span>
                 </button>
-                <button className='flex items-center space-x-1 p-2 bg-accent text-white rounded-lg'>
+                <button className='outline-btn'>
                   <ArrowDownTrayIcon className='h-5' />
                   <span>Download</span>
                 </button>
