@@ -5,9 +5,12 @@ type Navlink = {
 
 type Book = {
   id: number
-  name: string
-  author: string
-  tag: string
+  title: string
+  coverImage: string
+  category: string
+  author: {
+    name: string
+  }
 }
 
 type BookDetails = {

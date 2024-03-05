@@ -12,6 +12,14 @@ export const ADD_USER = `
   }
 `
 
+export const ADD_BOOK = gql`
+mutation AddBook($title: String!, $description: String!, $bookPdf: String!, $authorId: ID!, $category: String, $coverImage: String, $authorDescription: String) {
+  addBook(title: $title, description: $description, bookPdf: $bookPdf, authorId: $authorId, category: $category, coverImage: $coverImage, authorDescription: $authorDescription) {
+    id
+  }
+}`
+
+
 export const GET_USER = gql`
   query User($email: String!) {
   user(email: $email) {
@@ -31,9 +39,16 @@ export const GET_USER = gql`
 }
 `
 
-export const ADD_BOOK = gql`
-mutation AddBook($title: String!, $description: String!, $bookPdf: String!, $authorId: ID!, $category: String, $coverImage: String, $authorDescription: String) {
-  addBook(title: $title, description: $description, bookPdf: $bookPdf, authorId: $authorId, category: $category, coverImage: $coverImage, authorDescription: $authorDescription) {
+export const GET_BOOKS = gql`
+  query Books {
+  books {
+    category
+    coverImage
     id
+    title
+    author {
+      name
+    }
   }
-}`
+}
+`

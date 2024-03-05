@@ -1,10 +1,11 @@
 // named imports
-import { books } from '@/constants/books'
+import { getBooks } from '@/actions/books'
 
 // default imports
 import BookItem from './BookItem'
 
-export default function BooksListing() {
+export default async function BooksListing() {
+  const books: Book[] = await getBooks()
   return (
     <div className='m-3'>
       {/* books listing */}
