@@ -1,12 +1,13 @@
-import Image from "next/image";
-import Link from "next/link";
+// default imports
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default async function Home() {
   return (
-    <div className='flex flex-col px-20 py-8 bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 text-center'>
+    <div className='flex flex-col justify-center items-center px-20 py-8 bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 text-center'>
 
-      <div className="flex flex-col items-center h-44 w-44 relative">
-        <Image className="rounded-full" layout="fill" src="https://media0.giphy.com/media/324sEkye9F1NMIvogH/giphy.gif?cid=6c09b952ugc55sbx6ned4f7idynexk4wifg57pex7vi9mj93&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s" alt="" />
+      <div className='flex flex-col items-center h-44 w-44 relative'>
+        <Image className='rounded-full' layout='fill' src='https://media0.giphy.com/media/324sEkye9F1NMIvogH/giphy.gif?cid=6c09b952ugc55sbx6ned4f7idynexk4wifg57pex7vi9mj93&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s' alt='' />
       </div>
       <main className='flex-1 flex flex-col mt-4 items-center justify-center text-center'>
         <div className='space-y-3'>
