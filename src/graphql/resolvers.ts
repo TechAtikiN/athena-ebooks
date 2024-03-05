@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient } from '@prisma/client'
 
 type Context = {
   prisma: PrismaClient
@@ -26,6 +26,15 @@ export const resolvers = {
         }
       })
     },
+
+    // retrieve a single user
+    user: async (parents: any, args: any, context: Context) => {
+      return await context.prisma.user.findUnique({
+        where: {
+          email: args.email
+        }
+      })
+    }
   },
 
   Mutation: {
@@ -52,5 +61,23 @@ export const resolvers = {
   
       // returning the new user
       return newUser
-  }}
+    },
+    // add a new book
+    addBook: async (parents: any, args: any, context: Context) => {
+      // creating a new book
+      const newBook = await context.prisma.book.create({
+        data: {
+          title: args.title,
+          description: args.description,
+          category: args.category,
+          coverImage: args.coverImage,
+          bookPdf: args.bookPdf,
+          authorId: args.authorId,
+          authorDescription: args.authorDescription
+        }
+      })
+      // returning the new book
+      return newBook
+    }
+  }
 }

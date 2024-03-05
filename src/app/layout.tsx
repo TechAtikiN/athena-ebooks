@@ -1,5 +1,6 @@
 // type imports
 import type { Metadata } from 'next';
+import { Toaster } from '@/components/ui/toaster';
 
 // style imports
 import { Lato } from 'next/font/google';
@@ -33,6 +34,7 @@ export default function RootLayout({
         <Providers>
           <div className=''>
             {children}
+            <Toaster />
           </div>
         </Providers>
       </body>

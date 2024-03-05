@@ -15,6 +15,7 @@
     "@as-integrations/next": "^3.0.0",
     "@heroicons/react": "^2.1.1",
     "@prisma/client": "^5.10.2",
+    "@radix-ui/react-toast": "^1.1.5",
     "@uploadthing/react": "^6.3.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",

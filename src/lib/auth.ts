@@ -22,7 +22,7 @@ export const authOptions = {
 
         // adding user to the database
         try {
-          const data = await fetch("http://localhost:3000/api/graphql", {
+          var data = await fetch("http://localhost:3000/api/graphql", {
             method: "POST",
             body: JSON.stringify({
               query: ADD_USER,
@@ -37,7 +37,7 @@ export const authOptions = {
             },
           }).then((res) => res.json())
           console.log(data)
-          return data
+          return {data}
         }
         catch (error) {
           console.error(error)
@@ -45,5 +45,15 @@ export const authOptions = {
       }
       return user
     },
+
+    // async session({ session, data }: any) {
+    //   session = {
+    //     ...session,
+    //     user: {
+    //       id: data.id,
+    //       ...session.user,
+    //     }
+    //   }
+    // }
   },
 }

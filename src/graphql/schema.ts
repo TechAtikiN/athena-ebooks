@@ -4,13 +4,14 @@ export const typeDefs = `#graphql
     id: ID!
     title: String!
     description: String!
-    category: String
-    coverImage: String
+    category: String!
+    coverImage: String!
     bookPdf: String!
     createdAt: String!
     updatedAt: String!
     author: User
     authorId: ID!
+    authorDescription: String
   }
 
   type User {
@@ -26,9 +27,19 @@ export const typeDefs = `#graphql
   type Query {
     book(id: ID!): Book
     books: [Book]
+    user(email: String!): User
   }
 
   type Mutation {
-    addUser(name: String!, email: String!, image: String): User 
+    addUser(name: String!, email: String!, image: String): User
+    addBook(
+      title: String!,
+      description: String!,
+      category: String,
+      coverImage: String,
+      bookPdf: String!,
+      authorId: ID!
+      authorDescription: String
+    ): Book
   }
 `
