@@ -20,3 +20,9 @@ type BookDetails = {
     id: number
   }
 }
+
+type TFile = {
+  key: string
+  name: string
+  url: string
+}

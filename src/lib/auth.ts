@@ -36,7 +36,7 @@ export const authOptions = {
               "Content-Type": "application/json",
             },
           }).then((res) => res.json())
-          
+          console.log(data)
           return data
         }
         catch (error) {
