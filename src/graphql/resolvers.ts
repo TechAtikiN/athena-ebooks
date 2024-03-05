@@ -73,11 +73,24 @@ export const resolvers = {
           coverImage: args.coverImage,
           bookPdf: args.bookPdf,
           authorId: args.authorId,
-          authorDescription: args.authorDescription
         }
       })
       // returning the new book
       return newBook
+    },
+    updateUser: async (parents: any, args: any, context: Context) => {
+      // updating the user
+      const updatedUser = await context.prisma.user.update({
+        where: {
+          id: args.authorId
+        },
+        data: {
+          description: args.authorDescription,
+          location: args.location
+        }
+      })
+      // returning the updated user
+      return updatedUser
     }
   }
 }

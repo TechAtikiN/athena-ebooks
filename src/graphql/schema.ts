@@ -11,7 +11,6 @@ export const typeDefs = `#graphql
     updatedAt: String!
     author: User
     authorId: ID!
-    authorDescription: String
   }
 
   type User {
@@ -22,6 +21,8 @@ export const typeDefs = `#graphql
     createdAt: String!
     updatedAt: String!
     books: [Book]
+    description: String
+    location: String
   }
 
   type Query {
@@ -39,7 +40,7 @@ export const typeDefs = `#graphql
       coverImage: String,
       bookPdf: String!,
       authorId: ID!
-      authorDescription: String
     ): Book
+    updateUser(authorDescription: String, location: String, authorId: String): User
   }
 `

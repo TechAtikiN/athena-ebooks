@@ -9,26 +9,27 @@ datasource db {
 
 // Books Schema 
 model Book {
-  id                String   @id @default(uuid()) @map("_id")
-  title             String
-  description       String?
-  category          String?
-  coverImage        String?
-  bookPdf           String
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-  author            User     @relation(fields: [authorId], references: [id])
-  authorId          String
-  authorDescription String?
+  id          String   @id @default(uuid()) @map("_id")
+  title       String
+  description String?
+  category    String?
+  coverImage  String?
+  bookPdf     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    String
 }
 
 // User Schema/Author Schema
 model User {
-  id        String   @id @default(uuid()) @map("_id")
-  email     String   @unique
-  name      String
-  image     String?
-  books     Book[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(uuid()) @map("_id")
+  email       String   @unique
+  name        String
+  image       String?
+  books       Book[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  description String?
+  location    String?
 }

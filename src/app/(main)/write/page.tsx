@@ -108,15 +108,6 @@ export default function CreateBook() {
                 rows={4} className='form-input'></textarea>
             </div>
 
-            <div className='flex flex-col space-y-1 col-span-2'>
-              <label className='form-label' htmlFor='authorDescription'>About the Author</label>
-              <textarea
-                name="authorDescription"
-                id="authorDescription"
-                style={{ resize: 'none' }}
-                rows={2} className='form-input'></textarea>
-            </div>
-
             {bookCover ? (
               <div className='flex flex-col space-y-1 col-span-2'>
                 <label className='form-label' htmlFor='cover'>Cover Image of the Book</label>

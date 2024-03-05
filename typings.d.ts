@@ -18,7 +18,6 @@ type BookDetails = {
   title: string
   coverImage: string
   bookPdf: string
-  authorDescription: string
   category: string
   description: string
   createdAt: string
@@ -33,4 +32,15 @@ type TFile = {
   key: string
   name: string
   url: string
+}
+
+type User = {
+  books: Book[]
+  email: string
+  id: string
+  name: string
+  image: string
+  createdAt: string
+  description: string
+  location: string
 }

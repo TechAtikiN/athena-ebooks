@@ -1,9 +1,12 @@
 'use client'
 
 // named imports
+import { useState } from 'react'
 import { tabs } from '@/constants/profile-tabs'
 import { usePathname, useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useQuery } from '@apollo/client'
+import { useSession } from 'next-auth/react'
+import { GET_USER } from '@/graphql/queries'
 
 // default imports
 import FavoritesTab from '@/components/profile/FavoritesTab'
@@ -13,8 +16,11 @@ import SettingsTab from '@/components/profile/SettingsTab'
 
 export default function ProfilePage() {
   const [activeTab, setActiveTab] = useState('Home')
+  const { data: session } = useSession()
   const router = useRouter()
   const pathname = usePathname()
+  const { data: user } = useQuery(GET_USER, { variables: { email: session?.user?.email } })
+  console.log(user)
 
   const handleTabChange = (tag: string) => {
     setActiveTab(tag)
@@ -22,9 +28,9 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className='p-5 sm:grid sm:grid-cols-10 h-screen'>
+    <div className='sm:grid sm:grid-cols-10 h-screen'>
       {/* Left Section */}
-      <div className='sm:col-span-2 border-r border-accent/15'>
+      <div className='sm:col-span-2 border-r border-accent/15 p-5'>
         <div className='flex sm:flex-col gap-3'>
           {tabs.map((tab, index) => (
             <button
@@ -42,9 +48,9 @@ export default function ProfilePage() {
       </div>
 
       {/* Right Section */}
-      <div className='sm:col-span-8 px-5 py-3 sm:py-0'>
+      <div className='sm:col-span-8 py-3 sm:py-0'>
         {/* tab content */}
-        {activeTab === 'Home' && <HomeTab />}
+        {activeTab === 'Home' && <HomeTab user={user?.user} />}
         {activeTab === 'My Books' && <MyBooksTab />}
         {activeTab === 'Favorites' && <FavoritesTab />}
         {activeTab === 'Settings' && <SettingsTab />}

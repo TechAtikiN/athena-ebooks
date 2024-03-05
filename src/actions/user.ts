@@ -1,18 +1,29 @@
 'use server'
 
-import { GET_USER } from "@/graphql/queries"
-import { getClient } from "@/lib/graphql-client"
-import { getSession } from "next-auth/react"
+import { UPDATE_USER } from '@/graphql/queries'
+import { getClient } from '@/lib/graphql-client'
 
-export async function getUser() {
-  const session = await getSession()
+// export async function getUser() {
+//   const session = await getSession()
 
-  const data = await getClient().query({
-    query: GET_USER,
+//   const data = await getClient().query({
+//     query: GET_USER,
+//     variables: {
+//       email: session?.user?.email
+//     }
+//   })
+//   return data?.data?.user
+// }
+
+export async function updateUser(userData: any) {
+  const {data} = await getClient().mutate({
+    mutation: UPDATE_USER,
     variables: {
-      email: session?.user?.email
+      authorDescription: userData.authorDescription,
+      location: userData.location,
+      authorId: userData.authorId
     }
   })
   console.log(data)
+  return data?.updateUser?.id
 }
-
