@@ -16,11 +16,16 @@ type Book = {
 type BookDetails = {
   id: number
   title: string
+  coverImage: string
+  bookPdf: string
+  authorDescription: string
   category: string
   description: string
+  createdAt: string
   author: {
+    id: string
     name: string
-    id: number
+    email: string
   }
 }
 

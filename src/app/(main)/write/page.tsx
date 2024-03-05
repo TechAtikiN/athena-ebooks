@@ -5,7 +5,7 @@ import { XMarkIcon } from '@heroicons/react/24/solid'
 import { useEffect, useState } from 'react'
 import { createBook } from '@/actions/books'
 import { useQuery } from '@apollo/client'
-import { GET_USER } from '@/graphql/queries'
+import { GET_USER } from '@graphql/queries'
 import { useSession } from 'next-auth/react'
 import { useToast } from '@/components/ui/use-toast'
 import { useRouter } from 'next/navigation'
@@ -40,6 +40,7 @@ export default function CreateBook() {
 
     // converting the form data to an object
     const bookData = Object.fromEntries(formData.entries())
+
     // creating the book
     const book = await createBook(bookData)
     if (book) {

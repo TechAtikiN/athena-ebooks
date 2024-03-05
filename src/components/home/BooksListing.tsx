@@ -4,8 +4,8 @@ import { getBooks } from '@/actions/books'
 // default imports
 import BookItem from './BookItem'
 
-export default async function BooksListing() {
-  const books: Book[] = await getBooks()
+export default async function BooksListing({ books }: { books: Book[] }) {
+
   return (
     <div className='m-3'>
       {/* books listing */}

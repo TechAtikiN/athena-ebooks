@@ -1,7 +1,6 @@
 'use client'
 
 // named imports
-import { categories } from '@/constants/categories'
 import { usePathname, useRouter } from 'next/navigation'
 
 // default imports
@@ -27,7 +26,7 @@ const ACTIVE_COLORS = [
   'hover:from-indigo-400 hover:via-indigo-600 hover:to-indigo-800',
 ]
 
-export default function Categories() {
+export default function Categories({ categories }: { categories: string[] }) {
   const router = useRouter()
   const pathname = usePathname()
 

@@ -4,6 +4,9 @@ import { ADD_USER } from "@/graphql/queries"
 // default imports
 import GoogleProvider from "next-auth/providers/google"
 
+const API_ENDPOINT = process.env.NEXT_PUBLIC_GRAPHQL_CLIENT_URI || 'http://localhost:3000/api/graphql'
+if (!API_ENDPOINT) throw new Error(`Env variable NEXT_PUBLIC_GRAPHQL_CLIENT_URI is required`)
+
 export const authOptions = {
   // providers are the different ways a user can authenticate
   providers: [
@@ -12,6 +15,7 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
   ],
+  
   // callbacks run after the user has been authenticated by a provider
   callbacks: {
     // @ts-ignore
@@ -22,7 +26,7 @@ export const authOptions = {
 
         // adding user to the database
         try {
-          var data = await fetch("http://localhost:3000/api/graphql", {
+          var data = await fetch(API_ENDPOINT, {
             method: "POST",
             body: JSON.stringify({
               query: ADD_USER,
