@@ -1,7 +1,7 @@
 'use server'
 
 import { getClient } from '@/lib/graphql-client'
-import { ADD_BOOK, GET_BOOK, GET_BOOKS, GET_CATEGORIES, GET_CATEGORY_BOOKS, GET_FAVORITES } from '@/graphql/queries'
+import { ADD_BOOK, ADD_FAVORITE, CHECK_FAVORITE, GET_BOOK, GET_BOOKS, GET_CATEGORIES, GET_CATEGORY_BOOKS, GET_FAVORITES } from '@/graphql/queries'
 import { revalidateTag } from 'next/cache'
 
 export async function createBook(bookData: any) {
@@ -11,6 +11,16 @@ export async function createBook(bookData: any) {
   },)
   revalidateTag('get-books')
   return data.addBook.id
+}
+
+export async function setFavoriteBook(userId: string, bookId: string) {
+  console.log('userId',userId,'bookId',bookId)
+  const { data } = await getClient().mutate({
+    mutation: ADD_FAVORITE,
+    variables: { userId, bookId },
+  })
+  console.log('data',data)
+  return data.addFavoriteBook.message
 }
 
 export async function getBooks(category?: string, authorId?: string) {
@@ -62,4 +72,12 @@ export async function getFavoriteBooks(userId: string) {
   })
   console.log(data)
   return data.getFavorites
+}
+
+export async function isFavoriteBook(userId: string, bookId: string) {
+  const { data } = await getClient().query({
+    query: CHECK_FAVORITE,
+    variables: { userId, bookId },
+  })
+  return data.isFavoriteBook.message
 }

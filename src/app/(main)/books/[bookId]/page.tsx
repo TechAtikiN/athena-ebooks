@@ -1,15 +1,17 @@
 // named imports
 import { getBook } from '@/actions/books'
-import { HeartIcon } from '@heroicons/react/24/outline'
 import { getServerSession } from 'next-auth'
 
 // default imports
 import Image from 'next/image'
 import Link from 'next/link'
 import DownloadButton from '@/components/books/DownloadButton'
+import FavoriteButton from '@/components/books/FavoriteButton'
+import { getUser } from '@/actions/user'
 
 export default async function BookDetailsPage({ params }: { params: { bookId: string } }) {
   const session = await getServerSession()
+  const user = await getUser(session?.user?.email || '')
   const book: BookDetails = await getBook(params.bookId)
 
   return (
@@ -38,10 +40,7 @@ export default async function BookDetailsPage({ params }: { params: { bookId: st
             {/* display buttons only if user is logged in or else display login button */}
             {session ? (
               <div className='flex space-x-4'>
-                <button className='outline-btn'>
-                  <HeartIcon className='h-5' />
-                  <span>Favorite</span>
-                </button>
+                <FavoriteButton userId={user.id} bookId={params.bookId} />
                 <DownloadButton book={book?.bookPdf} title={book?.title} />
               </div>
             ) : (

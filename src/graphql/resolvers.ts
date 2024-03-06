@@ -105,6 +105,23 @@ export const resolvers = {
 
       // return the books
       return books
+    },
+
+    // check if a book is in the user's favorite
+    isFavoriteBook: async (parents: any, args: any, context: Context) => {
+      // check if the book is in the user's favorite
+      const favorite = await context.prisma.favorite.findFirst({
+        where: {
+          userId: args.userId,
+          bookId: args.bookId
+        }
+      })
+
+      // if the book is in the user's favorite, return message
+      if (favorite) return { message: true }
+
+      // if the book is not in the user's favorite, return message
+      return { message: false }
     }
   },
 
@@ -133,6 +150,7 @@ export const resolvers = {
       // returning the new user
       return newUser
     },
+
     // add a new book
     addBook: async (parents: any, args: any, context: Context) => {
       // creating a new book
@@ -149,6 +167,7 @@ export const resolvers = {
       // returning the new book
       return newBook
     },
+
     updateUser: async (parents: any, args: any, context: Context) => {
       // updating the user
       const updatedUser = await context.prisma.user.update({
@@ -169,16 +188,36 @@ export const resolvers = {
       // get userId and bookId from args
       const { userId, bookId } = args
 
-      // map in the favorite collection
-      const favorite = await context.prisma.favorite.create({
+      // check if the book is already in the user's favorite
+      const favorite = await context.prisma.favorite.findFirst({
+        where: {
+          userId,
+          bookId
+        }
+      })
+
+      // if the book is in the user's favorite, remove the book from the user's favorite
+      if (favorite) {
+        await context.prisma.favorite.delete({
+          where: {
+            id: favorite.id
+          }
+        })
+
+        // return message that the book has been removed from the favorite
+        return { message: false }
+      }
+
+      // if the book is not in the user's favorite, add the book to the user's favorite
+      await context.prisma.favorite.create({
         data: {
           userId,
           bookId
         }
       })
 
-      // return the favorite
-      return favorite
+      // return message that the book has been added to the favorite
+      return { message: true }
     }
   }
 }

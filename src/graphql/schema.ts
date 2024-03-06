@@ -19,6 +19,10 @@ export const typeDefs = `#graphql
     bookId: ID!
   }
 
+  type Message {
+    message: Boolean
+  }
+
   type User {
     id: ID!
     email: String!
@@ -37,6 +41,7 @@ export const typeDefs = `#graphql
     user(email: String!): User
     searchBooks(searchTerm: String!): [Book]
     getFavorites(userId: ID!): [Book]
+    isFavoriteBook(userId: ID!, bookId: ID!): Message
   }
 
   type Mutation {
@@ -50,6 +55,6 @@ export const typeDefs = `#graphql
       authorId: ID!
     ): Book
     updateUser(authorDescription: String, location: String, authorId: String): User
-    addFavoriteBook(userId: ID!, bookId: ID!): Favorite
+    addFavoriteBook(userId: ID!, bookId: ID!): Message
   }
 `

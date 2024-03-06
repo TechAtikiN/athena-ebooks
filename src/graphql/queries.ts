@@ -21,6 +21,23 @@ mutation AddBook($title: String!, $description: String!, $bookPdf: String!, $aut
   }
 }`
 
+// set favorite book in database
+export const ADD_FAVORITE = gql`
+  mutation Mutation($userId: ID!, $bookId: ID!) {
+  addFavoriteBook(userId: $userId, bookId: $bookId) {
+    message
+  }
+}
+`
+
+export const CHECK_FAVORITE = gql`
+  query Query($userId: ID!, $bookId: ID!) {
+  isFavoriteBook(userId: $userId, bookId: $bookId) {
+    message
+  }
+}
+`
+
 // Update user details in database
 export const UPDATE_USER = gql`
 mutation UpdateUser($authorDescription: String, $location: String, $authorId: String) {
