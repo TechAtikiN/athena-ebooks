@@ -6,10 +6,11 @@ import { Suspense } from 'react'
 import Categories from '@/components/home/Categories'
 import BooksListing from '@/components/home/BooksListing'
 import Hero from '@/components/home/Hero'
+import { formatCase } from '@/lib/utils'
 
 export default async function HomePage({ searchParams }: { searchParams?: { category: string } }) {
   // format category to title case
-  const category = searchParams?.category?.toLowerCase().replace(/\b\w/g, (l) => l.toUpperCase()) || 'all'
+  const category = formatCase(searchParams?.category || '') || 'all'
 
   const books = await getBooks(category)
 

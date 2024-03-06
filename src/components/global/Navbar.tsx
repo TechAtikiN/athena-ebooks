@@ -10,6 +10,7 @@ import Image from 'next/image'
 import Navlink from './Navlink'
 import Link from 'next/link'
 import UserAvatar from './UserAvatar'
+import SearchBar from './SearchBar'
 
 export default function Navbar() {
   const [showNavLinks, setShowNavLinks] = useState(false)
@@ -25,11 +26,7 @@ export default function Navbar() {
         </Link>
 
         {/* Search bar */}
-        <input
-          type='text'
-          className='text-sm focus:border-slate-300 focus:outline-none px-4 py-2 rounded-full border border-slate-200 sm:w-1/2 w-full'
-          placeholder='Search by books title or authors'
-        />
+        <SearchBar />
 
         {/* desktop navlinks */}
         <ul className='hidden sm:flex'>

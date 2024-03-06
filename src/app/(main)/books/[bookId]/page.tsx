@@ -1,11 +1,12 @@
 // named imports
 import { getBook } from '@/actions/books'
-import { ArrowDownTrayIcon, HeartIcon } from '@heroicons/react/24/outline'
+import { HeartIcon } from '@heroicons/react/24/outline'
 import { getServerSession } from 'next-auth'
 
 // default imports
 import Image from 'next/image'
 import Link from 'next/link'
+import DownloadButton from '@/components/books/DownloadButton'
 
 export default async function BookDetailsPage({ params }: { params: { bookId: string } }) {
   const session = await getServerSession()
@@ -41,15 +42,7 @@ export default async function BookDetailsPage({ params }: { params: { bookId: st
                   <HeartIcon className='h-5' />
                   <span>Favorite</span>
                 </button>
-                <Link
-                  href={book?.bookPdf}
-                  download={book?.title}
-                  target='_blank'
-                  className='outline-btn'
-                >
-                  <ArrowDownTrayIcon className='h-5' />
-                  <span>Download</span>
-                </Link>
+                <DownloadButton book={book?.bookPdf} title={book?.title} />
               </div>
             ) : (
               <Link href='/signin' className='outline-btn'>Sign in for Instant Download</Link>

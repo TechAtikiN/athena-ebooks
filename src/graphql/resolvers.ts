@@ -61,6 +61,50 @@ export const resolvers = {
           books: true
         }
       })
+    },
+
+    // retrive books searched by title or author
+    searchBooks: async (parents: any, args: any, context: Context) => {
+      return await context.prisma.book.findMany({
+        where: {
+          OR: [
+            {
+              title: {
+                contains: args.searchTerm
+              }
+            },
+            {
+              author: {
+                name: {
+                  contains: args.searchTerm
+                }
+              }
+            }
+          ]
+        }
+      })
+    },
+
+    // retrieve all favorite books of a user
+    getFavorites: async (parents: any, args: any, context: Context) => {
+      // get all favorites of a user
+      const favorites = await context.prisma.favorite.findMany({
+        where: {
+          userId: args.userId
+        }
+      })
+
+      // get all books that are in the favorites
+      const books = await context.prisma.book.findMany({
+        where: {
+          id: {
+            in: favorites.map(favorite => favorite.bookId)
+          }
+        }
+      })
+
+      // return the books
+      return books
     }
   },
 
@@ -118,6 +162,23 @@ export const resolvers = {
       })
       // returning the updated user
       return updatedUser
+    },
+
+    // add a book to user's favorite
+    addFavoriteBook: async (parents: any, args: any, context: Context) => {
+      // get userId and bookId from args
+      const { userId, bookId } = args
+
+      // map in the favorite collection
+      const favorite = await context.prisma.favorite.create({
+        data: {
+          userId,
+          bookId
+        }
+      })
+
+      // return the favorite
+      return favorite
     }
   }
 }

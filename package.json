@@ -16,6 +16,7 @@
     "@heroicons/react": "^2.1.1",
     "@prisma/client": "^5.10.2",
     "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-toast": "^1.1.5",
     "@uploadthing/react": "^6.3.2",
     "class-variance-authority": "^0.7.0",
@@ -31,6 +32,7 @@
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^6.5.0",
+    "use-debounce": "^10.0.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {

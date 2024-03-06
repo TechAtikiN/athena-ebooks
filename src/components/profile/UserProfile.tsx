@@ -51,7 +51,7 @@ export default function UserProfile({ user }: Props) {
         {/* tab content */}
         {activeTab === 'Home' && <HomeTab user={user} />}
         {activeTab === 'My Books' && <MyBooksTab books={user?.books} />}
-        {activeTab === 'Favorites' && <FavoritesTab />}
+        {activeTab === 'Favorites' && <FavoritesTab userId={user?.id} />}
         {activeTab === 'Settings' && <SettingsTab />}
       </div >
     </div>

@@ -1,7 +1,7 @@
 'use server'
 
 import { getClient } from '@/lib/graphql-client'
-import { ADD_BOOK, GET_BOOK, GET_BOOKS, GET_CATEGORIES } from '@/graphql/queries'
+import { ADD_BOOK, GET_BOOK, GET_BOOKS, GET_CATEGORIES, GET_CATEGORY_BOOKS, GET_FAVORITES } from '@/graphql/queries'
 import { revalidateTag } from 'next/cache'
 
 export async function createBook(bookData: any) {
@@ -44,4 +44,22 @@ export async function getBookCategories() {
   const categories = data.books.map((book: any) => book.category)
   const uniqueCategories: string[] = Array.from(new Set(categories))
   return uniqueCategories
+}
+
+export async function getCategoryBooks(searchTerm: string) {
+  const { data } = await getClient().query({
+    query: GET_CATEGORY_BOOKS,
+    variables: { searchTerm },
+  })
+  console.log(data)
+  return data.searchBooks
+}
+
+export async function getFavoriteBooks(userId: string) {
+  const { data } = await getClient().query({
+    query: GET_FAVORITES,
+    variables: { userId },
+  })
+  console.log(data)
+  return data.getFavorites
 }

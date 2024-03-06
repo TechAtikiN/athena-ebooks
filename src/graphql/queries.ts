@@ -75,30 +75,54 @@ export const GET_BOOKS = gql`
 
 // Get book details from database
 export const GET_BOOK = gql`
-query Book($bookId: ID!) {
-  book(id: $bookId) {
-    authorId
-    bookPdf
-    category
-    coverImage
-    createdAt
-    description
-    title
-    author {
-      email
-      id
-      name
+  query Book($bookId: ID!) {
+    book(id: $bookId) {
+      authorId
+      bookPdf
+      category
+      coverImage
+      createdAt
       description
-      location  
+      title
+      author {
+        email
+        id
+        name
+        description
+        location  
+      }
     }
   }
-}
 `
 
 export const GET_CATEGORIES = gql`
-query Books {
-  books {
-    category
+  query Books {
+    books {
+      category
+    }
+  }
+`
+
+export const GET_CATEGORY_BOOKS = gql`
+  query SearchBooks($searchTerm: String!) {
+    searchBooks(searchTerm: $searchTerm) {
+      title
+      id
+      coverImage
+      author {
+        name
+      }
+    }
+  }
+`
+
+export const GET_FAVORITES = gql`
+  query Query($userId: ID!) {
+  getFavorites(userId: $userId) {
+    title
+    id
+    description
+    coverImage
   }
 }
 `
