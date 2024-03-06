@@ -8,7 +8,19 @@ export const resolvers = {
   Query: {
     // retrieve all books and their authors
     books: async (parents: any, args: any, context: Context) => {
-      // check if category is provided in the query
+      // check if authorId is provided
+      if (args.authorId) {
+        return await context.prisma.book.findMany({
+          where: {
+            authorId: args.authorId
+          },
+          include: {
+            author: true
+          }
+        })
+      }
+
+      // check if category is provided
       if (args.category) {
         return await context.prisma.book.findMany({
           where: {

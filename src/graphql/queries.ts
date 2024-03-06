@@ -57,15 +57,18 @@ export const GET_USER = gql`
 
 // Get all books from database
 export const GET_BOOKS = gql`
-  query Books($category: String) {
-  books(category: $category) {
+  query Books($category: String, $authorId: ID) {
+  books(category: $category, authorId: $authorId) {
     author {
       name
+      email
+      image
     }
     category
     coverImage
     id
     title
+    description
   }
 }
 `

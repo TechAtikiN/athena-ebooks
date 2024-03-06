@@ -21,9 +21,9 @@ export default function Hero() {
         <div className='flex flex-col gap-2 min-[400px]:flex-row'>
           <Link
             className='bg-gradient-to-r from-indigo-800 animate-pulse to-blue-600 font-semibold text-white px-6 py-3 my-5'
-            href='/books'
+            href='/write'
           >
-            Explore Library
+            Write your own 📖
           </Link>
         </div>
 

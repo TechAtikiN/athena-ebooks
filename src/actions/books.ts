@@ -13,12 +13,12 @@ export async function createBook(bookData: any) {
   return data.addBook.id
 }
 
-export async function getBooks(category?: string) {
+export async function getBooks(category?: string, authorId?: string) {
   const fetchCategory = category === 'all' ? undefined : category
   
   const { data } = await getClient().query({
     query: GET_BOOKS,
-    variables: {  category: fetchCategory },
+    variables: {  category: fetchCategory, authorId },
     context: {
       fetchOptions: {
         next: { tags: ['get-books'] }

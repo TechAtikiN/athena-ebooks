@@ -5,13 +5,12 @@ import { GET_USER, UPDATE_USER } from '@/graphql/queries'
 import { getClient } from '@/lib/graphql-client'
 import { getServerSession } from 'next-auth'
 
-export async function getUser() {
-  const session = await getServerSession()
+export async function getUser(email: string) {
 
   const data = await getClient().query({
     query: GET_USER,
     variables: {
-      email: session?.user?.email
+      email: email
     }
   })
   return data?.data?.user

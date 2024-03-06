@@ -10,7 +10,7 @@ export default function AuthorBookItem({ book }: Props) {
   return (
     <Link
       href={`/books/${book.id}`}
-      className='bg-slate-100 hover:bg-accent/20 flex space-x-4 justify-between items-start rounded-lg p-5'
+      className='bg-slate-100 hover:bg-accent/20 h-40 flex space-x-4 justify-between items-start rounded-lg p-5'
     >
       <div className='relative object-cover h-[120px] w-[160px]'>
         <Image

@@ -6,7 +6,6 @@ interface Props {
 }
 
 export default function MyBooksTab({ books }: Props) {
-  console.log(books)
   return (
     <div className='space-y-2 m-5'>
       <h3 className='text-2xl font-semibold text-slate-700 mb-5'>You&apos;ve published {books?.length} books</h3>

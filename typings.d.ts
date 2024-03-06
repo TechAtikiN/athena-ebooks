@@ -11,6 +11,8 @@ type Book = {
   description?: string
   author?: {
     name: string
+    email: string
+    image: string
   }
 }
 
