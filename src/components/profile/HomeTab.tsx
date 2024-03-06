@@ -32,9 +32,9 @@ export default function HomeTab({ user }: Props) {
           <h3 className='text-slate-700'>{user?.email}</h3>
           <p className='text-slate-700 text-xs'>Bio: {user?.description}</p>
           <div className='flex text-slate-700 text-sm items-center'>
-            <MapPinIcon className='text-slate-600 h-5 w-5' />
+            <MapPinIcon className='text-accent h-5 w-5' />
             <p>{user?.location}</p>
-            <ClockIcon className='text-slate-600 h-5 w-5 ml-2' />
+            <ClockIcon className='text-accent h-5 w-5 ml-2' />
             <h3>Joined on:&nbsp;{new Date().toISOString().split('T')[0]}</h3>
           </div>
         </div>

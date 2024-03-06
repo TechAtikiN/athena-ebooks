@@ -9,9 +9,9 @@ import Hero from '@/components/home/Hero'
 
 export default async function HomePage({ searchParams }: { searchParams?: { category: string } }) {
   // format category to title case
-  const category = searchParams?.category?.toLowerCase().replace(/\b\w/g, (l) => l.toUpperCase())
+  const category = searchParams?.category?.toLowerCase().replace(/\b\w/g, (l) => l.toUpperCase()) || 'all'
 
-  const books = category === 'All' ? await getBooks() : await getBooks(category)
+  const books = await getBooks(category)
 
   const categories: string[] = await getBookCategories()
 
@@ -21,7 +21,7 @@ export default async function HomePage({ searchParams }: { searchParams?: { cate
       <div className='mx-4 overflow-x-hidden'>
         <h2 className='text-stone-700 text-3xl my-10 font-semibold text-center font-serif'>E-Books Ready for Instant Access📚</h2>
 
-        <Categories categories={categories} />
+        <Categories categories={categories} category={category} />
 
         <hr className='my-5' />
 

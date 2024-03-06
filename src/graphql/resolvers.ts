@@ -44,6 +44,9 @@ export const resolvers = {
       return await context.prisma.user.findUnique({
         where: {
           email: args.email
+        },
+        include: {
+          books: true
         }
       })
     }

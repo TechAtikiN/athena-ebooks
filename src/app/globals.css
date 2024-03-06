@@ -48,7 +48,7 @@
   }
 
   .badge {
-    @apply p-1 text-xs w-1/2 rounded-full bg-gray-100 text-center font-bold;
+    @apply p-1 text-xs w-1/2 rounded-full bg-accent/20 text-center font-bold;
   }
 
   .cta-btn {
