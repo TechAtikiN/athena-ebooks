@@ -1,12 +1,10 @@
-'use client'
-
 // named imports
-import { signOut, useSession } from 'next-auth/react'
-import { redirect } from 'next/navigation'
+import { signOut } from 'next-auth/react'
 
 // default imports
 import Image from 'next/image'
 import EditUserDetails from './EditUserDetails'
+import { ClockIcon, MapPinIcon } from '@heroicons/react/24/outline'
 
 interface Props {
   user: User
@@ -29,11 +27,16 @@ export default function HomeTab({ user }: Props) {
           <EditUserDetails />
 
         </div>
-        <div className='px-5 flex flex-col justify-center items-center'>
+        <div className='px-5 flex flex-col space-y-4 justify-center items-center'>
           <h3 className='text-slate-700 font-semibold text-2xl'>Welcome, {user?.name}</h3>
           <h3 className='text-slate-700'>{user?.email}</h3>
-          <p className='text-slate-700 text-xs'>{user?.description}</p>
-          <h3 className='text-slate-700 text-sm'>Joined on:&nbsp;{new Date().toISOString().split('T')[0]}</h3>
+          <p className='text-slate-700 text-xs'>Bio: {user?.description}</p>
+          <div className='flex text-slate-700 text-sm items-center'>
+            <MapPinIcon className='text-slate-600 h-5 w-5' />
+            <p>{user?.location}</p>
+            <ClockIcon className='text-slate-600 h-5 w-5 ml-2' />
+            <h3>Joined on:&nbsp;{new Date().toISOString().split('T')[0]}</h3>
+          </div>
         </div>
         <button onClick={() => signOut()} className='border border-slate-500 hover:bg-slate-100 py-1 px-2 w-1/2'>Log out</button>
       </div>

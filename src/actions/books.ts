@@ -1,7 +1,7 @@
 'use server'
 
 import { getClient } from '@/lib/graphql-client'
-import { ADD_BOOK, GET_BOOK, GET_BOOKS } from '@/graphql/queries'
+import { ADD_BOOK, GET_BOOK, GET_BOOKS, GET_CATEGORIES } from '@/graphql/queries'
 import { revalidateTag } from 'next/cache'
 
 export async function createBook(bookData: any) {
@@ -13,15 +13,18 @@ export async function createBook(bookData: any) {
   return data.addBook.id
 }
 
-export async function getBooks() {
+export async function getBooks(category?: string) {
+  console.log(category)
   const { data } = await getClient().query({
     query: GET_BOOKS,
+    variables: { category },
     context: {
       fetchOptions: {
         next: { tags: ['get-books'] }
       },
     }
   })
+  
   return data.books
 }
 
@@ -31,4 +34,13 @@ export async function getBook(bookId: string) {
     variables: { bookId }
   })
   return data.book
+}
+
+export async function getBookCategories() {
+  const { data } = await getClient().query({
+    query: GET_CATEGORIES
+  })
+  const categories = data.books.map((book: any) => book.category)
+  const uniqueCategories: string[] = Array.from(new Set(categories))
+  return uniqueCategories
 }

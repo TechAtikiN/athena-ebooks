@@ -8,7 +8,8 @@ type Book = {
   title: string
   coverImage: string
   category: string
-  author: {
+  description?: string
+  author?: {
     name: string
   }
 }
@@ -25,6 +26,8 @@ type BookDetails = {
     id: string
     name: string
     email: string
+    description: string
+    location: string
   }
 }
 

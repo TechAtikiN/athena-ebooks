@@ -22,7 +22,6 @@ export default function EditUserDetails() {
 
     // creating the book
     const data = await updateUser(userData)
-    console.log(data)
     if (!data) {
       toast({
         title: "Error! 📖",

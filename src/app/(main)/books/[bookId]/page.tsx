@@ -69,8 +69,11 @@ export default async function BookDetailsPage({ params }: { params: { bookId: st
         <div className='space-y-2'>
           <h3 className='text-2xl font-semibold text-slate-700'>Author Details</h3>
           <Link href={`/authors/${book.author.id}`} className='font-semibold underline text-accent py-2'>{book?.author?.name}</Link>
-          {/* <p>{book?.authorDescription}</p> */}
-          <p>Email:&nbsp;<span className='font-semibold'>{book.author.email}</span></p>
+          <p>{book?.author?.description}</p>
+          <div className=''>
+            <p>Email:&nbsp;<span className='font-semibold'>{book.author.email}</span></p>
+            <p>{book?.author?.location}</p>
+          </div>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 interface Props {
-  book: BookDetails
+  book: Book
 }
 
 export default function AuthorBookItem({ book }: Props) {
@@ -22,7 +22,7 @@ export default function AuthorBookItem({ book }: Props) {
       </div>
       <div className='space-y-2'>
         <h3 className='text-xl font-semibold'>{book.title.slice(0, 30)}..</h3>
-        <p className='text-gray-600 text-sm mb-2'>{book.description.slice(0, 150)}...</p>
+        <p className='text-gray-600 text-sm mb-2'>{book?.description?.slice(0, 150)}...</p>
         <span className="bg-accent/20 text-accent font-bold text-xs me-2 px-2.5 py-0.5 rounded-full">{book.category}</span>
         <p className='text-gray-600 text-xs mb-2'>Published on <strong>{new Date().toISOString().split('T')[0]}</strong></p>
       </div>
