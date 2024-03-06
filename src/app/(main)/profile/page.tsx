@@ -1,10 +1,10 @@
 // named imports
 import { getUser } from '@/actions/user'
+import { redirect } from 'next/navigation'
 
 // default imports
 import UserProfile from '@/components/profile/UserProfile'
 import { getServerSession } from 'next-auth'
-import { redirect } from 'next/navigation'
 
 export default async function ProfilePage() {
   const session = await getServerSession()

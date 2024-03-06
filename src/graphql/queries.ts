@@ -1,4 +1,5 @@
-import { gql } from "@apollo/client"
+// named imports
+import { gql } from '@apollo/client'
 
 // Add user to database 
 export const ADD_USER = `

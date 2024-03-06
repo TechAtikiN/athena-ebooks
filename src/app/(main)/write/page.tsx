@@ -31,7 +31,7 @@ export default function CreateBook() {
     }
   }, [user])
 
-  // function to add book
+  // function to add book 
   async function addBook(formData: FormData) {
     // adding the book cover, pdf, and authorId to the form data
     formData.append('coverImage', bookCover?.url as string)

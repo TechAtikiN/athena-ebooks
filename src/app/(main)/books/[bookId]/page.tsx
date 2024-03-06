@@ -1,13 +1,13 @@
 // named imports
 import { getBook } from '@/actions/books'
 import { getServerSession } from 'next-auth'
+import { getUser } from '@/actions/user'
 
 // default imports
 import Image from 'next/image'
 import Link from 'next/link'
 import DownloadButton from '@/components/books/DownloadButton'
 import FavoriteButton from '@/components/books/FavoriteButton'
-import { getUser } from '@/actions/user'
 
 export default async function BookDetailsPage({ params }: { params: { bookId: string } }) {
   const session = await getServerSession()
@@ -19,7 +19,7 @@ export default async function BookDetailsPage({ params }: { params: { bookId: st
       <div className='relative w-full h-[265px]'>
         <Image
           className='object-cover'
-          src='https://images.unsplash.com/photo-1464618663641-bbdd760ae84a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+          src='/images/book-bg.avif'
           alt='background'
           layout='fill'
         />
@@ -32,6 +32,7 @@ export default async function BookDetailsPage({ params }: { params: { bookId: st
               layout='fill'
             />
           </div>
+
           <div className='pl-5 sm:pl-0 space-y-3'>
             <h2 className='text-2xl font-bold text-white'>{book?.title}</h2>
             <p className='text-white'>Author:&nbsp;<span className='font-semibold'>{book?.author?.name}</span></p>
@@ -55,7 +56,7 @@ export default async function BookDetailsPage({ params }: { params: { bookId: st
       <div className='p-7 space-y-2'>
         <div>
           <h3 className='text-2xl font-semibold text-slate-700'>About the book</h3>
-          {/* <span className='text-sm p-1 px-2 my-2 bg-gray-100 rounded-full'>Motivational</span> */}
+          <span className='text-sm font-semibold text-slate-700 px-2 my-2 p-1 bg-accent/30 rounded-full'>{book?.category}</span>
           <p>{book?.description}</p>
         </div>
         <div className='space-y-2'>

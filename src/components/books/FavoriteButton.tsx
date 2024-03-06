@@ -8,11 +8,12 @@ import { useEffect, useState } from 'react'
 
 export default function FavoriteButton({ userId, bookId }: { userId: string, bookId: string }) {
   const [isFavorite, setIsFavorite] = useState<Boolean | null>(null)
+  const { toast } = useToast()
 
+  // check if book is already in favorites
   useEffect(() => {
     async function isFavoriteBook() {
       const status = await setFavoriteBook(userId, bookId)
-      console.log(status)
       if (status === true) {
         setIsFavorite(true)
       } else if (status === false) {
@@ -22,7 +23,7 @@ export default function FavoriteButton({ userId, bookId }: { userId: string, boo
     isFavoriteBook()
   }, [])
 
-  const { toast } = useToast()
+  // add or remove book from favorites
   const handleAddFav = async (bookId: string) => {
     const status = await setFavoriteBook(userId, bookId)
     if (status === true) {
