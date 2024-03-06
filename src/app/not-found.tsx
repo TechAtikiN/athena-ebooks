@@ -11,17 +11,17 @@ export default function Component() {
   const [count, setCount] = useState(5)
   const router = useRouter()
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCount((currentCount) => --currentCount)
-  //   }, 1000)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount((currentCount) => --currentCount)
+    }, 1000)
 
-  //   if (count === 0) {
-  //     router.push('/')
-  //   }
+    if (count === 0) {
+      router.push('/books')
+    }
 
-  //   return () => clearInterval(interval)
-  // }, [count])
+    return () => clearInterval(interval)
+  }, [count])
 
   return (
     <div className='flex flex-col my-40'>

@@ -2,7 +2,7 @@
 // named imports
 import { useState } from 'react'
 import { navLinks } from '@/constants/navLink'
-import { ArrowRightCircleIcon, ArrowRightIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
+import { ArrowRightIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
 import { useSession } from 'next-auth/react'
 
 // default imports
@@ -13,14 +13,14 @@ import UserAvatar from './UserAvatar'
 
 export default function Navbar() {
   const [showNavLinks, setShowNavLinks] = useState(false)
-  const { data: session, status } = useSession()
+  const { data: session } = useSession()
 
   return (
     <nav className='p-2 bg-slate-50  border border-b'>
       <div className='flex justify-between items-center space-x-5'>
 
         {/* logo */}
-        <Link href='/'>
+        <Link href='/books'>
           <Image src='/images/logo.png' alt='logo' width={140} height={140} />
         </Link>
 

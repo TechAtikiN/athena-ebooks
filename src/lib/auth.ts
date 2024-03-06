@@ -49,14 +49,5 @@ export const authOptions = {
       return user
     },
 
-    // async session({ session, data }: any) {
-    //   session = {
-    //     ...session,
-    //     user: {
-    //       id: data.id,
-    //       ...session.user,
-    //     }
-    //   }
-    // }
   },
 }

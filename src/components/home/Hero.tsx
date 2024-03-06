@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default async function Home() {
+export default function Hero() {
   return (
     <div className='flex flex-col justify-center items-center px-20 py-8 bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 text-center'>
 

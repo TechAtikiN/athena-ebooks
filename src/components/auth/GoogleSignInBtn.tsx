@@ -9,7 +9,7 @@ import Image from 'next/image'
 
 export default function GoogleSignInBtn() {
   const handleSignIn = () => {
-    signIn('google', { callbackUrl: 'http://localhost:3000/' })
+    signIn('google', { callbackUrl: 'http://localhost:3000/books' })
   }
 
   return (
