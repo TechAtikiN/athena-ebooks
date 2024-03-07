@@ -19,16 +19,16 @@ const Footer = () => {
               <h2 className='mb-4 text-sm fo7t-bold text-accent font-bold uppercase'>Features</h2>
               <ul className='text-gray-700 space-y-5 font-medium'>
                 <li className=''>
-                  <Link href='/' className='hover:underline'>Browse Books</Link>
+                  <Link href='/books' className='hover:underline'>Browse Books</Link>
                 </li>
                 <li>
                   <Link href='/' className='hover:underline'>Filter Categories</Link>
                 </li>
                 <li>
-                  <Link href='/' className='hover:underline'>Become a writer</Link>
+                  <Link href='/write' className='hover:underline'>Become a writer</Link>
                 </li>
                 <li>
-                  <Link href='/' className='hover:underline'>Profiles</Link>
+                  <Link href='/profile' className='hover:underline'>Profiles</Link>
                 </li>
               </ul>
             </div>
