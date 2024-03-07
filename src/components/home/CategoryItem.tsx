@@ -39,7 +39,7 @@ export default function CategoryItem({ activeCategory, name, index }: { activeCa
 
   return (
     <div
-      className={`p-[2px] rounded-md shadow bg-gradient-to-br ${getColor(index, 'base')} ${getColor(index, 'active')} backdrop-filter backdrop-blur-3xl shadow-inner transition-all duration-150 ease-in-out hover:bg-opacity-90 hover:scale-105 hover:rotate-1 hover:z-10`}
+      className={`p-[2px] mx-2 rounded-md shadow bg-gradient-to-br ${getColor(index, 'base')} ${getColor(index, 'active')} backdrop-filter backdrop-blur-3xl shadow-inner transition-all duration-150 ease-in-out hover:bg-opacity-90 hover:scale-105 hover:rotate-1 hover:z-20`}
     >
       <button
         onClick={() => handleChangeCategory(name)}

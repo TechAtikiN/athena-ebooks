@@ -1,5 +1,5 @@
 // named imports
-import { getBooks } from '@/actions/books'
+import { getBookCategories, getBooks } from '@/actions/books'
 import { formatCase } from '@/lib/utils'
 
 // default imports
@@ -14,13 +14,16 @@ export default async function HomePage({ searchParams }: { searchParams?: { cate
   // get books based on category
   const books = await getBooks(category)
 
+  // get book categories
+  const categories = await getBookCategories()
+
   return (
     <div>
       <Hero />
       <div className='mx-4 overflow-x-hidden'>
         <h2 className='text-stone-700 text-3xl my-10 font-semibold text-center font-serif'>E-Books Ready for Instant Access📚</h2>
 
-        <Categories category={category} />
+        <Categories categories={categories} category={category} />
 
         <hr className='my-5' />
 

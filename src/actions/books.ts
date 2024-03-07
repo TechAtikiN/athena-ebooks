@@ -56,7 +56,7 @@ export async function getBookCategories() {
     query: GET_CATEGORIES,
   })
 
-  return data.books
+  return data.bookCategories
 }
 
 // get books by title or author/search term

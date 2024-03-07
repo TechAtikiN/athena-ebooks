@@ -129,6 +129,18 @@ export const resolvers = {
 
       // if the book is not in the user's favorite, return message
       return { message: false }
+    },
+
+    // retrieve all book categories
+    bookCategories: async (parents: any, args: any, context: Context) => {
+      // get all books
+      const books = await context.prisma.book.findMany()
+
+      // get all categories
+      const categories = books.map(book => book.category)
+
+      // return unique categories
+      return Array.from(new Set(categories))
     }
   },
 

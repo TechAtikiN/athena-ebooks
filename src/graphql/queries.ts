@@ -64,13 +64,10 @@ export const GET_BOOK = gql`
   }
 `
 
-// Get books by search term
 export const GET_CATEGORIES = gql`
-  query Books {
-    books {
-      category
-    }
-  }
+query Query {
+  bookCategories
+}
 `
 
 // Get books by category
