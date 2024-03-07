@@ -21,7 +21,9 @@ export default function EditUserDetails() {
   const router = useRouter()
   const { toast } = useToast()
   const { data: session } = useSession()
-  const { data: user } = useQuery(GET_USER, { variables: { email: session?.user?.email } })
+  const { data: user, loading } = useQuery(GET_USER, { variables: { email: session?.user?.email } })
+
+  if (loading) return <p>Loading...</p>
 
   async function updateUserDetails(formData: FormData) {
     // converting the form data to an object

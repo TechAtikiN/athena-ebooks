@@ -6,9 +6,12 @@ import { GET_FAVORITES } from '@/graphql/queries'
 import AuthorBookItem from '../authors/AuthorBookItem'
 
 export default function FavoritesTab({ userId }: { userId: string }) {
-  let { data } = useQuery(GET_FAVORITES, {
+  let { data, loading } = useQuery(GET_FAVORITES, {
     variables: { userId },
   })
+
+  if (loading) return <p>Loading...</p>
+
   const favBooks = data?.getFavorites
 
   return (
