@@ -9,7 +9,7 @@ const Footer = () => {
 
         <div className='pb-10'>
           <div className='my-5'>
-            <Link href='/books'>
+            <Link href='/'>
               <Image src='/images/logo.png' alt='logo' width={200} height={200} />
             </Link>
           </div>
@@ -19,16 +19,16 @@ const Footer = () => {
               <h2 className='mb-4 text-sm fo7t-bold text-accent font-bold uppercase'>Features</h2>
               <ul className='text-gray-700 space-y-5 font-medium'>
                 <li className=''>
-                  <Link href='/books' className='hover:underline'>Browse Books</Link>
+                  <Link href='/' className='hover:underline'>Browse Books</Link>
                 </li>
                 <li>
-                  <Link href='/books' className='hover:underline'>Filter Categories</Link>
+                  <Link href='/' className='hover:underline'>Filter Categories</Link>
                 </li>
                 <li>
-                  <Link href='/books' className='hover:underline'>Become a writer</Link>
+                  <Link href='/' className='hover:underline'>Become a writer</Link>
                 </li>
                 <li>
-                  <Link href='/books' className='hover:underline'>Profiles</Link>
+                  <Link href='/' className='hover:underline'>Profiles</Link>
                 </li>
               </ul>
             </div>
@@ -37,13 +37,13 @@ const Footer = () => {
               <h2 className='mb-4 text-sm fo7t-bold text-accent font-bold uppercase'>Technologies</h2>
               <ul className='text-gray-700 space-y-5 font-medium'>
                 <li className=''>
-                  <Link href='/books' className='hover:underline'>Next.js</Link>
+                  <Link href='/' className='hover:underline'>Next.js</Link>
                 </li>
                 <li>
-                  <Link href='/books' className='hover:underline'>Node.js</Link>
+                  <Link href='/' className='hover:underline'>Node.js</Link>
                 </li>
                 <li>
-                  <Link href='/books' className='hover:underline'>MongoDB</Link>
+                  <Link href='/' className='hover:underline'>MongoDB</Link>
                 </li>
 
               </ul>
@@ -53,13 +53,13 @@ const Footer = () => {
               <h2 className='mb-4 text-sm fo7t-bold text-accent font-bold uppercase'>New tech?</h2>
               <ul className='text-gray-700 space-y-5 font-medium'>
                 <li className=''>
-                  <Link href='/books' className='hover:underline'>Nextauth</Link>
+                  <Link href='/' className='hover:underline'>Nextauth</Link>
                 </li>
                 <li>
-                  <Link href='/books' className='hover:underline'>Shadcn UI</Link>
+                  <Link href='/' className='hover:underline'>Shadcn UI</Link>
                 </li>
                 <li>
-                  <Link href='/books' className='hover:underline'>Tailwind CSS</Link>
+                  <Link href='/' className='hover:underline'>Tailwind CSS</Link>
                 </li>
               </ul>
             </div>
@@ -68,10 +68,10 @@ const Footer = () => {
               <h2 className='mb-4 text-sm fo7t-bold text-accent font-bold uppercase'>Contact</h2>
               <ul className='text-gray-700 space-y-5 font-medium'>
                 <li className=''>
-                  <Link href='/books' className='hover:underline'>About</Link>
+                  <Link href='/' className='hover:underline'>About</Link>
                 </li>
                 <li>
-                  <Link href='/books' className='hover:underline'>Contact us</Link>
+                  <Link href='/' className='hover:underline'>Contact us</Link>
                 </li>
               </ul>
             </div>
@@ -82,7 +82,7 @@ const Footer = () => {
 
         <div className='flex justify-between'>
           <p className='text-sm te7t-cente7 text-gray-700 sm:text-cente7'>
-            © {new Date().getFullYear()} <Link href='/books' className='hover:underline'>Athena</Link>. All Rights Reserved.
+            © {new Date().getFullYear()} <Link href='/' className='hover:underline'>Athena</Link>. All Rights Reserved.
           </p>
 
           <div className='flex mt-4 space-x-5 sm:justify-center sm:mt-0'>

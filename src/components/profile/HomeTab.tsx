@@ -1,10 +1,11 @@
 // named imports
 import { signOut } from 'next-auth/react'
+import { ClockIcon, MapPinIcon } from '@heroicons/react/24/outline'
 
 // default imports
 import Image from 'next/image'
 import EditUserDetails from './EditUserDetails'
-import { ClockIcon, MapPinIcon } from '@heroicons/react/24/outline'
+import { formatDate } from '@/lib/utils'
 
 interface Props {
   user: User
@@ -24,6 +25,7 @@ export default function HomeTab({ user }: Props) {
             layout='fill'
           />
 
+          {/* Edit author description and location */}
           <EditUserDetails />
 
         </div>
@@ -32,27 +34,26 @@ export default function HomeTab({ user }: Props) {
           <h3 className='text-slate-700'>{user?.email}</h3>
           <p className='text-slate-700 text-xs'>{user?.description}</p>
           <div className='flex text-slate-700 text-sm items-center'>
-            {
-              user?.location && (
-                <div className='flex items-center'>
-                  <MapPinIcon className='text-accent h-5 w-5' />
-                  <h3>{user?.location}</h3>
-                </div>
-              )
-            }
+            {user?.location && (
+              <div className='flex items-center'>
+                <MapPinIcon className='text-accent h-5 w-5' />
+                <h3>{user?.location}</h3>
+              </div>
+            )}
             <div className=' flex items-center'>
               <ClockIcon className='text-accent h-5 w-5 ml-2' />
               <h3>Joined on:&nbsp;
-                {new Date(Number(user?.createdAt!)).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}
+                {formatDate(user?.createdAt)}
               </h3>
             </div>
           </div>
         </div>
-        <button onClick={() => signOut()} className='border border-slate-500 hover:bg-slate-100 py-1 px-2 w-1/2'>Log out</button>
+        <button
+          onClick={() => signOut()}
+          className='border border-slate-500 hover:bg-slate-100 py-1 px-2 w-1/2'
+        >
+          Log out
+        </button>
       </div>
     </div>
   )

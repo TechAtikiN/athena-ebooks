@@ -17,7 +17,6 @@ export default function UploadBookPdf({ setBookPdf }: { setBookPdf: (file: TFile
             setBookPdf(res[0]);
           }}
           onUploadError={(error: Error) => {
-            // Do something with the error.
             alert(`ERROR! ${error.message}`);
           }}
         />

@@ -2,15 +2,13 @@
 
 // named imports
 import { useState } from 'react'
-import { tabs } from '@/constants/profile-tabs'
-import { useSession } from 'next-auth/react'
 import { usePathname, useRouter } from 'next/navigation'
+import { tabs } from '@/constants/profile-tabs'
 
 // default imports
 import HomeTab from './HomeTab'
 import MyBooksTab from './MyBooksTab'
 import FavoritesTab from './FavoritesTab'
-import SettingsTab from './SettingsTab'
 
 interface Props {
   user: User
@@ -52,7 +50,6 @@ export default function UserProfile({ user }: Props) {
         {activeTab === 'Home' && <HomeTab user={user} />}
         {activeTab === 'My Books' && <MyBooksTab books={user?.books} />}
         {activeTab === 'Favorites' && <FavoritesTab userId={user?.id} />}
-        {activeTab === 'Settings' && <SettingsTab />}
       </div >
     </div>
   )

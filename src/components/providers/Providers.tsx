@@ -1,11 +1,11 @@
 'use client'
 
+// named imports
 import { SessionProvider } from 'next-auth/react'
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  gql
 } from '@apollo/client'
 
 export default function Providers({ children }: { children: React.ReactNode }) {

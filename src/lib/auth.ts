@@ -1,5 +1,5 @@
 // named imports
-import { ADD_USER } from "@/graphql/queries"
+import { ADD_USER } from "@/graphql/mutations"
 
 // default imports
 import GoogleProvider from "next-auth/providers/google"
@@ -48,6 +48,5 @@ export const authOptions = {
       }
       return user
     },
-
   },
 }

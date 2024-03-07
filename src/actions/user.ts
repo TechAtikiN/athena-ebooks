@@ -1,18 +1,19 @@
 'use server'
 
 // named imports
-import { GET_USER, UPDATE_USER } from '@/graphql/queries'
+import { UPDATE_USER } from '@/graphql/mutations'
+import { GET_USER } from '@/graphql/queries'
 import { getClient } from '@/lib/graphql-client'
 
 // get user by email
 export async function getUser(email: string) {
-
   const data = await getClient().query({
     query: GET_USER,
     variables: {
       email: email
     }
   })
+  
   return data?.data?.user
 }
 

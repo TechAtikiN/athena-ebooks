@@ -1,10 +1,10 @@
 'use client'
 
 // named imports
+import { useEffect, useState } from 'react'
 import { setFavoriteBook } from '@/actions/books'
 import { HeartIcon } from '@heroicons/react/24/solid'
 import { useToast } from '../ui/use-toast'
-import { useEffect, useState } from 'react'
 
 export default function FavoriteButton({ userId, bookId }: { userId: string, bookId: string }) {
   const [isFavorite, setIsFavorite] = useState<Boolean | null>(null)
@@ -21,7 +21,7 @@ export default function FavoriteButton({ userId, bookId }: { userId: string, boo
       }
     }
     isFavoriteBook()
-  }, [])
+  }, [bookId, userId])
 
   // add or remove book from favorites
   const handleAddFav = async (bookId: string) => {

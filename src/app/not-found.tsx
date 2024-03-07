@@ -17,11 +17,11 @@ export default function Component() {
     }, 1000)
 
     if (count === 0) {
-      router.push('/books')
+      router.push('/')
     }
 
     return () => clearInterval(interval)
-  }, [count])
+  }, [count, router])
 
   return (
     <div className='flex flex-col my-40'>

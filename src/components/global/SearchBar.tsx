@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from 'react'
 import { getBooksByTitleAuthor } from '@/actions/books'
 import { formatCase } from '@/lib/utils'
 import { debounce } from "lodash"
+
+// default imports
 import Link from 'next/link'
 import Image from 'next/image'
 import Loader from './Loader'
@@ -66,13 +68,13 @@ export default function SearchBar() {
 
       {/* search results  */}
       {loading && search ? (
-        <div className='absolute z-30 h-[100px] flex flex-col items-center justify-center w-[47%] top-14 left-[250px] bg-white border border-slate-200 rounded-md shadow-lg'>
+        <div className='absolute z-30 h-[100px] flex flex-col items-center justify-center w-[47%] top-14 left[100px] sm:left-[250px] bg-white border border-slate-200 rounded-md shadow-lg'>
           <Loader />
         </div>
       ) :
         search && books.length > 0 ? (
           <div
-            className='space-y-2 h-[300px] overflow-y-auto thin-scrollbar absolute z-30 w-[47%] top-14 left-[250px] bg-white border border-slate-200 rounded-xl shadow-lg'>
+            className='space-y-2 h-[300px] overflow-y-auto thin-scrollbar absolute z-30 w-[47%] top-14 left[100px] sm:left-[250px] bg-white border border-slate-200 rounded-xl shadow-lg'>
             {books?.length > 0 && (
               books?.map((book) => (
                 <Link
@@ -94,8 +96,7 @@ export default function SearchBar() {
               <p className='p-2 text-sm'>No books found</p>
             </div>
           )
-        )
-      }
-    </div >
+        )}
+    </div>
   )
 }

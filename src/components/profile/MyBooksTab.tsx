@@ -12,7 +12,8 @@ export default function MyBooksTab({ books }: Props) {
       <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 h-[500px] overflow-y-auto thin-scrollbar'>
         {books ? books?.map((book, index) => (
           <AuthorBookItem book={book} key={index} />
-        )) : <p className='text-lg text-slate-500'>You haven&apos;t published any books yet</p>}
+        )) :
+          <p className='text-lg text-slate-500'>You haven&apos;t published any books yet</p>}
       </div>
     </div>
   )

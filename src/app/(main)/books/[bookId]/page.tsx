@@ -12,10 +12,11 @@ import FavoriteButton from '@/components/books/FavoriteButton'
 export default async function BookDetailsPage({ params }: { params: { bookId: string } }) {
   const session = await getServerSession()
   const user: User = await getUser(session?.user?.email || '')
-  const book: BookDetails = await getBook(params.bookId)
+  const book: BookDetails = await getBook(params?.bookId)
 
   return (
     <div className='text-slate-700'>
+      {/* Book details */}
       <div className='relative w-full h-[265px]'>
         <Image
           className='object-cover'
@@ -39,10 +40,14 @@ export default async function BookDetailsPage({ params }: { params: { bookId: st
 
             {/* Favorite and Download button */}
             {/* display buttons only if user is logged in or else display login button */}
-            {session ? (
+            {session?.user ? (
               <div className='flex space-x-4'>
-                <FavoriteButton userId={user.id} bookId={params.bookId} />
-                <DownloadButton book={book?.bookPdf} title={book?.title} userEmail={user?.email} userName={user?.name} />
+                <FavoriteButton userId={user?.id} bookId={params?.bookId} />
+                <DownloadButton
+                  book={book?.bookPdf}
+                  title={book?.title}
+                  userEmail={user?.email}
+                  userName={user?.name} />
               </div>
             ) : (
               <Link href='/signin' className='outline-btn'>Sign in for Instant Download</Link>
@@ -61,7 +66,12 @@ export default async function BookDetailsPage({ params }: { params: { bookId: st
         </div>
         <div className='space-y-2'>
           <h3 className='text-2xl font-semibold text-slate-700'>Author Details</h3>
-          <Link href={`/authors/${book.author.id}`} className='font-semibold underline text-accent py-2'>{book?.author?.name}</Link>
+          <Link
+            href={`/authors/${book.author.id}`}
+            className='font-semibold underline text-accent py-2'
+          >
+            {book?.author?.name}
+          </Link>
           <p>{book?.author?.description}</p>
           <div className=''>
             <p>Email:&nbsp;<span className='font-semibold'>{book.author.email}</span></p>

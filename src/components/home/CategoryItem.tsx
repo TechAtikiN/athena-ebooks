@@ -1,5 +1,4 @@
-'use client'
-
+// named imports
 import { usePathname, useRouter } from 'next/navigation'
 
 const BASE_COLORS = [

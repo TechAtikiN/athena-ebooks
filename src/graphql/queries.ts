@@ -1,57 +1,7 @@
 // named imports
 import { gql } from '@apollo/client'
 
-// Add user to database 
-export const ADD_USER = `
-  mutation AddUser($name: String!, $email: String!, $image: String) {
-    addUser(name: $name, email: $email, image: $image) {
-      createdAt
-      email
-      id
-      image
-      name
-    }
-  }
-`
-
-// Add book to database
-export const ADD_BOOK = gql`
-mutation AddBook($title: String!, $description: String!, $bookPdf: String!, $authorId: ID!, $category: String, $coverImage: String) {
-  addBook(title: $title, description: $description, bookPdf: $bookPdf, authorId: $authorId, category: $category, coverImage: $coverImage) {
-    id
-  }
-}`
-
-// set favorite book in database
-export const ADD_FAVORITE = gql`
-  mutation Mutation($userId: ID!, $bookId: ID!) {
-  addFavoriteBook(userId: $userId, bookId: $bookId) {
-    message
-  }
-}
-`
-
-export const CHECK_FAVORITE = gql`
-  query Query($userId: ID!, $bookId: ID!) {
-  isFavoriteBook(userId: $userId, bookId: $bookId) {
-    message
-  }
-}
-`
-
-// Update user details in database
-export const UPDATE_USER = gql`
-mutation UpdateUser($authorDescription: String, $location: String, $authorId: String) {
-  updateUser(authorDescription: $authorDescription, location: $location, authorId: $authorId) {
-    description
-    email
-    id
-    location
-    name
-  }
-}`
-
-// Get user details from database
+// Get user details
 export const GET_USER = gql`
   query User($email: String!) {
   user(email: $email) {
@@ -73,7 +23,7 @@ export const GET_USER = gql`
 }
 `
 
-// Get all books from database
+// Get all books
 export const GET_BOOKS = gql`
   query Books($category: String, $authorId: ID) {
   books(category: $category, authorId: $authorId) {
@@ -92,7 +42,7 @@ export const GET_BOOKS = gql`
 }
 `
 
-// Get book details from database
+// Get book details
 export const GET_BOOK = gql`
   query Book($bookId: ID!) {
     book(id: $bookId) {
@@ -114,6 +64,7 @@ export const GET_BOOK = gql`
   }
 `
 
+// Get books by search term
 export const GET_CATEGORIES = gql`
   query Books {
     books {
@@ -122,6 +73,7 @@ export const GET_CATEGORIES = gql`
   }
 `
 
+// Get books by category
 export const GET_CATEGORY_BOOKS = gql`
   query SearchBooks($searchTerm: String!) {
     searchBooks(searchTerm: $searchTerm) {
@@ -135,6 +87,7 @@ export const GET_CATEGORY_BOOKS = gql`
   }
 `
 
+// Get user favorites
 export const GET_FAVORITES = gql`
   query Query($userId: ID!) {
   getFavorites(userId: $userId) {
@@ -142,6 +95,16 @@ export const GET_FAVORITES = gql`
     id
     description
     coverImage
+    createdAt
+  }
+}
+`
+
+// check if book is favorite
+export const CHECK_FAVORITE = gql`
+  query Query($userId: ID!, $bookId: ID!) {
+  isFavoriteBook(userId: $userId, bookId: $bookId) {
+    message
   }
 }
 `

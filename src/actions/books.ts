@@ -2,8 +2,6 @@
 
 import { getClient } from '@/lib/graphql-client'
 import {
-  ADD_BOOK,
-  ADD_FAVORITE,
   CHECK_FAVORITE,
   GET_BOOK,
   GET_BOOKS,
@@ -12,6 +10,7 @@ import {
   GET_FAVORITES
 } from '@/graphql/queries'
 import { revalidateTag } from 'next/cache'
+import { ADD_BOOK, ADD_FAVORITE } from '@/graphql/mutations'
 
 // create a new book
 export async function createBook(bookData: any) {
@@ -47,6 +46,7 @@ export async function getBook(bookId: string) {
     query: GET_BOOK,
     variables: { bookId }
   })
+
   return data.book
 }
 
@@ -59,7 +59,7 @@ export async function getBookCategories() {
   return data.books
 }
 
-// get books by specific category
+// get books by title or author/search term
 export async function getBooksByTitleAuthor(searchTerm: string) {
   const { data } = await getClient().query({
     query: GET_CATEGORY_BOOKS,

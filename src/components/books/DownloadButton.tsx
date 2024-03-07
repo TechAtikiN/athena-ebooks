@@ -1,5 +1,6 @@
 'use client'
 
+// named imports
 import { compileMailTemplate } from '@/lib/mail/mail'
 import { sendMail } from '../../actions/mail'
 import { ArrowDownTrayIcon } from '@heroicons/react/24/outline'
@@ -9,7 +10,6 @@ interface Props {
 }
 
 export default function DownloadButton({ book, title, userEmail, userName }: Props) {
-
   const handleFileDownload = async (fileURL: string) => {
     // fetch file
     const response = await fetch(fileURL)

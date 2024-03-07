@@ -1,4 +1,5 @@
 'use client'
+
 // named imports
 import { usePathname } from 'next/navigation'
 
@@ -14,7 +15,7 @@ export default function Navlink({ link }: Props) {
 
   return (
     <Link href={link.href} className={`
-      ${pathName.includes(link.href) ? 'text-accent' : 'text-gray-600'} px-5 text-sm font-semibold`}
+      ${pathName?.includes(link.href) ? 'text-accent' : 'text-gray-600'} px-5 text-sm font-semibold`}
     >
       {link.name}
     </Link>

@@ -1,12 +1,11 @@
 // named imports
-import { getBookCategories, getBooks } from '@/actions/books'
+import { getBooks } from '@/actions/books'
 import { formatCase } from '@/lib/utils'
-import { Suspense } from 'react'
 
 // default imports
+import Hero from '@/components/home/Hero'
 import Categories from '@/components/home/Categories'
 import BooksListing from '@/components/home/BooksListing'
-import Hero from '@/components/home/Hero'
 
 export default async function HomePage({ searchParams }: { searchParams?: { category: string } }) {
   // format category to title case

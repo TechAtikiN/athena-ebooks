@@ -1,6 +1,3 @@
-// named imports
-import { getBooks } from '@/actions/books'
-
 // default imports
 import BookItem from './BookItem'
 
