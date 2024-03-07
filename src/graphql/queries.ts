@@ -87,6 +87,7 @@ export const GET_BOOKS = gql`
     id
     title
     description
+    createdAt
   }
 }
 `

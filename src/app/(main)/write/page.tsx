@@ -9,6 +9,8 @@ import { GET_USER } from '@graphql/queries'
 import { useSession } from 'next-auth/react'
 import { useToast } from '@/components/ui/use-toast'
 import { useRouter } from 'next/navigation'
+import { sendMail } from '@/actions/mail'
+import { compileMailTemplate } from '@/lib/mail/mail'
 
 // default imports
 import UploadBookCover from '@/components/write/UploadBookCover'
@@ -27,7 +29,7 @@ export default function CreateBook() {
 
   useEffect(() => {
     if (user) {
-      setAuthorId(user.user.id)
+      setAuthorId(user?.user?.id)
     }
   }, [user])
 
@@ -43,12 +45,24 @@ export default function CreateBook() {
 
     // creating the book
     const book = await createBook(bookData)
+
     if (book) {
       toast({
         title: "New Book added! 📖",
         description: "Your book has been created successfully.",
       })
       router.push(`/books/${book}`)
+
+      // send email to author
+      await sendMail({
+        to: user?.user?.email,
+        name: user?.user?.name,
+        subject: '📚 Thank You for Publishing Your Book!',
+        body: compileMailTemplate(
+          `Hello ${user?.user?.name}`,
+          'Thank You for Publishing Your Book!',
+          `Don't forget to share your book with your friends and family!`)
+      })
     }
   }
 

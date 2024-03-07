@@ -11,7 +11,7 @@ import FavoriteButton from '@/components/books/FavoriteButton'
 
 export default async function BookDetailsPage({ params }: { params: { bookId: string } }) {
   const session = await getServerSession()
-  const user = await getUser(session?.user?.email || '')
+  const user: User = await getUser(session?.user?.email || '')
   const book: BookDetails = await getBook(params.bookId)
 
   return (
@@ -42,7 +42,7 @@ export default async function BookDetailsPage({ params }: { params: { bookId: st
             {session ? (
               <div className='flex space-x-4'>
                 <FavoriteButton userId={user.id} bookId={params.bookId} />
-                <DownloadButton book={book?.bookPdf} title={book?.title} />
+                <DownloadButton book={book?.bookPdf} title={book?.title} userEmail={user?.email} userName={user?.name} />
               </div>
             ) : (
               <Link href='/signin' className='outline-btn'>Sign in for Instant Download</Link>

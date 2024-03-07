@@ -30,13 +30,17 @@ export const resolvers = {
             author: true
           }
         })
-      } else {
-        return await context.prisma.book.findMany({
+      } 
+
+      // if authorId and category are not provided, return all books
+      const books = await context.prisma.book.findMany({
           include: {
             author: true
           }
-      })
-    }
+        })
+      if (books) {
+        return books
+      }
   },
 
     // retrieve a single book and its author

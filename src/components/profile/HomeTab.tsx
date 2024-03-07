@@ -42,7 +42,13 @@ export default function HomeTab({ user }: Props) {
             }
             <div className=' flex items-center'>
               <ClockIcon className='text-accent h-5 w-5 ml-2' />
-              <h3>Joined on:&nbsp;{new Date().toISOString().split('T')[0]}</h3>
+              <h3>Joined on:&nbsp;
+                {new Date(Number(user?.createdAt!)).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </h3>
             </div>
           </div>
         </div>

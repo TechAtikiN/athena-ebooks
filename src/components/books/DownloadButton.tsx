@@ -1,8 +1,15 @@
 'use client'
 
+import { compileMailTemplate } from '@/lib/mail/mail'
+import { sendMail } from '../../actions/mail'
 import { ArrowDownTrayIcon } from '@heroicons/react/24/outline'
 
-export default function DownloadButton({ book, title }: { book: string, title: string }) {
+interface Props {
+  book: string, title: string, userEmail: string, userName: string
+}
+
+export default function DownloadButton({ book, title, userEmail, userName }: Props) {
+
   const handleFileDownload = async (fileURL: string) => {
     // fetch file
     const response = await fetch(fileURL)
@@ -30,9 +37,25 @@ export default function DownloadButton({ book, title }: { book: string, title: s
     URL.revokeObjectURL(href)
   }
 
+  const handleDownload = async (fileURL: string) => {
+    // download file
+    await handleFileDownload(fileURL)
+    console.log(userEmail, userName)
+    // send email to user
+    await sendMail({
+      to: userEmail,
+      name: userName,
+      subject: '📚 Thank You for Downloading Our Book!',
+      body: compileMailTemplate(
+        `Hello ${userName}`,
+        'Thank You for Downloading Our Book!',
+        `We hope it brings you hours of enjoyment! Happy reading!`)
+    })
+  }
+
   return (
     <button
-      onClick={() => handleFileDownload(book)}
+      onClick={() => handleDownload(book)}
       className='outline-btn'>
       <ArrowDownTrayIcon className='h-5' />
       <span>Download</span>
