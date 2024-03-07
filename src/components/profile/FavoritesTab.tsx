@@ -4,13 +4,14 @@ import { GET_FAVORITES } from '@/graphql/queries'
 
 // default imports
 import AuthorBookItem from '../authors/AuthorBookItem'
+import Loader from '../global/Loader'
 
 export default function FavoritesTab({ userId }: { userId: string }) {
   let { data, loading } = useQuery(GET_FAVORITES, {
     variables: { userId },
   })
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <div className='flex flex-col justify-center items-center'><Loader /></div>
 
   const favBooks = data?.getFavorites
 

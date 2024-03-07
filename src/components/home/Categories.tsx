@@ -6,9 +6,12 @@ import { GET_CATEGORIES } from '@/graphql/queries'
 
 // default imports
 import CategoryItem from './CategoryItem'
+import Loader from '../global/Loader'
 
 export default function Categories({ category }: { category: string }) {
-  const { data: categories } = useQuery(GET_CATEGORIES)
+  const { data: categories, loading } = useQuery(GET_CATEGORIES)
+
+  if (loading) return <div className='flex flex-col justify-center items-center'><Loader /></div>
 
   // extracting unique categories
   let uniqueCategories: string[] = Array.from(new Set(categories?.books?.map((book: any) => book?.category)))

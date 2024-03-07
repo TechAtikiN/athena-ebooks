@@ -17,13 +17,16 @@ import { updateUser } from '@/actions/user'
 import { useToast } from '@/components/ui/use-toast'
 import { useRouter } from 'next/navigation'
 
+// default imports
+import Loader from '../global/Loader'
+
 export default function EditUserDetails() {
   const router = useRouter()
   const { toast } = useToast()
   const { data: session } = useSession()
   const { data: user, loading } = useQuery(GET_USER, { variables: { email: session?.user?.email } })
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <div className='flex flex-col justify-center items-center'><Loader /></div>
 
   async function updateUserDetails(formData: FormData) {
     // converting the form data to an object
