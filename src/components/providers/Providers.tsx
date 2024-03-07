@@ -10,7 +10,7 @@ import {
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const client = new ApolloClient({
-    uri: process.env.NEXT_PUBLIC_GRAPHQL_CLIENT_URI as string,
+    uri: process.env.NODE_ENV === 'production' ? 'https://athena-ebooks.vercel.app/api/graphql' : 'http://localhost:3000/api/graphql',
     cache: new InMemoryCache()
   })
 

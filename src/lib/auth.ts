@@ -4,7 +4,8 @@ import { ADD_USER } from "@/graphql/mutations"
 // default imports
 import GoogleProvider from "next-auth/providers/google"
 
-const API_ENDPOINT = process.env.NEXT_PUBLIC_GRAPHQL_CLIENT_URI || 'http://localhost:3000/api/graphql'
+const API_ENDPOINT = process.env.NODE_ENV === 'production' ? 'https://athena-ebooks.vercel.app/api/graphql' : 'http://localhost:3000/api/graphql'
+
 if (!API_ENDPOINT) throw new Error(`Env variable NEXT_PUBLIC_GRAPHQL_CLIENT_URI is required`)
 
 export const authOptions = {
