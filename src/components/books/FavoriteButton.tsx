@@ -44,8 +44,8 @@ export default function FavoriteButton({ userId, bookId }: { userId: string, boo
   return (
     <button
       onClick={() => handleAddFav(bookId)}
-      className='outline-btn w-48'>
-      <HeartIcon className='h-5' />
+      className='outline-btn w-40'>
+      <HeartIcon className={`w-5 h-5 ${isFavorite ? 'text-red-500' : 'text-gray-500'}`} />
       <span>
         {isFavorite ? 'Remove' : 'Add'}
       </span>

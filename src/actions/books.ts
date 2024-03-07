@@ -53,11 +53,10 @@ export async function getBook(bookId: string) {
 // get categories of books
 export async function getBookCategories() {
   const { data } = await getClient().query({
-    query: GET_CATEGORIES
+    query: GET_CATEGORIES,
   })
-  const categories = data.books.map((book: any) => book.category)
-  const uniqueCategories: string[] = Array.from(new Set(categories))
-  return uniqueCategories
+
+  return data.books
 }
 
 // get books by specific category

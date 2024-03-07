@@ -13,26 +13,21 @@ export default async function HomePage({ searchParams }: { searchParams?: { cate
   const category = formatCase(searchParams?.category || '') || 'all'
 
   // get books based on category
-  // const books = await getBooks(category)
-  // console.log(books)
+  const books = await getBooks(category)
 
-  // get all categories
-  // const categories: string[] = await getBookCategories()
-  // console.log(categories)
   return (
     <div>
       <Hero />
-      {/* <div className='mx-4 overflow-x-hidden'>
+      <div className='mx-4 overflow-x-hidden'>
         <h2 className='text-stone-700 text-3xl my-10 font-semibold text-center font-serif'>E-Books Ready for Instant Access📚</h2>
 
-        <Categories categories={categories} category={category} />
+        <Categories category={category} />
 
         <hr className='my-5' />
 
-        <Suspense fallback={<div>Loading...</div>}>
-          <BooksListing books={books} />
-        </Suspense>
-      </div> */}
+        <BooksListing books={books} />
+
+      </div>
     </div>
   )
 }
