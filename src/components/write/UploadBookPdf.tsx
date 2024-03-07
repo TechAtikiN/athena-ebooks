@@ -12,7 +12,7 @@ export default function UploadBookPdf({ setBookPdf }: { setBookPdf: (file: TFile
         <UploadButton
           className=''
           endpoint="pdfUploader"
-          onClientUploadComplete={(res) => {
+          onClientUploadComplete={(res: any) => {
             console.log("Files: ", res);
             setBookPdf(res[0]);
           }}

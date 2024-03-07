@@ -40,7 +40,7 @@ export default function DownloadButton({ book, title, userEmail, userName }: Pro
   const handleDownload = async (fileURL: string) => {
     // download file
     await handleFileDownload(fileURL)
-    console.log(userEmail, userName)
+
     // send email to user
     await sendMail({
       to: userEmail,

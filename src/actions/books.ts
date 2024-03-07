@@ -60,18 +60,17 @@ export async function getBookCategories() {
 }
 
 // get books by specific category
-export async function getCategoryBooks(searchTerm: string) {
+export async function getBooksByTitleAuthor(searchTerm: string) {
   const { data } = await getClient().query({
     query: GET_CATEGORY_BOOKS,
     variables: { searchTerm },
   })
-  console.log(data)
+
   return data.searchBooks
 }
 
 // add/remove a book to favorites
 export async function setFavoriteBook(userId: string, bookId: string) {
-  console.log('userId',userId,'bookId',bookId)
   const { data } = await getClient().mutate({
     mutation: ADD_FAVORITE,
     variables: { userId, bookId },
@@ -92,7 +91,7 @@ export async function getFavoriteBooks(userId: string) {
       },
     }
   })
-  console.log(data)
+  
   return data.getFavorites
 }
 

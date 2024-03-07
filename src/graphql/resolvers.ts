@@ -85,6 +85,9 @@ export const resolvers = {
               }
             }
           ]
+        },
+        include: {
+          author: true
         }
       })
     },
