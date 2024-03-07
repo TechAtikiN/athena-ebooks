@@ -173,7 +173,7 @@ export const mailTemplate = `
 														<tr>
 															<td class="pad">
 																<div class="alignment" align="center"><!--[if mso]>
-<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://athena.vercel.app" style="height:53px;width:174px;v-text-anchor:middle;" arcsize="9%" strokeweight="0.75pt" strokecolor="#000000" fillcolor="#fbd3dc">
+<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://athena-ebooks.vercel.app" style="height:53px;width:174px;v-text-anchor:middle;" arcsize="9%" strokeweight="0.75pt" strokecolor="#000000" fillcolor="#fbd3dc">
 <w:anchorlock/>
 <v:textbox inset="0px,0px,0px,0px">
 <center style="color:#000000; font-family:'Trebuchet MS', Tahoma, sans-serif; font-size:16px">

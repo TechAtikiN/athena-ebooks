@@ -65,23 +65,23 @@ export const GET_BOOK = gql`
 `
 
 export const GET_CATEGORIES = gql`
-query Query {
-  bookCategories
-}
+  query Query {
+    bookCategories
+  }
 `
 
 // Get books by category
-export const GET_CATEGORY_BOOKS = gql`
-  query SearchBooks($searchTerm: String!) {
-    searchBooks(searchTerm: $searchTerm) {
-      title
-      id
-      coverImage
-      author {
-        name
-      }
+export const GET_BOOKS_BY_QUERY = gql`
+  query Query($searchTerm: String!) {
+  searchBooks(searchTerm: $searchTerm) {
+    author {
+      name
     }
+    coverImage
+    id
+    title
   }
+}
 `
 
 // Get user favorites

@@ -52,6 +52,6 @@
   }
 
   .cta-btn {
-    @apply px-3 py-2 bg-accent/85 hover:bg-accent/80 w-full rounded-sm font-bold border border-accent
+    @apply px-3 py-2 bg-accent/85 hover:bg-accent/80 w-full rounded-sm font-bold border border-accent text-white
   }
 }

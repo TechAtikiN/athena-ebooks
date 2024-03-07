@@ -1,8 +1,7 @@
 'use client'
 // named imports
 import { useState } from 'react'
-import { navLinks } from '@/constants/navLink'
-import { ArrowRightIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
 import { useSession } from 'next-auth/react'
 
 // default imports
@@ -10,11 +9,21 @@ import Image from 'next/image'
 import Navlink from './Navlink'
 import Link from 'next/link'
 import UserAvatar from './UserAvatar'
-import SearchBar from './SearchBar'
+import Search from './Search'
+
+const NAV_LINKS = [
+  { name: 'Books', href: '/books', authRequired: false },
+  { name: 'Start Writing', href: '/write', authRequired: true },
+]
 
 export default function Navbar() {
-  const [showNavLinks, setShowNavLinks] = useState(false)
   const { data: session } = useSession()
+
+  const [showNavLinks, setShowNavLinks] = useState(false)
+
+  const handleToggleMobileMenu = () => {
+    setShowNavLinks(showNavLinks => !showNavLinks)
+  }
 
   return (
     <nav className='p-2 bg-slate-50  border border-b'>
@@ -22,57 +31,57 @@ export default function Navbar() {
 
         {/* logo */}
         <Link href='/'>
-          <Image src='/images/logo.png' alt='logo' width={140} height={140} />
+          <Image src='/images/logo.png' alt='logo' priority quality={100} width={140} height={140} />
         </Link>
 
         {/* Search bar */}
-        <SearchBar />
+        <Search />
 
         {/* desktop navlinks */}
-        <ul className='hidden sm:flex'>
-          {session && session ? (
-            <div className='flex items-center'>
-              {navLinks.map((link, index) => (
-                <Navlink key={index} link={link} />
-              ))}
-              {/* user avatar */}
-              <UserAvatar session={session} />
-            </div>
+        <ul className='hidden sm:flex items-center space-x-3'>
+          {/* Nav Links */}
+          {NAV_LINKS.filter(link => link.authRequired ? session : true).map(link => <Navlink key={link.href} link={link} />)}
+
+          {/* User Profile */}
+          {session ? (
+            <UserAvatar session={session} />
           ) : (
-            <div className='flex items-center'>
-              <Link href={'/books'} className={`px-5 text-sm font-semibold `}>Books</Link>
-              <Link href={'/signin'} className='px-3 py-1 flex items-center hover:text-accent font-semibold rounded-md space-x-1'>
-                <span>Sign In</span>
-                <ArrowRightIcon className='w-4 h-4' />
-              </Link>
-            </div>
+            <Link
+              href={'/signin'}
+              className='px-3 py-1 flex items-center hover:bg-sky-600 transition-all duration-150 ease-in-out font-medium space-x-1 bg-accent rounded-md text-white'
+            >
+              <span>Sign In</span>
+            </Link>
           )}
         </ul>
 
         {/* mobile menu */}
-        {!showNavLinks && (
-          <button
-            onClick={() => setShowNavLinks(true)}
-            type='button'
-            className='inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg sm:hidden'
-          >
-            <Bars3Icon className='w-5 h-5' />
-          </button>
-        )}
+        <button
+          onClick={() => handleToggleMobileMenu()}
+          type='button'
+          className='inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg sm:hidden'
+        >
+          {showNavLinks ? <XMarkIcon className='w-5 h-5' /> : <Bars3Icon className='w-5 h-5' />}
+        </button>
       </div>
 
       {/* mobile navlinks */}
-      {session && showNavLinks && (
-        <div className='sm:hidden flex justify-between'>
-          <ul className='flex flex-col space-y-2 p-2 bg-slate-50'>
-            {navLinks.map((link, index) => (
-              <Navlink key={index} link={link} />
-            ))}
-            <Navlink link={{ name: 'Profile', href: '/profile' }} />
+      {showNavLinks && (
+        <div className='sm:hidden flex justify-between pt-4 pb-3'>
+          <ul className='flex flex-col space-y-3 p-2 border border-accent shadow-sm rounded-md w-full text-right'>
+            {NAV_LINKS.filter(link => link.authRequired ? session : true).map(link => <Navlink key={link.href} link={link} />)}
+
+            {session ? <Navlink link={{ name: 'Profile', href: '/profile' }} /> : (
+              <div className='flex justify-end items-center'>
+                <Link
+                  href={'/signin'}
+                  className='px-3 py-1 w-fit font-medium space-x-1 bg-accent rounded-md text-white'
+                >
+                  <span>Sign In</span>
+                </Link>
+              </div>
+            )}
           </ul>
-          <button onClick={() => setShowNavLinks(false)} type='button' className='inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg sm:hidden'>
-            <XMarkIcon className='w-5 h-5' />
-          </button>
         </div>
       )}
     </nav>

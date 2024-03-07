@@ -2,6 +2,7 @@
 import { getBook } from '@/actions/books'
 import { getServerSession } from 'next-auth'
 import { getUser } from '@/actions/user'
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 
 // default imports
 import Image from 'next/image'
@@ -22,7 +23,7 @@ export default async function BookDetailsPage({ params }: { params: { bookId: st
           className='object-cover'
           src='/images/book-bg.avif'
           alt='background'
-          layout='fill'
+          fill={true}
         />
         <div className='flex items-center absolute top-10 left-10 sm:top-0 sm:left-0'>
           <div className='relative h-[170px] w-[120px] sm:h-[270px] sm:w-[220px] rounded-lg'>
@@ -30,7 +31,7 @@ export default async function BookDetailsPage({ params }: { params: { bookId: st
               src={book?.coverImage}
               alt='book'
               className='p-0 sm:p-9'
-              layout='fill'
+              fill={true}
             />
           </div>
 
@@ -58,25 +59,26 @@ export default async function BookDetailsPage({ params }: { params: { bookId: st
       </div>
 
       {/* Description */}
-      <div className='p-7 space-y-2'>
-        <div>
-          <h3 className='text-2xl font-semibold text-slate-700'>About the book</h3>
-          <span className='text-sm font-semibold text-slate-700 px-2 my-2 p-1 bg-accent/30 rounded-full'>{book?.category}</span>
+      <div className='px-7 space-y-6 pt-8 pb-20'>
+        <div className='space-y-3'>
+          <h3 className='text-2xl font-semibold text-slate-700'>About the Book</h3>
+          <p className='text-sm w-fit font-semibold text-slate-700 px-2 my-2 p-1 bg-accent/30 rounded-full'>
+            {book?.category}
+          </p>
           <p>{book?.description}</p>
         </div>
         <div className='space-y-2'>
-          <h3 className='text-2xl font-semibold text-slate-700'>Author Details</h3>
+          <h3 className='text-2xl font-semibold text-slate-700'>Know the Author</h3>
           <Link
             href={`/authors/${book.author.id}`}
-            className='font-semibold underline text-accent py-2'
+            className='flex space-x-2 items-center text-accent hover:text-accent-hover cursor-pointer'
           >
-            {book?.author?.name}
+            <p className='font-medium underline py-2'>{book?.author?.name}</p> <ArrowTopRightOnSquareIcon className='w-4 h-4 inline' />
           </Link>
+          <p>
+            <span className='font-medium'>Location:</span>&nbsp;{book?.author?.location}
+          </p>
           <p>{book?.author?.description}</p>
-          <div className=''>
-            <p>Email:&nbsp;<span className='font-semibold'>{book.author.email}</span></p>
-            <p>{book?.author?.location}</p>
-          </div>
         </div>
       </div>
     </div>

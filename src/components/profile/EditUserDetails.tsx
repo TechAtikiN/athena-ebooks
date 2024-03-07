@@ -52,23 +52,30 @@ export default function EditUserDetails() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className='absolute bottom-0 right-0 text-slate-500 hover:text-slate-600'>
-          <PencilSquareIcon className='h-7 w-7 font-semibold' />
+        <button className='absolute bottom-1 right-1'>
+          <PencilSquareIcon className='h-10 w-10 bg-white p-2 rounded-full shadow' />
         </button>
       </DialogTrigger>
 
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
+          <DialogTitle>
+            <p className='text-2xl text-gray-600'>
+              Edit profile
+            </p>
+          </DialogTitle>
           <DialogDescription>
-            Add more details about yourself that will be displayed on your profile.
+            <p className='text-gray-400'>
+              Add more details about yourself that will be displayed on your profile.
+            </p>
           </DialogDescription>
         </DialogHeader>
 
-        <form action={updateUserDetails} className='flex flex-col space-y-3'>
+        <hr className='my-1' />
 
+        <form action={updateUserDetails} className='flex flex-col space-y-4'>
           <div className='flex flex-col space-y-1'>
-            <label htmlFor='authorDescription' className='text-left form-label'>
+            <label htmlFor='authorDescription' className='text-left form-label text-gray-600'>
               Description
             </label>
             <textarea
@@ -79,11 +86,16 @@ export default function EditUserDetails() {
               className='form-input text-sm'>
             </textarea>
           </div>
+
           <div className='flex flex-col space-y-1'>
-            <label htmlFor='location' className='text-left form-label'>
+            <label htmlFor='location' className='text-left form-label text-gray-600'>
               Location
             </label>
-            <input id='location' name='location' placeholder='India, UK..' className='form-input text-sm' />
+            <input id='location' name='location' placeholder='India, UK..' className='form-input text-sm py-2' />
+          </div>
+
+          <div className='py-2'>
+            <hr />
           </div>
 
           <DialogFooter>

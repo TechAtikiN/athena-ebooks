@@ -15,7 +15,7 @@ export default function Navlink({ link }: Props) {
 
   return (
     <Link href={link.href} className={`
-      ${pathName?.includes(link.href) ? 'text-accent' : 'text-gray-600'} px-5 text-sm font-semibold`}
+      ${pathName?.includes(link.href) ? 'text-accent' : 'text-gray-600'} px-3 py-1 font-semibold rounded-md`}
     >
       {link.name}
     </Link>

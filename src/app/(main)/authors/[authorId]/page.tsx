@@ -17,7 +17,7 @@ export default async function AuthorDetailsPage({ params }: { params: { authorId
           className='object-cover'
           src='/images/author-bg.avif'
           alt='background'
-          layout='fill'
+          fill={true}
         />
 
         {/* Author Details */}
@@ -27,7 +27,7 @@ export default async function AuthorDetailsPage({ params }: { params: { authorId
               src={author?.image || '/images/author-placeholder.png'}
               alt='book'
               className='p-0 sm:p-9 rounded-full'
-              layout='fill'
+              fill={true}
             />
           </div>
           <div className='pl-5 sm:pl-0 space-y-3'>

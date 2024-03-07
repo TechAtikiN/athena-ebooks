@@ -2,7 +2,8 @@
 
 // named imports
 import { isFavoriteBook, setFavoriteBook } from '@/actions/books'
-import { HeartIcon } from '@heroicons/react/24/solid'
+import { HeartIcon as SolidHeartIcon } from '@heroicons/react/24/solid'
+import { HeartIcon as OutlinedHeartIcon } from '@heroicons/react/24/outline'
 import { useToast } from '../ui/use-toast'
 import { useEffect, useState } from 'react'
 
@@ -44,10 +45,10 @@ export default function FavoriteButton({ userId, bookId }: { userId: string, boo
   return (
     <button
       onClick={() => handleAddFav(bookId)}
-      className='outline-btn w-40'>
-      <HeartIcon className={`w-5 h-5 ${isFavorite ? 'text-red-500' : 'text-gray-500'}`} />
+      className='outline-btn w-40 flex items-center space-x-2'>
+      {isFavorite ? <SolidHeartIcon className='h-6 w-6 text-rose-400' /> : <OutlinedHeartIcon className='h-6 w-6' />}
       <span>
-        {isFavorite ? 'Remove' : 'Add'}
+        {isFavorite ? 'Remove' : 'Favorite'}
       </span>
     </button>
   )

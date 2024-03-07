@@ -1,11 +1,11 @@
 // named imports
 import { signOut } from 'next-auth/react'
+import { formatDate } from '@/lib/utils'
 import { ClockIcon, MapPinIcon } from '@heroicons/react/24/outline'
 
 // default imports
 import Image from 'next/image'
 import EditUserDetails from './EditUserDetails'
-import { formatDate } from '@/lib/utils'
 
 interface Props {
   user: User
@@ -13,22 +13,24 @@ interface Props {
 
 export default function HomeTab({ user }: Props) {
   return (
-    <div>
-      <div className='hidden sm:block sm:h-44 sm:w-full bg-indigo-100' />
-      <div className='flex flex-col bg-white shadow-md border w-full sm:w-1/2 right-0 sm:right-48 absolute sm:top-36 mx-auto py-6 justify-center items-center space-y-3'>
+    <div className='w-full'>
+      {/* BG Gradient */}
+      <div className='hidden sm:block sm:h-44 bg-gradient-to-br from-indigo-500 via-sky-300 to-sky-200 w-full' />
 
+      {/* Profile */}
+      <div className='flex flex-col bg-white sm:shadow-md sm:border mx-auto py-6 justify-center items-center space-y-3 relative -top-16 max-w-2xl'>
         <div className='relative h-[170px] w-[120px] sm:h-[120px] sm:w-[120px]'>
           <Image
             src={user?.image || 'https://images.unsplash.com/photo-1517685633466-403d6955aeab?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}
             alt='book'
             className='border border-slate-400 rounded-full'
-            layout='fill'
+            fill={true}
           />
 
           {/* Edit author description and location */}
           <EditUserDetails />
-
         </div>
+
         <div className='px-5 flex flex-col space-y-4 justify-center items-center'>
           <h3 className='text-slate-700 font-semibold text-2xl'>Welcome, {user?.name}</h3>
           <h3 className='text-slate-700'>{user?.email}</h3>

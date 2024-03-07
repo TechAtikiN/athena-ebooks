@@ -5,8 +5,8 @@ import {
   CHECK_FAVORITE,
   GET_BOOK,
   GET_BOOKS,
+  GET_BOOKS_BY_QUERY,
   GET_CATEGORIES,
-  GET_CATEGORY_BOOKS,
   GET_FAVORITES
 } from '@/graphql/queries'
 import { revalidateTag } from 'next/cache'
@@ -62,10 +62,10 @@ export async function getBookCategories() {
 // get books by title or author/search term
 export async function getBooksByTitleAuthor(searchTerm: string) {
   const { data } = await getClient().query({
-    query: GET_CATEGORY_BOOKS,
+    query: GET_BOOKS_BY_QUERY,
     variables: { searchTerm },
   })
-
+  
   return data.searchBooks
 }
 

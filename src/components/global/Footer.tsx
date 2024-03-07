@@ -45,6 +45,9 @@ const Footer = () => {
                 <li>
                   <Link href='/' className='hover:underline'>MongoDB</Link>
                 </li>
+                <li>
+                  <Link href='/' className='hover:underline'>Prisma</Link>
+                </li>
 
               </ul>
             </div>

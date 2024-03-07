@@ -69,7 +69,7 @@ export const resolvers = {
 
     // retrive books searched by title or author
     searchBooks: async (parents: any, args: any, context: Context) => {
-      return await context.prisma.book.findMany({
+      const books = await context.prisma.book.findMany({
         where: {
           OR: [
             {
@@ -90,6 +90,8 @@ export const resolvers = {
           author: true
         }
       })
+
+      return books
     },
 
     // retrieve all favorite books of a user
@@ -137,7 +139,7 @@ export const resolvers = {
       const books = await context.prisma.book.findMany()
 
       // get all categories
-      const categories = books.map(book => book.category)
+      const categories = books?.map(book => book.category)
 
       // return unique categories
       return Array.from(new Set(categories))

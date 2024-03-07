@@ -4,13 +4,13 @@ import Image from 'next/image'
 
 export default async function Login() {
   return (
-    <div className='my-24'>
+    <div className='my-24 p-4 rounded-md border border-gray-300 mx-4'>
       <Image className='mx-auto flex flex-col' src='/images/logo.png' alt='logo' height={300} width={300} />
       <hr className='mx-16 pb-7' />
       <div className='space-y-6 w-1/2 mx-auto flex flex-col items-center'>
         <h2 className='text-2xl text-center font-bold text-slate-700'>
           Ready to get lost in a good book with
-          <span className='text-accent animate-pulse'>Athena</span>
+          <span className='text-accent animate-pulse mx-2'>Athena</span>
           ?
         </h2>
         <h3 className='text-slate-500 text-sm text-center'>

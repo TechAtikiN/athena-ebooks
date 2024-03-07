@@ -73,9 +73,9 @@ export default function BookUploadForm() {
     <form action={addBook} className='grid sm:grid-cols-3 grid-cols-1 gap-x-14'>
       {/* Book PDF File */}
       <div className='col-span-1'>
-        <h3 className='text-lg font-semibold text-slate-700'>Upload Media</h3>
+        <h3 className='text-lg font-semibold text-slate-700'>Upload Book PDF</h3>
         <p className='text-sm text-slate-400'>
-          Upload the book PDF file, size should not exceed 8MB.
+          Make sure the size of the file does not exceed 8MB.
         </p>
 
         {bookPdf ? (

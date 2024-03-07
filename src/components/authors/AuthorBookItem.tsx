@@ -20,7 +20,7 @@ export default function AuthorBookItem({ book }: Props) {
           src={book?.coverImage}
           alt='book'
           className='rounded-sm'
-          layout='fill'
+          fill={true}
         />
       </div>
       <div className='space-y-1'>
