@@ -32,7 +32,7 @@ export async function getBooks(category?: string, authorId?: string) {
     variables: {  category: fetchCategory, authorId },
     context: {
       fetchOptions: {
-        next: { tags: ['get-books'] }
+        next: { tags: ['get-books', 'category'] },
       },
     }
   })
@@ -55,7 +55,7 @@ export async function getBookCategories() {
     query: GET_CATEGORIES,
   })
   
-  revalidateTag('get-books')
+  revalidateTag('category')
   return data.books
 }
 
@@ -115,7 +115,8 @@ export async function deleteBook(bookId: string) {
     mutation: DELETE_BOOK,
     variables: { bookId },
   })
-  
+
+  revalidateTag('get-books')
   return data?.deleteBook.message
 }
 

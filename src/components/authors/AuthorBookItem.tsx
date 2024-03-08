@@ -25,7 +25,10 @@ export default function AuthorBookItem({ book }: Props) {
       </div>
       <div className='space-y-1'>
         <h3 className='text-lg font-semibold'>{book?.title.slice(0, 30)}..</h3>
-        <p className='text-gray-600 text-sm mb-2'>{book?.description?.slice(0, 100)}...</p>
+        <p className='text-gray-600 text-sm mb-2'>
+          {/* if description is too long, it will be truncated */}
+          {book?.description?.length! > 100 ? book?.description?.slice(0, 100) + '...' : book?.description!}
+        </p>
         <p className='text-gray-600 text-xs mb-2'>Published on&nbsp;
           <strong>
             {formatDate(book?.createdAt!)}
