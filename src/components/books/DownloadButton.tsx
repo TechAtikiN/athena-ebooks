@@ -3,13 +3,15 @@
 // named imports
 import { compileMailTemplate } from '@/lib/mail/mail'
 import { sendMail } from '../../actions/mail'
-import { ArrowDownTrayIcon } from '@heroicons/react/24/outline'
+import { useToast } from '../ui/use-toast'
+import { ArrowDownTrayIcon } from '@heroicons/react/24/solid'
 
 interface Props {
   book: string, title: string, userEmail: string, userName: string
 }
 
 export default function DownloadButton({ book, title, userEmail, userName }: Props) {
+  const { toast } = useToast()
   const handleFileDownload = async (fileURL: string) => {
     // fetch file
     const response = await fetch(fileURL)
@@ -42,7 +44,7 @@ export default function DownloadButton({ book, title, userEmail, userName }: Pro
     await handleFileDownload(fileURL)
 
     // send email to user
-    await sendMail({
+    const data = await sendMail({
       to: userEmail,
       name: userName,
       subject: '📚 Thank You for Downloading Our Book!',
@@ -51,6 +53,17 @@ export default function DownloadButton({ book, title, userEmail, userName }: Pro
         'Thank You for Downloading Our Book!',
         `We hope it brings you hours of enjoyment! Happy reading!`)
     })
+    if (data) {
+      toast({
+        title: "Success! 🎉",
+        description: "Book downloaded successfully!",
+      })
+    } else {
+      toast({
+        title: "Error! 😢",
+        description: "Something went wrong. Please try again later"
+      })
+    }
   }
 
   return (
