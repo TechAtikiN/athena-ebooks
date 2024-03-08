@@ -15,7 +15,6 @@ export default function FavoritesTab({ userId }: { userId: string }) {
   if (loading) return <div className='flex flex-col justify-center items-center'><Loader /></div>
 
   const favBooks = data?.getFavorites
-  console.log(favBooks)
 
   return (
     <div className='space-y-2 m-5'>

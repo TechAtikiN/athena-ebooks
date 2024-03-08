@@ -44,11 +44,6 @@ export async function getBook(bookId: string) {
   const { data } = await getClient().query({
     query: GET_BOOK,
     variables: { bookId },
-    context: {
-      fetchOptions: {
-        next: { tags: ['get-book'] }
-      },
-    }
   })
 
   return data.book
@@ -80,7 +75,6 @@ export async function setFavoriteBook(userId: string, bookId: string) {
     variables: { userId, bookId },
   })
 
-  revalidateTag('get-favorites')
   return data.addFavoriteBook.message
 }
 
@@ -115,7 +109,7 @@ export async function updateBook(bookData: any) {
     variables: { ...bookData },
   })
   
-  revalidateTag('get-book')
+  // revalidateTag('get-book')
   return data.updateBook.message
 }
 
@@ -125,7 +119,7 @@ export async function deleteBook(bookId: string) {
     mutation: DELETE_BOOK,
     variables: { bookId },
   })
-  console.log(data)
+  
   revalidateTag('get-books')
   return data?.deleteBook.message
 }

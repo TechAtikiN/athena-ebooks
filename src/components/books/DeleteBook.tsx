@@ -19,7 +19,7 @@ export default function DeleteBook({ bookId }: { bookId: string }) {
 
   const handleDeleteBook = async () => {
     const data = await deleteBook(bookId)
-    console.log(data)
+
     if (data) {
       toast({
         title: 'Book Deleted successfully! 📖',

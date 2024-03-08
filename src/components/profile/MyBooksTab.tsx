@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function MyBooksTab({ books }: Props) {
-  console.log(books)
+
   return (
     <div className='space-y-2 m-5'>
       {books?.length > 0 && (
