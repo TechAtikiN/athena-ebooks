@@ -45,6 +45,11 @@ export default function EditBookForm({ bookDetails }: { bookDetails: BookDetails
         description: 'Your book has been updated successfully.'
       })
       router.push(`/books/${bookDetails?.id}`)
+    } else {
+      toast({
+        title: 'Error! 😢',
+        description: 'Something went wrong. Please try again later.'
+      })
     }
   }
 

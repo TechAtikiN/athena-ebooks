@@ -5,6 +5,7 @@ import { formatDate } from '@/lib/utils'
 // default imports
 import Image from 'next/image'
 import Link from 'next/link'
+import DeleteBook from '../books/DeleteBook'
 
 interface Props {
   books: Book[]
@@ -49,7 +50,7 @@ export default function MyBooksTab({ books }: Props) {
                 >
                   <PencilSquareIcon className='h-5 w-5 text-slate-600' />
                 </Link>
-                <TrashIcon className='h-5 w-5 text-rose-500' />
+                <DeleteBook bookId={book?.id} />
               </div>
             </div>
           </div>

@@ -42,6 +42,7 @@ mutation UpdateUser($authorDescription: String, $location: String, $authorId: St
   }
 }`
 
+// Update book details in database
 export const UPDATE_BOOK = gql`
 mutation Mutation(
   $bookId: ID!,
@@ -58,6 +59,15 @@ mutation Mutation(
     coverImage: $coverImage,
     bookPdf: $bookPdf
   ) {
+    message
+  }
+}
+`
+
+// Delete book from database
+export const DELETE_BOOK = gql`
+mutation Mutation($bookId: ID!) {
+  deleteBook(bookId: $bookId) {
     message
   }
 }

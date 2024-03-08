@@ -10,7 +10,7 @@ import {
   GET_FAVORITES
 } from '@/graphql/queries'
 import { revalidateTag } from 'next/cache'
-import { ADD_BOOK, ADD_FAVORITE, UPDATE_BOOK } from '@/graphql/mutations'
+import { ADD_BOOK, ADD_FAVORITE, DELETE_BOOK, UPDATE_BOOK } from '@/graphql/mutations'
 
 // create a new book
 export async function createBook(bookData: any) {
@@ -108,6 +108,7 @@ export async function isFavoriteBook(userId: string, bookId: string) {
   return data.isFavoriteBook.message
 }
 
+// update book details
 export async function updateBook(bookData: any) {
   const { data } = await getClient().mutate({
     mutation: UPDATE_BOOK,
@@ -118,6 +119,18 @@ export async function updateBook(bookData: any) {
   return data.updateBook.message
 }
 
+// delete book
+export async function deleteBook(bookId: string) {
+  const { data } = await getClient().mutate({
+    mutation: DELETE_BOOK,
+    variables: { bookId },
+  })
+  console.log(data)
+  revalidateTag('get-books')
+  return data?.deleteBook.message
+}
+
+// dekete file from cloud storage: UPLOADTHING
 export async function removeFile(fileUrl: string) {
   try {
     const data = fetch('http://localhost:3000/api/uploadthing', {

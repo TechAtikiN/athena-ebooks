@@ -16,6 +16,9 @@ export const resolvers = {
           },
           include: {
             author: true
+          },
+          orderBy: {
+            createdAt: 'desc'
           }
         })
       }
@@ -28,16 +31,22 @@ export const resolvers = {
           },
           include: {
             author: true
+          },
+          orderBy: {
+            createdAt: 'desc'
           }
         })
       } 
 
       // if authorId and category are not provided, return all books
       const books = await context.prisma.book.findMany({
-          include: {
-            author: true
+        include: {
+          author: true
+          },
+        orderBy: {
+            createdAt: 'desc'
           }
-        })
+      })
       if (books) {
         return books
       }
@@ -261,6 +270,22 @@ export const resolvers = {
       if (updatedBook) return { message: true }
       
       // return message as false if the book is not updated
+      return { message: false }
+    },
+
+    // delete a book
+    deleteBook: async (parents: any, args: any, context: Context) => {
+      // deleting the book
+      const deletedBook = await context.prisma.book.delete({
+        where: {
+          id: args.bookId
+        }
+      })
+
+      // return message as true if the book is deleted
+      if (deletedBook) return { message: true }
+
+      // return message as false if the book is not deleted
       return { message: false }
     }
   }

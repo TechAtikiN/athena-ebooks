@@ -64,5 +64,6 @@ export const typeDefs = `#graphql
       category: String,
       coverImage: String,
       bookPdf: String): Message
+    deleteBook(bookId: ID!): Message
   }
 `
