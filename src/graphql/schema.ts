@@ -57,5 +57,12 @@ export const typeDefs = `#graphql
     ): Book
     updateUser(authorDescription: String, location: String, authorId: String): User
     addFavoriteBook(userId: ID!, bookId: ID!): Message
+    updateBook(
+      bookId: ID!,
+      title: String,
+      description: String,
+      category: String,
+      coverImage: String,
+      bookPdf: String): Message
   }
 `

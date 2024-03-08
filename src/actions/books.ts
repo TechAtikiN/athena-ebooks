@@ -10,7 +10,7 @@ import {
   GET_FAVORITES
 } from '@/graphql/queries'
 import { revalidateTag } from 'next/cache'
-import { ADD_BOOK, ADD_FAVORITE } from '@/graphql/mutations'
+import { ADD_BOOK, ADD_FAVORITE, UPDATE_BOOK } from '@/graphql/mutations'
 
 // create a new book
 export async function createBook(bookData: any) {
@@ -43,7 +43,12 @@ export async function getBooks(category?: string, authorId?: string) {
 export async function getBook(bookId: string) {
   const { data } = await getClient().query({
     query: GET_BOOK,
-    variables: { bookId }
+    variables: { bookId },
+    context: {
+      fetchOptions: {
+        next: { tags: ['get-book'] }
+      },
+    }
   })
 
   return data.book
@@ -99,11 +104,31 @@ export async function isFavoriteBook(userId: string, bookId: string) {
   const { data } = await getClient().query({
     query: CHECK_FAVORITE,
     variables: { userId, bookId },
-    context: {
-      fetchOptions: {
-        next: { tags: ['get-books'] }
-      },
-    }
   })
   return data.isFavoriteBook.message
+}
+
+export async function updateBook(bookData: any) {
+  const { data } = await getClient().mutate({
+    mutation: UPDATE_BOOK,
+    variables: { ...bookData },
+  })
+  
+  revalidateTag('get-book')
+  return data.updateBook.message
+}
+
+export async function removeFile(fileUrl: string) {
+  try {
+    const data = fetch('http://localhost:3000/api/uploadthing', {
+      method: 'DELETE',
+      body: JSON.stringify({ url: fileUrl }),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    
+    const result = (await data).json()
+    return result
+  } catch (error) {
+    console.error(error)
+  }
 }

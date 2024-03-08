@@ -46,6 +46,7 @@ export const GET_BOOKS = gql`
 export const GET_BOOK = gql`
   query Book($bookId: ID!) {
     book(id: $bookId) {
+      id
       authorId
       bookPdf
       category

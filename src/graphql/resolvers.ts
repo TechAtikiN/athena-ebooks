@@ -239,6 +239,29 @@ export const resolvers = {
 
       // return message that the book has been added to the favorite
       return { message: true }
+    },
+
+    // update a book
+    updateBook: async (parents: any, args: any, context: Context) => {
+      // updating the book
+      const updatedBook = await context.prisma.book.update({
+        where: {
+          id: args.bookId
+        },
+        data: {
+          title: args.title,
+          description: args.description,
+          category: args.category,
+          coverImage: args.coverImage,
+          bookPdf: args.bookPdf
+        }
+      })
+      
+      // return message as true if the book is updated
+      if (updatedBook) return { message: true }
+      
+      // return message as false if the book is not updated
+      return { message: false }
     }
   }
 }

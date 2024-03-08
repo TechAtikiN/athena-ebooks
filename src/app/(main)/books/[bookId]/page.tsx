@@ -70,7 +70,7 @@ export default async function BookDetailsPage({ params }: { params: { bookId: st
         <div className='space-y-2'>
           <h3 className='text-2xl font-semibold text-slate-700'>Know the Author</h3>
           <Link
-            href={`/authors/${book.author.id}`}
+            href={`/authors/${book?.author?.id}`}
             className='flex space-x-2 items-center text-accent hover:text-accent-hover cursor-pointer'
           >
             <p className='font-medium underline py-2'>{book?.author?.name}</p> <ArrowTopRightOnSquareIcon className='w-4 h-4 inline' />

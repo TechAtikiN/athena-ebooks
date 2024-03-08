@@ -101,17 +101,18 @@ export default function BookUploadForm() {
         <div className='my-5 grid sm:grid-cols-2 grid-cols-1 gap-y-5 gap-x-8'>
           <div className='flex flex-col space-y-1'>
             <label className='form-label' htmlFor='title'>Title of the Book</label>
-            <input name="title" type='text' id='title' className='form-input' />
+            <input required name="title" type='text' id='title' className='form-input' />
           </div>
 
           <div className='flex flex-col space-y-1'>
             <label className='form-label' htmlFor='category'>Category</label>
-            <input name="category" type='text' id='category' className='form-input' />
+            <input required name="category" type='text' id='category' className='form-input' />
           </div>
 
           <div className='flex flex-col space-y-1 col-span-2'>
             <label className='form-label' htmlFor='description'>About the Book</label>
             <textarea
+              required
               name="description"
               id="description"
               style={{ resize: 'none' }}

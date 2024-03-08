@@ -41,3 +41,24 @@ mutation UpdateUser($authorDescription: String, $location: String, $authorId: St
     name
   }
 }`
+
+export const UPDATE_BOOK = gql`
+mutation Mutation(
+  $bookId: ID!,
+  $title: String,
+  $description: String,
+  $category: String,
+  $coverImage: String,
+  $bookPdf: String) {
+  updateBook(
+    bookId: $bookId,
+    title: $title,
+    description: $description,
+    category: $category,
+    coverImage: $coverImage,
+    bookPdf: $bookPdf
+  ) {
+    message
+  }
+}
+`
