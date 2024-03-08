@@ -32,7 +32,7 @@ export async function getBooks(category?: string, authorId?: string) {
     variables: {  category: fetchCategory, authorId },
     context: {
       fetchOptions: {
-        next: { tags: ['get-books', 'category'] },
+        next: { tags: ['get-books'] },
       },
     }
   })
@@ -53,9 +53,15 @@ export async function getBook(bookId: string) {
 export async function getBookCategories() {
   const { data } = await getClient().query({
     query: GET_CATEGORIES,
+    context: {
+      fetchOptions: {
+        next: {
+          revalidate: 0,
+        }
+      },
+    }
   })
   
-  revalidateTag('category')
   return data.books
 }
 
