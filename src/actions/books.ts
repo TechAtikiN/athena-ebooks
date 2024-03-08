@@ -54,7 +54,8 @@ export async function getBookCategories() {
   const { data } = await getClient().query({
     query: GET_CATEGORIES,
   })
-
+  
+  revalidateTag('get-books')
   return data.bookCategories
 }
 
