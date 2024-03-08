@@ -37,23 +37,9 @@ export default function DownloadButton({ book, title, userEmail, userName }: Pro
 
     // revoke ObjectURL
     URL.revokeObjectURL(href)
-  }
 
-  const handleDownload = async (fileURL: string) => {
-    // download file
-    await handleFileDownload(fileURL)
-
-    // send email to user
-    const data = await sendMail({
-      to: userEmail,
-      name: userName,
-      subject: '📚 Thank You for Downloading Our Book!',
-      body: compileMailTemplate(
-        `Hello ${userName}`,
-        'Thank You for Downloading Our Book!',
-        `We hope it brings you hours of enjoyment! Happy reading!`)
-    })
-    if (data) {
+    // show toast
+    if (response.ok) {
       toast({
         title: "Success! 🎉",
         description: "Book downloaded successfully!",
@@ -64,6 +50,22 @@ export default function DownloadButton({ book, title, userEmail, userName }: Pro
         description: "Something went wrong. Please try again later"
       })
     }
+  }
+
+  const handleDownload = async (fileURL: string) => {
+    // download file
+    await handleFileDownload(fileURL)
+
+    // send email to user
+    await sendMail({
+      to: userEmail,
+      name: userName,
+      subject: '📚 Thank You for Downloading Our Book!',
+      body: compileMailTemplate(
+        `Hello ${userName}`,
+        'Thank You for Downloading Our Book!',
+        `We hope it brings you hours of enjoyment! Happy reading!`)
+    })
   }
 
   return (

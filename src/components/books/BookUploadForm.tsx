@@ -15,7 +15,6 @@ import { compileMailTemplate } from '@/lib/mail/mail'
 // default imports
 import UploadBookCover from '@/components/write/UploadBookCover'
 import UploadBookPdf from '@/components/write/UploadBookPdf'
-import Loader from '../global/Loader'
 
 export default function BookUploadForm() {
   // state variables
@@ -26,15 +25,13 @@ export default function BookUploadForm() {
   const router = useRouter()
 
   const { data: session } = useSession()
-  const { data: user, loading } = useQuery(GET_USER, { variables: { email: session?.user?.email } })
+  const { data: user } = useQuery(GET_USER, { variables: { email: session?.user?.email } })
 
   useEffect(() => {
     if (user) {
       setAuthorId(user?.user?.id)
     }
   }, [user])
-
-  if (loading) return <div className='flex flex-col justify-center items-center'><Loader /></div>
 
   // function to add book
   async function addBook(formData: FormData) {

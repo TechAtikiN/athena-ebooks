@@ -42,17 +42,19 @@ export async function sendMail({ to, name, subject, body }: {
     html: body
   }
 
-  await new Promise((resolve, reject) => {
-    // send mail wrap in try-catch and promise
+  // send mail
+  const sendMessage = async () => {
     transport.sendMail(mailData, (err, info) => {
         if (err) {
             console.error(err)
-            reject(err)
         } else {
             console.log(info)
-            resolve(info)
         }
     })
-  })
+  }
+
+  // send the message
+  await sendMessage()
+
   return true
 }
