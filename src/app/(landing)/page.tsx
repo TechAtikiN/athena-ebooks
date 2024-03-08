@@ -1,4 +1,3 @@
-import CtaBtn from '@/components/landing/CtaButton'
 import Features from '@/components/landing/Features'
 import Hero from '@/components/landing/Hero'
 import React from 'react'
@@ -8,7 +7,7 @@ export default function page() {
     <div>
       <Hero />
       <Features />
-      <CtaBtn />
+      {/* <CtaBtn /> */}
     </div>
   )
 }

@@ -43,18 +43,17 @@ export async function sendMail({ to, name, subject, body }: {
   }
 
   // send mail
-  const sendMessage = async () => {
-    transport.sendMail(mailData, (err, info) => {
-        if (err) {
-            console.error(err)
-        } else {
-            console.log(info)
-        }
+  await new Promise((resolve, reject) => {
+    transport.sendMail(mailData, function (err, info) {
+      if (err) {
+        console.log(err)
+        reject(err)
+      } else {
+        console.log(info)
+        resolve(info)
+      }
     })
-  }
-
-  // send the message
-  await sendMessage()
-
+  })
+  
   return true
 }
