@@ -25,7 +25,7 @@ export default function FavoritesTab({ userId }: { userId: string }) {
         </h3>
       )}
 
-      <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 h-[450px] overflow-y-auto thin-scrollbar'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 overflow-y-auto thin-scrollbar'>
         {favBooks.length > 0 ? favBooks?.map((book: Book, index: number) => (
           <AuthorBookItem book={book} key={index} />
         )) :

@@ -24,6 +24,15 @@ const nextConfig = {
       }
     ]
   },
+  async redirects() {
+    return [
+      {
+        source: '/books',
+        destination: '/',
+        permanent: true,
+      },
+    ]
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.md$/,

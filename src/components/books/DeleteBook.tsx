@@ -41,15 +41,20 @@ export default function DeleteBook({ bookId }: { bookId: string }) {
       </DialogTrigger>
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>
-          <DialogTitle>Delete book</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className='text-center'>Delete book</DialogTitle>
+          <DialogDescription className='text-justify'>
             Are you sure you want to delete this book? This action cannot be undone.
           </DialogDescription>
         </DialogHeader>
 
         <DialogFooter>
           <form action={handleDeleteBook} className='mx-auto'>
-            <button className='bg-rose-500 hover:rose-600 px-3 py-2 rounded-full text-white' type='submit'>Save changes</button>
+            <button
+              className='bg-red-500 font-semibold hover:bg-rose-600 px-3 py-2 rounded-md text-white'
+              type='submit'
+            >
+              Delete Book
+            </button>
           </form>
         </DialogFooter>
       </DialogContent>

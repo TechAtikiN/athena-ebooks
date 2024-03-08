@@ -20,11 +20,10 @@ export default function MyBooksTab({ books }: Props) {
           You&apos;ve published {books?.length} books
         </h3>
       )}
-      <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 h-[500px] overflow-y-auto thin-scrollbar'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 overflow-y-auto thin-scrollbar'>
         {books?.length > 0 ? books?.map((book, index) => (
           <div
             key={index}
-
             className='bg-slate-100 hover:bg-accent/20 h-40 flex space-x-4 justify-between items-start rounded-lg p-5'
           >
             <div className='relative object-cover h-[120px] w-[160px]'>
@@ -35,14 +34,19 @@ export default function MyBooksTab({ books }: Props) {
                 fill={true}
               />
             </div>
-            <div className='space-y-1'>
-              <Link href={`/books/${book?.id}`} className='text-lg hover:underline font-semibold'>{book?.title.slice(0, 30)}..</Link>
-              <p className='text-gray-600 text-sm mb-2'>{book?.description?.slice(0, 100)}...</p>
-              <p className='text-gray-600 text-xs mb-2'>Published on&nbsp;
-                <strong>
-                  {formatDate(book?.createdAt!)}
-                </strong>
-              </p>
+            <div>
+              <Link
+                href={`/books/${book?.id}`}
+                className='flex flex-col'
+              >
+                <p className='text-lg hover:underline font-semibold'>{book?.title.slice(0, 30)}..</p>
+                <p className='text-gray-600 text-sm mb-2'>{book?.description?.slice(0, 100)}...</p>
+                <p className='text-gray-600 text-xs mb-2'>Published on&nbsp;
+                  <strong>
+                    {formatDate(book?.createdAt!)}
+                  </strong>
+                </p>
+              </Link>
               {/* Edit book and delete book buttons  */}
               <div className='flex justify-between items-center space-x-4'>
                 <Link

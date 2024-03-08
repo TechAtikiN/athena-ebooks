@@ -6,6 +6,7 @@ import { formatCase } from '@/lib/utils'
 import Hero from '@/components/books/Hero'
 import Categories from '@/components/books/Categories'
 import BooksListing from '@/components/books/BooksListing'
+import AboutPage from '@/components/books/About'
 
 export default async function HomePage({ searchParams }: { searchParams?: { category: string } }) {
   // format category to title case
@@ -28,6 +29,8 @@ export default async function HomePage({ searchParams }: { searchParams?: { cate
         <hr className='my-5' />
 
         <BooksListing books={books} />
+
+        <AboutPage />
       </div>
     </div>
   )

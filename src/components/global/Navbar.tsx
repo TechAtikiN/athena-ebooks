@@ -12,7 +12,6 @@ import UserAvatar from './UserAvatar'
 import Search from './Search'
 
 const NAV_LINKS = [
-  { name: 'Books', href: '/books', authRequired: false },
   { name: 'Start Writing', href: '/write', authRequired: true },
 ]
 
