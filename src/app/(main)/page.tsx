@@ -17,7 +17,7 @@ export default async function HomePage({ searchParams }: { searchParams?: { cate
 
   // get book categories
   let categories = await getBookCategories()
-  categories = categories.map((category: { _: any, category: string }) => category?.category)
+  categories = Array.from(new Set(categories.map((cat: { _: any, category: string }) => cat.category)))
 
   return (
     <div>
