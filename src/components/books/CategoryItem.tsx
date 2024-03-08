@@ -48,7 +48,7 @@ export default function CategoryItem({ activeCategory, name, index }: { activeCa
             `text-white bg-gradient-to-br ${getColor(index, 'active')}` : ''}`}
       >
         <h3>
-          {name.charAt(0).toUpperCase() + name.substring(1)}
+          {name?.charAt(0).toUpperCase() + name?.substring(1)}
         </h3>
       </button>
     </div>

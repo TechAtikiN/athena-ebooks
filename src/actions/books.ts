@@ -56,7 +56,7 @@ export async function getBookCategories() {
   })
   
   revalidateTag('get-books')
-  return data.bookCategories
+  return data.books
 }
 
 // get books by title or author/search term

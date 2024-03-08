@@ -67,8 +67,10 @@ export const GET_BOOK = gql`
 
 export const GET_CATEGORIES = gql`
   query Query {
-    bookCategories
+  books {
+    category
   }
+}
 `
 
 // Get books by category

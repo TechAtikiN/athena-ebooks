@@ -42,7 +42,7 @@ export const typeDefs = `#graphql
     searchBooks(searchTerm: String!): [Book]
     getFavorites(userId: ID!): [Book]
     isFavoriteBook(userId: ID!, bookId: ID!): Message
-    bookCategories: [String]
+    bookCategories: [Book]
   }
 
   type Mutation {
