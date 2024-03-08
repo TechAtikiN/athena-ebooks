@@ -83,11 +83,6 @@ export async function getFavoriteBooks(userId: string) {
   const { data } = await getClient().query({
     query: GET_FAVORITES,
     variables: { userId },
-    context: {
-      fetchOptions: {
-        next: { tags: ['get-books'] }
-      },
-    }
   })
   
   return data.getFavorites
@@ -120,7 +115,6 @@ export async function deleteBook(bookId: string) {
     variables: { bookId },
   })
   
-  revalidateTag('get-books')
   return data?.deleteBook.message
 }
 
