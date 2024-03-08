@@ -25,9 +25,9 @@ export default function AboutPage() {
             {features.map((feature) => (
               <div key={feature.name} className='bg-accent/20 hover:bg-accent/40 rounded-lg p-3 relative pl-16'>
                 <dt className='text-base flex items-center font-semibold leading-7 text-gray-900'>
-                  <div className='absolute left-4 top-6 flex h-10 w-10 items-center justify-center rounded-lg bg-accent'>
+                  {/* <div className='absolute left-4 top-6 flex h-10 w-10 items-center justify-center rounded-lg bg-accent'>
                     <feature.icon className='h-6 w-6 text-white' aria-hidden='true' />
-                  </div>
+                  </div> */}
                   <p className='mt-2'>{feature.name}</p>
                 </dt>
                 <dd className='text-sm leading-7 text-gray-600'>{feature.description}</dd>

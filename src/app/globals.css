@@ -54,4 +54,8 @@
   .cta-btn {
     @apply px-3 py-2 bg-accent/85 hover:bg-accent/80 w-full rounded-sm font-bold border border-accent text-white
   }
+
+  .glass-style {
+    @apply bg-indigo-500/20 rounded-l-xl bg-clip-padding backdrop-filter backdrop-blur-sm dark:bg-opacity-30 dark:hover:bg-opacity-20 hover:bg-opacity-5 border-l border-y border-slate-400 dark:border-slate-700
+  }
 }

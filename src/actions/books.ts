@@ -36,7 +36,6 @@ export async function getBooks(category?: string, authorId?: string) {
       },
     }
   })
-  throw new Error()
   return data.books
 }
 

@@ -1,7 +1,14 @@
+import CtaBtn from '@/components/landing/CtaButton'
+import Features from '@/components/landing/Features'
+import Hero from '@/components/landing/Hero'
 import React from 'react'
 
 export default function page() {
   return (
-    <div className='h-screen'>Landing</div>
+    <div>
+      <Hero />
+      <Features />
+      <CtaBtn />
+    </div>
   )
 }
