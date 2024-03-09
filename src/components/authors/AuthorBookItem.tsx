@@ -15,7 +15,7 @@ export default function AuthorBookItem({ book }: Props) {
       href={`/books/${book?.id}`}
       className='bg-slate-100 hover:bg-accent/20 h-40 flex space-x-4 justify-between items-start rounded-lg p-5'
     >
-      <div className='relative object-cover h-[120px] w-[160px]'>
+      <div className='relative object-cover w-24 h-32 sm:w-32 sm:h-32'>
         <Image
           src={book?.coverImage}
           alt='book'
@@ -23,7 +23,7 @@ export default function AuthorBookItem({ book }: Props) {
           fill={true}
         />
       </div>
-      <div className='space-y-1'>
+      <div className='space-y-1 w-full'>
         <h3 className='text-lg font-semibold'>{book?.title.slice(0, 30)}..</h3>
         <p className='text-gray-600 text-sm mb-2'>
           {/* if description is too long, it will be truncated */}
