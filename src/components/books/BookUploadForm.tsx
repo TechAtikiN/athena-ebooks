@@ -97,13 +97,24 @@ export default function BookUploadForm() {
         {bookPdf ? (
           <div className='flex flex-col space-y-1 my-5'>
             <label className='form-label' htmlFor='pdf'>PDF File</label>
-            <div className='flex items-center'>
-              <p className='text-slate-700'>{bookPdf.name}</p>
+            <div className='flex items-center space-x-1'>
+              <p className='text-slate-800font-semibold'>
+                <span className='font-normal'>Uploaded File:</span>&nbsp;{bookPdf?.name}
+              </p>
               <XMarkIcon
                 onClick={() => setBookPdf(null)}
-                className='w-5 h-5 text-slate-500 cursor-pointer'
+                className='w-5 h-5 text-rose-500 cursor-pointer'
               />
             </div>
+            <p className='text-sm'>
+              File Size: &nbsp;
+              <span className='text-sm space-x-2'>
+                {/* format as file size */}
+                {bookPdf?.size > 1024
+                  ? `${(bookPdf?.size / 1024).toFixed(2)} KB`
+                  : `${bookPdf?.size} B`}
+              </span>
+            </p>
           </div>
         ) : (
           <UploadBookPdf setBookPdf={setBookPdf} />
@@ -141,13 +152,24 @@ export default function BookUploadForm() {
           {bookCover ? (
             <div className='flex flex-col space-y-1 col-span-2'>
               <label className='form-label' htmlFor='cover'>Cover Image of the Book</label>
-              <div className='flex items-center'>
-                <p className='text-slate-700'>{bookCover.name}</p>
+              <div className='flex items-center space-x-1'>
+                <p className='text-slate-800font-semibold'>
+                  <span className='font-normal'>Uploaded File:</span>&nbsp;{bookCover?.name}
+                </p>
                 <XMarkIcon
                   onClick={() => setBookCover(null)}
-                  className='w-5 h-5 text-slate-500 cursor-pointer'
+                  className='w-5 h-5 text-rose-500 cursor-pointer'
                 />
               </div>
+              <p className='text-sm'>
+                File Size: &nbsp;
+                <span className='text-sm space-x-2'>
+                  {/* format as file size */}
+                  {bookCover?.size > 1024
+                    ? `${(bookCover?.size / 1024).toFixed(2)} KB`
+                    : `${bookCover?.size} B`}
+                </span>
+              </p>
             </div>
           ) : (
             <UploadBookCover setBookCover={setBookCover} />

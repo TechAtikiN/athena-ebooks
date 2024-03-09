@@ -45,7 +45,7 @@ export default function FavoriteButton({ userId, bookId }: { userId: string, boo
   return (
     <button
       onClick={() => handleAddFav(bookId)}
-      className='outline-btn w-40 flex items-center space-x-2'>
+      className='outline-btn w-40 flex items-center space-x-2 hover:opacity-85'>
       {isFavorite ? <SolidHeartIcon className='h-6 w-6 text-rose-400' /> : <OutlinedHeartIcon className='h-6 w-6' />}
       <span>
         {isFavorite ? 'Remove' : 'Favorite'}

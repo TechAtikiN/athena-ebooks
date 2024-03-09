@@ -46,7 +46,7 @@ export default async function BookDetailsPage({ params }: { params: { bookId: st
             {/* Favorite and Download button */}
             {/* display buttons only if user is logged in or else display login button */}
             {session?.user ? (
-              <div className='flex space-x-4'>
+              <div className='flex flex-col space-y-2 sm:space-y-0 sm:flex-row sm:flex sm:space-x-4'>
                 <FavoriteButton userId={user?.id} bookId={params?.bookId} />
                 <DownloadButton
                   book={book?.bookPdf}

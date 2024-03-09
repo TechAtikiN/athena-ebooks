@@ -18,7 +18,7 @@ export default function HomeTab({ user }: Props) {
       <div className='hidden sm:block sm:h-44 bg-gradient-to-br from-indigo-500 via-sky-300 to-sky-200 w-full' />
 
       {/* Profile */}
-      <div className='flex flex-col bg-white sm:shadow-md sm:border mx-auto py-6 justify-center items-center space-y-3 relative -top-16 max-w-2xl'>
+      <div className='flex flex-col bg-white sm:shadow-md sm:border mx-auto py-6 justify-center items-center space-y-3 relative sm:-top-16 max-w-2xl'>
         <div className='relative h-[170px] w-[120px] sm:h-[120px] sm:w-[120px]'>
           <Image
             src={user?.image || 'https://images.unsplash.com/photo-1517685633466-403d6955aeab?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}

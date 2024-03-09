@@ -39,6 +39,7 @@ type TFile = {
   key: string
   name: string
   url: string
+  size: number
 }
 
 type User = {

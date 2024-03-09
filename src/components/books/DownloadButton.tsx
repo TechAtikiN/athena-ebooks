@@ -71,7 +71,7 @@ export default function DownloadButton({ book, title, userEmail, userName }: Pro
   return (
     <button
       onClick={() => handleDownload(book)}
-      className='outline-btn w-40'>
+      className='outline-btn w-40 hover:opacity-85'>
       <ArrowDownTrayIcon className='h-5' />
       <span>Download</span>
     </button>
