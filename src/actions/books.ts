@@ -46,7 +46,7 @@ export async function getBooks(category?: string, authorId?: string) {
   const { data } = await getClient().query({
     query: GET_BOOKS,
     variables: {  category: fetchCategory, authorId },
-    context: REVALIDATE_TAG_CONTEXT(['get-books'])
+    context: NO_CACHE_CONTEXT
   })
 
   return data.books
@@ -57,7 +57,7 @@ export async function getBook(bookId: string) {
   const { data } = await getClient().query({
     query: GET_BOOK,
     variables: { bookId },
-    context: REVALIDATE_TAG_CONTEXT([`get-book-${bookId}`])
+    context: NO_CACHE_CONTEXT
   })
 
   return data.book

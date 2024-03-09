@@ -10,7 +10,7 @@ export default async function Login() {
           className='absolute animate-pulse -inset-1 bg-gradient-to-r from-blue-600 via-sky-300 to-indigo-600 rounded-lg blur opacity-90 transition-all duration-400 ease-in-out'>
         </div>
         <div
-          className='relative py-7 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6'
+          className='relative py-7 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-center space-x-6'
         >
           <div className='space-y-2'>
             <Image
