@@ -18,7 +18,6 @@ export default function DeleteBook({ bookId, bookPdf, bookCover }: { bookId: str
   const { toast } = useToast()
 
   const handleDeleteBook = async () => {
-    console.log(bookPdf, bookCover, bookId)
     try {
       // remove book from the database
       const data = await deleteBook(bookId)
