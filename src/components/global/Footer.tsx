@@ -25,7 +25,7 @@ const Footer = () => {
                   <Link href='/' className='hover:underline'>Filter Categories</Link>
                 </li>
                 <li>
-                  <Link href='/write' className='hover:underline'>Become a writer</Link>
+                  <Link href='/write' className='hover:underline'>Become an author</Link>
                 </li>
                 <li>
                   <Link href='/profile' className='hover:underline'>Profiles</Link>

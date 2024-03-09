@@ -2,7 +2,7 @@
   Athena Ebooks 📚
 </h1>
 
-> A modern platform built with Next.js, GraphQL, and MongoDB to read, write, and download Ebooks. Anytime, Anywhere
+> A modern platform built with Next.js, GraphQL, and MongoDB to read, upload, and download Ebooks.
 
 
 <img 
@@ -11,19 +11,18 @@ alt="Athena Ebooks"
  />
 ---
 
-### Key Features 📋
+## Key Features 📋
 
-- [x] User **Authentication**
-- [x] **Explore Ebooks**
-- [x] **Write** your own Ebooks
-- [x] **Upload** & **Download** (PDF format)
-- [x] **Save Favorite** Ebooks
-- [x] **Search** & **Filter** Ebooks
+- [x] **OAuth** Authentication (Google)
+- [x] **Explore books**
+- [x] **Upload** & **Download** books (PDF format)
+- [x] **Save Favorite** books
+- [x] **Search** & **Filter** books
 - [x] **Mobile Responsive** Design
 
 ---
 
-### Important Links 🔗
+## Important Links 🔗
 
 - [Setup Guide](./docs/SETUP.md)
 - [Frontend](./docs/FRONTEND.md)
@@ -31,28 +30,29 @@ alt="Athena Ebooks"
 
 ---
 
-### Tools and Technologies 🛠️
+## Tools and Technologies 🛠️
 
 **Frontend**
 - **Framework**: Next.js 14 (React.js)
 - **Language**: Typescript
 - **Authentication**: Nextauth
 - **Styling**: Tailwind CSS + Shadcn UI
-- **Testing**: Playwright
-- **Deployment**: Vercel
+- **Mail Service**: Nodemailer
 
 **Backend**
-- **Framework**: Node.js
+- **Framework**:  Next.js Route Handlers (Node.js)
+- **APIs**: GraphQL (Apollo)
 - **Language**: Typescript
-- **GraphQL**: Apollo Server
 - **Database**: MongoDB
 - **ORM**: Prisma
-- **File Upload** + **Storage**: UploadThing
-- **Mail Service**: Nodemailer
+  
+**Infrastructure**
 - **Deployment**: Vercel
+- **Storage** + **File Upload**: UploadThing
+
 ---
 
-### Best Practices Followed 📝
+## Best Practices Followed 📝
 
 - [x] Robust Error Handling
 - [x] Conventional Commit Messages

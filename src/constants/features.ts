@@ -26,7 +26,7 @@ export const features = [
     image: UsersIcon,
   },
   {
-    name: 'Write Your Own Book',
+    name: 'Upload Your Own Book',
     description:
       'Start your own literary journey. Unleash your imagination and craft your masterpiece.',
     image: PencilSquareIcon,

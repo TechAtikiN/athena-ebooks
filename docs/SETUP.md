@@ -42,7 +42,7 @@
   - [Create a new project](https://console.developers.google.com/)
   - [Retrieve Client ID and Client Secret](https://console.developers.google.com/apis/credentials)
 
-### Nodemialer
+### Nodemailer
 
 - [ ] Nodemailer Email and Password
   - **SMTP_EMAIL** - Your email address
@@ -55,7 +55,7 @@
 - [ ] **UPLOADTHING_APP_ID** - UploadThing App ID
 - [ ] **NEXTAUTH_SECRET** - A random string for NextAuth
 - [ ] **BASE_API_URL** - The base URL of the API
-> Example: `http://localhost:3000/api/graphql`
+  > Example: `http://localhost:3000/api/graphql`
 
 </details>
 
@@ -70,7 +70,7 @@
 git clone https://github.com/TechAtikiN/athena-ebooks
 ```
 
-1. Install dependencies
+2. Install dependencies
 
 > **Note**: This project uses `yarn` as the package manager. 
 
@@ -79,9 +79,9 @@ cd athena-ebooks
 yarn 
 ```
 
-1. Duplicate the information from the .env.example file into a new file named .env in the root directory and add the required values.
+3. Duplicate the information from the .env.example file into a new file named .env in the root directory and add the required values.
 
-2. Start the server
+4. Start the server
 
 ```bash
 yarn dev
