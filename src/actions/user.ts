@@ -11,6 +11,13 @@ export async function getUser(email: string) {
     query: GET_USER,
     variables: {
       email: email
+    },
+    context: {
+      fetchOptions: {
+        next: {
+          revalidate: 0,
+        }
+      }
     }
   })
   
@@ -25,6 +32,13 @@ export async function updateUser(userData: any) {
       authorDescription: userData.authorDescription,
       location: userData.location,
       authorId: userData.authorId
+    },
+    context: {
+      fetchOptions: {
+        next: {
+          revalidate: 0,
+        }
+      }
     }
   })
   

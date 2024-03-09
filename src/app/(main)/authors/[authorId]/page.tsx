@@ -40,7 +40,7 @@ export default async function AuthorDetailsPage({ params }: { params: { authorId
       {/* Books Description */}
       <div className='p-7 space-y-4'>
         <h3 className='text-2xl font-semibold text-slate-700'>{books?.length} Books by {author?.name}</h3>
-        <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 h-[500px] overflow-y-auto thin-scrollbar'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 overflow-y-auto thin-scrollbar'>
           {books.map((book, index) => (
             <AuthorBookItem book={book} key={index} />
           ))}

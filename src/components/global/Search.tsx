@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react'
 import { getBooksByTitleAuthor } from '@/actions/books'
 import { formatCase } from '@/lib/utils'
-import { debounce } from "lodash"
+import { debounce } from 'lodash'
 import { Popover, PopoverTrigger, PopoverContent } from '../ui/popover'
 
 // default imports
@@ -68,10 +68,10 @@ export default function Search() {
         </PopoverTrigger>
 
         <PopoverContent
-          align="start"
-          side="bottom"
+          align='start'
+          side='bottom'
           sideOffset={10}
-          className="bg-white border h-[240px] thin-scrollbar overflow-y-auto border-gray-300 rounded-xl font-medium text-sm w-fit lg:w-[30rem] shadow"
+          className='bg-white border h-[240px] thin-scrollbar overflow-y-auto border-gray-300 rounded-xl font-medium text-sm w-fit lg:w-[30rem] shadow'
         >
           {books?.map((book) => (
             <Link

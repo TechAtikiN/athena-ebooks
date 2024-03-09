@@ -9,16 +9,27 @@ import {
   DialogTitle,
   DialogTrigger
 } from '../ui/dialog'
-import { deleteBook } from '@/actions/books'
+import { deleteBook, removeFile } from '@/actions/books'
 import { useRouter } from 'next/navigation'
 import { useToast } from '../ui/use-toast'
 
-export default function DeleteBook({ bookId }: { bookId: string }) {
+export default function DeleteBook({ bookId, bookPdf, bookCover }: { bookId: string, bookPdf: string, bookCover: string }) {
   const router = useRouter()
   const { toast } = useToast()
 
   const handleDeleteBook = async () => {
+    // remove book from the database
     const data = await deleteBook(bookId)
+
+    // remove book pdf from the storage
+    if (bookPdf) {
+      await removeFile(bookPdf)
+    }
+
+    // remove book cover from the storage
+    if (bookCover) {
+      await removeFile(bookCover)
+    }
 
     if (data) {
       toast({

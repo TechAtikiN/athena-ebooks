@@ -38,6 +38,7 @@ export const GET_BOOKS = gql`
     title
     description
     createdAt
+    bookPdf
   }
 }
 `

@@ -11,7 +11,6 @@ export default function UploadBookCover({ setBookCover }: { setBookCover: (file:
         className='w-full h-20 bg-accent/40 text-slate-700 border border-dashed border-slate-600 rounded-xl my-2'
         endpoint="imageUploader"
         onClientUploadComplete={(res: any) => {
-          console.log("Files: ", res);
           setBookCover(res[0]);
         }}
         onUploadError={(error: Error) => {

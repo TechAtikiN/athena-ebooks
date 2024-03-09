@@ -11,6 +11,7 @@ import { useToast } from '@/components/ui/use-toast'
 import { useRouter } from 'next/navigation'
 import { sendMail } from '@/actions/mail'
 import { compileMailTemplate } from '@/lib/mail/mail'
+import { debounce } from 'lodash'
 
 // default imports
 import UploadBookCover from '@/components/write/UploadBookCover'
@@ -26,6 +27,7 @@ export default function BookUploadForm() {
 
   const { data: session } = useSession()
   const { data: user } = useQuery(GET_USER, { variables: { email: session?.user?.email } })
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (user) {
@@ -35,6 +37,7 @@ export default function BookUploadForm() {
 
   // function to add book
   async function addBook(formData: FormData) {
+    setLoading(true)
     // adding the book cover, pdf, and authorId to the form data
     formData.append('coverImage', bookCover?.url as string)
     formData.append('bookPdf', bookPdf?.url as string)
@@ -51,6 +54,7 @@ export default function BookUploadForm() {
         title: "New Book added! 📖",
         description: "Your book has been created successfully.",
       })
+      setLoading(false)
       router.push(`/books/${book}`)
 
       // send email to author
@@ -66,8 +70,13 @@ export default function BookUploadForm() {
     }
   }
 
+  const debouncedAddBook = debounce(addBook, 2000)
+
   return (
-    <form action={addBook} className='grid sm:grid-cols-3 grid-cols-1 gap-x-14'>
+    <form
+      action={debouncedAddBook}
+      className='grid sm:grid-cols-3 grid-cols-1 gap-x-14'
+    >
       {/* Book PDF File */}
       <div className='col-span-1'>
         <h3 className='text-lg font-semibold text-slate-700'>Upload Book PDF</h3>
@@ -135,7 +144,13 @@ export default function BookUploadForm() {
           )}
         </div>
 
-        <button type='submit' className='cta-btn'>Publish</button>
+        <button
+          disabled={loading}
+          type='submit'
+          className='cta-btn'
+        >
+          {loading ? 'Publishing...' : 'Publish'}
+        </button>
       </div>
     </form>
   )

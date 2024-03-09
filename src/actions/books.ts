@@ -36,6 +36,7 @@ export async function getBooks(category?: string, authorId?: string) {
       },
     }
   })
+
   return data.books
 }
 
@@ -44,6 +45,13 @@ export async function getBook(bookId: string) {
   const { data } = await getClient().query({
     query: GET_BOOK,
     variables: { bookId },
+    context: {
+      fetchOptions: {
+        next: {
+          revalidate: 0,
+        }
+      },
+    }
   })
 
   return data.book
@@ -70,6 +78,13 @@ export async function getBooksByTitleAuthor(searchTerm: string) {
   const { data } = await getClient().query({
     query: GET_BOOKS_BY_QUERY,
     variables: { searchTerm },
+    context: {
+      fetchOptions: {
+        next: {
+          revalidate: 0,
+        }
+      },
+    }
   })
   
   return data.searchBooks
@@ -80,6 +95,13 @@ export async function setFavoriteBook(userId: string, bookId: string) {
   const { data } = await getClient().mutate({
     mutation: ADD_FAVORITE,
     variables: { userId, bookId },
+    context: {
+      fetchOptions: {
+        next: {
+          revalidate: 0,
+        }
+      },
+    }
   })
 
   return data.addFavoriteBook.message
@@ -90,6 +112,13 @@ export async function getFavoriteBooks(userId: string) {
   const { data } = await getClient().query({
     query: GET_FAVORITES,
     variables: { userId },
+    context: {
+      fetchOptions: {
+        next: {
+          revalidate: 0,
+        }
+      },
+    }
   })
   
   return data.getFavorites
@@ -100,6 +129,13 @@ export async function isFavoriteBook(userId: string, bookId: string) {
   const { data } = await getClient().query({
     query: CHECK_FAVORITE,
     variables: { userId, bookId },
+    context: {
+      fetchOptions: {
+        next: {
+          revalidate: 0,
+        }
+      },
+    }
   })
   return data.isFavoriteBook.message
 }
@@ -109,6 +145,13 @@ export async function updateBook(bookData: any) {
   const { data } = await getClient().mutate({
     mutation: UPDATE_BOOK,
     variables: { ...bookData },
+    context: {
+      fetchOptions: {
+        next: {
+          revalidate: 0,
+        }
+      },
+    }
   })
   
   // revalidateTag('get-book')
@@ -120,6 +163,13 @@ export async function deleteBook(bookId: string) {
   const { data } = await getClient().mutate({
     mutation: DELETE_BOOK,
     variables: { bookId },
+    context: {
+      fetchOptions: {
+        next: {
+          revalidate: 0,
+        }
+      },
+    }
   })
 
   revalidateTag('get-books')

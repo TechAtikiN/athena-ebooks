@@ -25,7 +25,7 @@ export default function UserProfile({ user }: Props) {
   }
 
   return (
-    <div className='sm:grid sm:grid-cols-10 h-screen'>
+    <div className='sm:grid sm:grid-cols-10'>
       {/* Left Section */}
       <div className='sm:col-span-2 border-r border-accent/15 p-5' >
         <div className='flex sm:flex-col gap-3'>

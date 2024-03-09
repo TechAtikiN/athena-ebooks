@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { useToast } from '../ui/use-toast'
 import { useState } from 'react'
 import { removeFile, updateBook } from '@/actions/books'
+import { debounce } from 'lodash'
 
 // default imports
 import UploadBookPdf from '../write/UploadBookPdf'
@@ -53,8 +54,13 @@ export default function EditBookForm({ bookDetails }: { bookDetails: BookDetails
     }
   }
 
+  const debouncedUpdateBookDetails = debounce(updateBookDetails, 1000)
+
   return (
-    <form action={updateBookDetails} className='grid sm:grid-cols-3 grid-cols-1 gap-x-14'>
+    <form
+      action={debouncedUpdateBookDetails}
+      className='grid sm:grid-cols-3 grid-cols-1 gap-x-14'
+    >
       {/* Book PDF File */}
       <div className='col-span-1'>
         <h3 className='text-lg font-semibold text-slate-700'>Update Book PDF</h3>

@@ -13,7 +13,6 @@ export default function UploadBookPdf({ setBookPdf }: { setBookPdf: (file: TFile
           className=''
           endpoint="pdfUploader"
           onClientUploadComplete={(res: any) => {
-            console.log("Files: ", res);
             setBookPdf(res[0]);
           }}
           onUploadError={(error: Error) => {

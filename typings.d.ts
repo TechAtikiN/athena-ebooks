@@ -9,6 +9,7 @@ type Book = {
   coverImage: string
   category: string
   description?: string
+  bookPdf?: string
   createdAt?: string
   author?: {
     name: string
