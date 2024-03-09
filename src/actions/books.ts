@@ -9,7 +9,6 @@ import {
   GET_CATEGORIES,
   GET_FAVORITES
 } from '@/graphql/queries'
-import { revalidateTag } from 'next/cache'
 import { ADD_BOOK, ADD_FAVORITE, DELETE_BOOK, UPDATE_BOOK } from '@/graphql/mutations'
 
 const NO_CACHE_CONTEXT = {
@@ -25,6 +24,7 @@ export async function createBook(bookData: any) {
   const { data } = await getClient().mutate({
     mutation: ADD_BOOK,
     variables: bookData,
+    context: NO_CACHE_CONTEXT
   },)
 
   return data.addBook.id
