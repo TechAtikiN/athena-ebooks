@@ -13,8 +13,13 @@
 
 #### Screenshots:
 
-![Books](../docs/assets/hero.png)
-![Books](../docs/assets/hero.png)
+![Sign In Page](../docs/assets/auth.png)
+![Hero](../docs/assets/hero.png)
+![Books](../docs/assets/listing-1.png)
+![Books](../docs/assets/listing-2.png)
+![Search Books](../docs/assets/search.png)
+![Book Details](../docs/assets/book-details.png)
+![Book Details](../docs/assets/book-details-2.png)
 
 ---
 
@@ -27,7 +32,8 @@
   
 #### Screenshot:
 
-![View Customer Records](../docs/assets/hero.png)
+![Upload Book](../docs/assets/book-upload.png)
+![Mail to Author](../docs/assets/mail-1.png)
 
 --- 
 ## Profile 🛠
@@ -43,8 +49,9 @@
   
 #### Screenshot:
 
-![Orders Listing](../docs/assets/hero.png)
-![Order Details](../docs/assets/hero.png)
+![My Profile](../docs/assets/profile.png)
+![Favorites](../docs/assets/favorites.png)
+![My Books](../docs/assets/my-books.png)
 
 
 ## Setup Guide
