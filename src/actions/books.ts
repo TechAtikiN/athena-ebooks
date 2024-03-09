@@ -87,6 +87,7 @@ export async function setFavoriteBook(userId: string, bookId: string) {
     context: NO_CACHE_CONTEXT
   })
 
+  revalidatePath('/profile')
   return data.addFavoriteBook.message
 }
 
@@ -98,6 +99,7 @@ export async function getFavoriteBooks(userId: string) {
     context: NO_CACHE_CONTEXT
   })
   
+  revalidatePath('/profile')
   return data.getFavorites
 }
 
