@@ -12,6 +12,22 @@ import {
 import { revalidateTag } from 'next/cache'
 import { ADD_BOOK, ADD_FAVORITE, DELETE_BOOK, UPDATE_BOOK } from '@/graphql/mutations'
 
+const NO_CACHE_CONTEXT = {
+  fetchOptions: {
+    next: {
+      revalidate: 0,
+    }
+  },
+}
+
+const REVALIDATE_TAG_CONTEXT = (tags: string[]) => ({
+  fetchOptions: {
+    next: {
+      tags,
+    }
+  },
+})
+
 // create a new book
 export async function createBook(bookData: any) {
   const { data } = await getClient().mutate({
@@ -30,11 +46,7 @@ export async function getBooks(category?: string, authorId?: string) {
   const { data } = await getClient().query({
     query: GET_BOOKS,
     variables: {  category: fetchCategory, authorId },
-    context: {
-      fetchOptions: {
-        next: { tags: ['get-books'] },
-      },
-    }
+    context: REVALIDATE_TAG_CONTEXT(['get-books'])
   })
 
   return data.books
@@ -45,13 +57,7 @@ export async function getBook(bookId: string) {
   const { data } = await getClient().query({
     query: GET_BOOK,
     variables: { bookId },
-    context: {
-      fetchOptions: {
-        next: {
-          revalidate: 0,
-        }
-      },
-    }
+    context: REVALIDATE_TAG_CONTEXT([`get-book-${bookId}`])
   })
 
   return data.book
@@ -61,13 +67,7 @@ export async function getBook(bookId: string) {
 export async function getBookCategories() {
   const { data } = await getClient().query({
     query: GET_CATEGORIES,
-    context: {
-      fetchOptions: {
-        next: {
-          revalidate: 0,
-        }
-      },
-    }
+    context: NO_CACHE_CONTEXT
   })
   
   return data.books
@@ -78,13 +78,7 @@ export async function getBooksByTitleAuthor(searchTerm: string) {
   const { data } = await getClient().query({
     query: GET_BOOKS_BY_QUERY,
     variables: { searchTerm },
-    context: {
-      fetchOptions: {
-        next: {
-          revalidate: 0,
-        }
-      },
-    }
+    context: NO_CACHE_CONTEXT
   })
   
   return data.searchBooks
@@ -95,13 +89,7 @@ export async function setFavoriteBook(userId: string, bookId: string) {
   const { data } = await getClient().mutate({
     mutation: ADD_FAVORITE,
     variables: { userId, bookId },
-    context: {
-      fetchOptions: {
-        next: {
-          revalidate: 0,
-        }
-      },
-    }
+    context: NO_CACHE_CONTEXT
   })
 
   return data.addFavoriteBook.message
@@ -112,13 +100,7 @@ export async function getFavoriteBooks(userId: string) {
   const { data } = await getClient().query({
     query: GET_FAVORITES,
     variables: { userId },
-    context: {
-      fetchOptions: {
-        next: {
-          revalidate: 0,
-        }
-      },
-    }
+    context: NO_CACHE_CONTEXT
   })
   
   return data.getFavorites
@@ -129,13 +111,7 @@ export async function isFavoriteBook(userId: string, bookId: string) {
   const { data } = await getClient().query({
     query: CHECK_FAVORITE,
     variables: { userId, bookId },
-    context: {
-      fetchOptions: {
-        next: {
-          revalidate: 0,
-        }
-      },
-    }
+    context: NO_CACHE_CONTEXT
   })
   return data.isFavoriteBook.message
 }
@@ -145,16 +121,11 @@ export async function updateBook(bookData: any) {
   const { data } = await getClient().mutate({
     mutation: UPDATE_BOOK,
     variables: { ...bookData },
-    context: {
-      fetchOptions: {
-        next: {
-          revalidate: 0,
-        }
-      },
-    }
+    context: NO_CACHE_CONTEXT
   })
   
-  // revalidateTag('get-book')
+  revalidateTag(`get-book-${bookData.bookId}`)
+  revalidateTag('get-books')
   return data.updateBook.message
 }
 
@@ -163,13 +134,7 @@ export async function deleteBook(bookId: string) {
   const { data } = await getClient().mutate({
     mutation: DELETE_BOOK,
     variables: { bookId },
-    context: {
-      fetchOptions: {
-        next: {
-          revalidate: 0,
-        }
-      },
-    }
+    context: NO_CACHE_CONTEXT
   })
 
   revalidateTag('get-books')
@@ -179,7 +144,7 @@ export async function deleteBook(bookId: string) {
 // dekete file from cloud storage: UPLOADTHING
 export async function removeFile(fileUrl: string) {
   try {
-    const data = fetch('http://localhost:3000/api/uploadthing', {
+    const data = fetch(`${process.env.BASE_API_URL}/uploadthing`, {
       method: 'DELETE',
       body: JSON.stringify({ url: fileUrl }),
       headers: { 'Content-Type': 'application/json' }

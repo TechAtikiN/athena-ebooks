@@ -18,6 +18,7 @@ export const GET_USER = gql`
       description
       id
       title
+      bookPdf
     }
   }
 }

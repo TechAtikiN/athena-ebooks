@@ -12,7 +12,6 @@ interface Props {
 }
 
 export default function MyBooksTab({ books }: Props) {
-
   return (
     <div className='space-y-2 m-5'>
       {books?.length > 0 && (
@@ -54,7 +53,7 @@ export default function MyBooksTab({ books }: Props) {
                 >
                   <PencilSquareIcon className='h-5 w-5 text-slate-600' />
                 </Link>
-                <DeleteBook bookId={book?.id} bookPdf={book?.bookPdf!} bookCover={book?.coverImage} />
+                <DeleteBook bookId={book?.id} bookPdf={book?.bookPdf} bookCover={book?.coverImage} />
               </div>
             </div>
           </div>

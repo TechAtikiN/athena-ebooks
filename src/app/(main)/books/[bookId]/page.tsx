@@ -3,6 +3,7 @@ import { getBook } from '@/actions/books'
 import { getServerSession } from 'next-auth'
 import { getUser } from '@/actions/user'
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
+import { redirect } from 'next/navigation'
 
 // default imports
 import Image from 'next/image'
@@ -10,10 +11,13 @@ import Link from 'next/link'
 import DownloadButton from '@/components/books/DownloadButton'
 import FavoriteButton from '@/components/books/FavoriteButton'
 
+
 export default async function BookDetailsPage({ params }: { params: { bookId: string } }) {
   const session = await getServerSession()
   const user: User = await getUser(session?.user?.email || '')
   const book: BookDetails = await getBook(params?.bookId)
+
+  if (!book) redirect('/')
 
   return (
     <div className='text-slate-700'>

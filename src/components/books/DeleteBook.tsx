@@ -18,26 +18,27 @@ export default function DeleteBook({ bookId, bookPdf, bookCover }: { bookId: str
   const { toast } = useToast()
 
   const handleDeleteBook = async () => {
-    // remove book from the database
-    const data = await deleteBook(bookId)
+    console.log(bookPdf, bookCover, bookId)
+    try {
+      // remove book from the database
+      const data = await deleteBook(bookId)
 
-    // remove book pdf from the storage
-    if (bookPdf) {
-      await removeFile(bookPdf)
-    }
+      if (data) {
+        const pdfRes = await removeFile(bookPdf)
 
-    // remove book cover from the storage
-    if (bookCover) {
-      await removeFile(bookCover)
-    }
+        const coverRes = await removeFile(bookCover)
+      }
 
-    if (data) {
-      toast({
-        title: 'Book Deleted successfully! 📖',
-        description: 'Your book has been deleted successfully.'
-      })
-      router.push(`/books`)
-    } else {
+      if (data) {
+        toast({
+          title: 'Book Deleted successfully! 📖',
+          description: 'Your book has been deleted successfully.'
+        })
+        router.push(`/books`)
+      } else {
+        throw new Error('Something went wrong. Please try again later.')
+      }
+    } catch (error: any) {
       toast({
         title: 'Error! 😢',
         description: 'Something went wrong. Please try again later.'

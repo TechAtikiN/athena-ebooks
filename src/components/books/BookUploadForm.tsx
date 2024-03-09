@@ -38,6 +38,16 @@ export default function BookUploadForm() {
   // function to add book
   async function addBook(formData: FormData) {
     setLoading(true)
+
+    if (!bookCover || !bookPdf) {
+      toast({
+        title: "Error! 📖",
+        description: "Please upload the book cover and pdf file.",
+      })
+      setLoading(false)
+      return
+    }
+
     // adding the book cover, pdf, and authorId to the form data
     formData.append('coverImage', bookCover?.url as string)
     formData.append('bookPdf', bookPdf?.url as string)
