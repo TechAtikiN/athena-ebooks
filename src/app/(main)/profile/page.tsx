@@ -6,6 +6,8 @@ import { getServerSession } from 'next-auth'
 // default imports
 import UserProfile from '@/components/profile/UserProfile'
 
+export const revalidate = 0
+
 export default async function ProfilePage() {
   const session = await getServerSession()
   if (!session) {

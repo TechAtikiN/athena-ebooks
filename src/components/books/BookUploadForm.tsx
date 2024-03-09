@@ -60,12 +60,11 @@ export default function BookUploadForm() {
     const book = await createBook(bookData)
 
     if (book) {
+      router.push(`/books`)
       toast({
         title: "New Book added! 📖",
         description: "Your book has been created successfully.",
       })
-      setLoading(false)
-      router.push(`/books/${book}`)
 
       // send email to author
       await sendMail({
@@ -78,6 +77,7 @@ export default function BookUploadForm() {
           `Don't forget to share your book with your friends and family!`)
       })
     }
+    setLoading(false)
   }
 
   const debouncedAddBook = debounce(addBook, 2000)

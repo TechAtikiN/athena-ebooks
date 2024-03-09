@@ -28,7 +28,11 @@ export default function HomeTab({ user }: Props) {
           />
 
           {/* Edit author description and location */}
-          <EditUserDetails />
+          <EditUserDetails
+            desciption={user?.description}
+            location={user?.location}
+            userId={user?.id}
+          />
         </div>
 
         <div className='px-5 flex flex-col space-y-4 justify-center items-center'>

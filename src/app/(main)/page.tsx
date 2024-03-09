@@ -8,6 +8,8 @@ import Categories from '@/components/books/Categories'
 import BooksListing from '@/components/books/BooksListing'
 import AboutPage from '@/components/books/About'
 
+export const revalidate = 0
+
 export default async function HomePage({ searchParams }: { searchParams?: { category: string } }) {
   // format category to title case
   const category = formatCase(searchParams?.category || '') || 'all'

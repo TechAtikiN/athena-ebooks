@@ -5,6 +5,8 @@ import { getBooks } from '@/actions/books'
 import AuthorBookItem from '@/components/authors/AuthorBookItem'
 import Image from 'next/image'
 
+export const revalidate = 0
+
 export default async function AuthorDetailsPage({ params }: { params: { authorId: string } }) {
   const books: Book[] = await getBooks(undefined, params?.authorId)
   const author = books[0]?.author

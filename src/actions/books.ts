@@ -10,6 +10,8 @@ import {
   GET_FAVORITES
 } from '@/graphql/queries'
 import { ADD_BOOK, ADD_FAVORITE, DELETE_BOOK, UPDATE_BOOK } from '@/graphql/mutations'
+import { formatCase } from '@/lib/utils'
+import { revalidatePath } from 'next/cache'
 
 const NO_CACHE_CONTEXT = {
   fetchOptions: {
@@ -21,12 +23,14 @@ const NO_CACHE_CONTEXT = {
 
 // create a new book
 export async function createBook(bookData: any) {
+  bookData.category = formatCase(bookData.category || '')
+  
   const { data } = await getClient().mutate({
     mutation: ADD_BOOK,
     variables: bookData,
     context: NO_CACHE_CONTEXT
   },)
-
+  revalidatePath('/')
   return data.addBook.id
 }
 
@@ -115,6 +119,7 @@ export async function updateBook(bookData: any) {
     context: NO_CACHE_CONTEXT
   })
   
+  revalidatePath('/')
   return data.updateBook.message
 }
 
@@ -126,6 +131,7 @@ export async function deleteBook(bookId: string) {
     context: NO_CACHE_CONTEXT
   })
 
+  revalidatePath('/')
   return data?.deleteBook.message
 }
 

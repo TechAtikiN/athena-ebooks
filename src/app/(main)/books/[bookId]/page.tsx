@@ -11,6 +11,7 @@ import Link from 'next/link'
 import DownloadButton from '@/components/books/DownloadButton'
 import FavoriteButton from '@/components/books/FavoriteButton'
 
+export const revalidate = 0
 
 export default async function BookDetailsPage({ params }: { params: { bookId: string } }) {
   const session = await getServerSession()

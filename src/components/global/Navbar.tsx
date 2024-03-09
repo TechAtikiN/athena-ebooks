@@ -2,7 +2,7 @@
 // named imports
 import { useState } from 'react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
-import { useSession } from 'next-auth/react'
+import { Session } from 'next-auth'
 
 // default imports
 import Image from 'next/image'
@@ -15,9 +15,7 @@ const NAV_LINKS = [
   { name: 'Start Writing', href: '/write', authRequired: true },
 ]
 
-export default function Navbar() {
-  const { data: session } = useSession()
-
+export default function Navbar({ session }: { session: Session | null }) {
   const [showNavLinks, setShowNavLinks] = useState(false)
 
   const handleToggleMobileMenu = () => {

@@ -10,7 +10,7 @@ export async function getUser(email: string) {
   const data = await getClient().query({
     query: GET_USER,
     variables: {
-      email: email
+      email: email.trim()
     },
     context: {
       fetchOptions: {
@@ -29,8 +29,8 @@ export async function updateUser(userData: any) {
   const {data} = await getClient().mutate({
     mutation: UPDATE_USER,
     variables: {
-      authorDescription: userData.authorDescription,
-      location: userData.location,
+      authorDescription: userData.authorDescription.trim(),
+      location: userData.location.trim(),
       authorId: userData.authorId
     },
     context: {

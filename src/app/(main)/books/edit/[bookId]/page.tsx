@@ -7,6 +7,8 @@ import { redirect } from 'next/navigation'
 // default imports
 import EditBookForm from '@/components/books/EditBookForm'
 
+export const revalidate = 0
+
 export default async function BookEditPage({ params }: { params: { bookId: string } }) {
   const session = await getServerSession()
   const currentUser = await getUser(session?.user?.email || '')

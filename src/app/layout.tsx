@@ -23,11 +23,11 @@ export const metadata: Metadata = {
   description: 'Unlock the power of knowledge and wisdom with Athena E-books',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang='en'>
       <body className={lato.className}>

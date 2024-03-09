@@ -10,28 +10,18 @@ import {
   DialogTitle,
   DialogTrigger
 } from '../ui/dialog'
-import { useSession } from 'next-auth/react'
-import { useQuery } from '@apollo/client'
-import { GET_USER } from '@/graphql/queries'
 import { updateUser } from '@/actions/user'
 import { useToast } from '@/components/ui/use-toast'
 import { useRouter } from 'next/navigation'
 
-// default imports
-import Loader from '../global/Loader'
-
-export default function EditUserDetails() {
+export default function EditUserDetails({ userId, desciption, location }: { userId: string, desciption?: string, location?: string }) {
   const router = useRouter()
   const { toast } = useToast()
-  const { data: session } = useSession()
-  const { data: user, loading } = useQuery(GET_USER, { variables: { email: session?.user?.email } })
-
-  if (loading) return <div className='flex flex-col justify-center items-center'><Loader /></div>
 
   async function updateUserDetails(formData: FormData) {
     // converting the form data to an object
     let userData = Object.fromEntries(formData.entries())
-    userData.authorId = user?.user?.id
+    userData.authorId = userId
 
     // updating the book
     const data = await updateUser(userData)
@@ -81,6 +71,7 @@ export default function EditUserDetails() {
             <textarea
               rows={5}
               name='authorDescription'
+              defaultValue={desciption || undefined}
               id='authorDescription'
               placeholder='This will be displayed to users on your books and profile.'
               className='form-input text-sm'>
@@ -91,7 +82,13 @@ export default function EditUserDetails() {
             <label htmlFor='location' className='text-left form-label text-gray-600'>
               Location
             </label>
-            <input id='location' name='location' placeholder='India, UK..' className='form-input text-sm py-2' />
+            <input
+              id='location'
+              defaultValue={location || undefined}
+              name='location'
+              placeholder='India, UK..'
+              className='form-input text-sm py-2'
+            />
           </div>
 
           <div className='py-2'>
