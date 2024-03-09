@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 export default async function Login() {
   return (
-    <div className='m-24 p-4'>
+    <div className='m-10 sm:m-24 p-4'>
       <div className='relative cursor-pointer'>
         <div
           className='absolute animate-pulse -inset-1 bg-gradient-to-r from-blue-600 via-sky-300 to-indigo-600 rounded-lg blur opacity-90 transition-all duration-400 ease-in-out'>

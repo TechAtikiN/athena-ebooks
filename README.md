@@ -1,30 +1,37 @@
 <h1 align="center">
-  Athena Ebooks
+  Athena Ebooks 📚
 </h1>
 
-> Athena eBooks simplifies  reading experience It is build using Next.js, GraphQL, UploadThing, and Prisma. Enjoy seamless browsing and discover your next favorite read effortlessly.
+> A modern platform built with Next.js, GraphQL, and MongoDB to read, write, and download Ebooks. Anytime, Anywhere
+
+
+<img 
+src="./docs/assets/hero.png" 
+alt="Athena Ebooks"
+ />
 ---
 
-### Key Features
+### Key Features 📋
 
-- [x] User Authentication
-- [x] Upload & Download Ebooks
-- [x] Search & Filter Ebooks
-- [x] Write your own Ebooks
-- [x] Set Favorite Ebooks
+- [x] User **Authentication**
+- [x] **Explore Ebooks**
+- [x] **Write** your own Ebooks
+- [x] **Upload** & **Download** (PDF format)
+- [x] **Save Favorite** Ebooks
+- [x] **Search** & **Filter** Ebooks
+- [x] **Mobile Responsive** Design
 
 ---
 
-### Important Links
+### Important Links 🔗
 
 - [Setup Guide](./docs/SETUP.md)
 - [Frontend](./docs/FRONTEND.md)
-- [API Documentation](./docs/API.md)
 - [Database Schema](./docs/SCHEMA.md)
 
 ---
 
-### Tools and Technologies 🚀
+### Tools and Technologies 🛠️
 
 **Frontend**
 - **Framework**: Next.js 14 (React.js)
@@ -39,13 +46,13 @@
 - **Language**: Typescript
 - **GraphQL**: Apollo Server
 - **Database**: MongoDB
-- **ORM** - Prisma
-- **File Upload** + Storage: UploadThing
+- **ORM**: Prisma
+- **File Upload** + **Storage**: UploadThing
 - **Mail Service**: Nodemailer
 - **Deployment**: Vercel
 ---
 
-### Best Practices Followed
+### Best Practices Followed 📝
 
 - [x] Robust Error Handling
 - [x] Conventional Commit Messages

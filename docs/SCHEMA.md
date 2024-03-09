@@ -1,3 +1,6 @@
+## Schema
+> The schema for the MongoDB database is as follows:
+
 ```mermaid
 erDiagram
   User {
@@ -29,3 +32,6 @@ erDiagram
   User ||--o{ Book : "author"
   User ||--o{ Favorite : "favorites"
 ```
+
+## Frontend 
+The Frontend of the application can be found in the [FRONTEND.md](./FRONTEND.md) file.

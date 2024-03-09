@@ -63,7 +63,7 @@ export default function Search() {
             type='text'
             className={`w-full p-2 px-4 border border-gray-300 rounded-full text-sm focus:outline-none shadow-sm ${loading ? 'cursor-wait border-accent animate-pulse' : 'cursor-text'
               }`}
-            placeholder={loading ? 'Loading...' : 'Search for books by Title'}
+            placeholder={loading ? 'Loading...' : 'Search for books by Title or Author'}
           />
         </PopoverTrigger>
 
