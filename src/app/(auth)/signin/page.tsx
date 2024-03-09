@@ -1,4 +1,5 @@
 // default imports
+import BackButton from '@/components/auth/BackButton'
 import GoogleSignInBtn from '@/components/auth/GoogleSignInBtn'
 import Image from 'next/image'
 
@@ -32,6 +33,8 @@ export default async function Login() {
                 Welcome! Access your personalized e-library with ease. Sign in to get started.
               </h3>
               <GoogleSignInBtn />
+
+              <BackButton />
             </div>
           </div>
         </div>

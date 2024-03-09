@@ -20,14 +20,6 @@ const NO_CACHE_CONTEXT = {
   },
 }
 
-const REVALIDATE_TAG_CONTEXT = (tags: string[]) => ({
-  fetchOptions: {
-    next: {
-      tags,
-    }
-  },
-})
-
 // create a new book
 export async function createBook(bookData: any) {
   const { data } = await getClient().mutate({
@@ -35,7 +27,6 @@ export async function createBook(bookData: any) {
     variables: bookData,
   },)
 
-  revalidateTag('get-books')
   return data.addBook.id
 }
 
@@ -124,8 +115,6 @@ export async function updateBook(bookData: any) {
     context: NO_CACHE_CONTEXT
   })
   
-  revalidateTag(`get-book-${bookData.bookId}`)
-  revalidateTag('get-books')
   return data.updateBook.message
 }
 
@@ -137,7 +126,6 @@ export async function deleteBook(bookId: string) {
     context: NO_CACHE_CONTEXT
   })
 
-  revalidateTag('get-books')
   return data?.deleteBook.message
 }
 
