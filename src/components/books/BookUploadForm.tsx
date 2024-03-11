@@ -56,25 +56,30 @@ export default function BookUploadForm() {
     // converting the form data to an object
     const bookData = Object.fromEntries(formData.entries())
 
-    // creating the book
-    const book = await createBook(bookData)
+    try {
+      const book = await createBook(bookData)
+      if (book) {
+        router.push(`/books`)
+        toast({
+          title: "New Book added! 📖",
+          description: "Your book has been created successfully.",
+        })
 
-    if (book) {
-      router.push(`/books`)
+        // send email to author
+        await sendMail({
+          to: user?.user?.email,
+          name: user?.user?.name,
+          subject: '📚 Thank You for Publishing Your Book!',
+          body: compileMailTemplate(
+            `Hello ${user?.user?.name}`,
+            'Thank You for Publishing Your Book!',
+            `Don't forget to share your book with your friends and family!`)
+        })
+      }
+    } catch (error) {
       toast({
-        title: "New Book added! 📖",
-        description: "Your book has been created successfully.",
-      })
-
-      // send email to author
-      await sendMail({
-        to: user?.user?.email,
-        name: user?.user?.name,
-        subject: '📚 Thank You for Publishing Your Book!',
-        body: compileMailTemplate(
-          `Hello ${user?.user?.name}`,
-          'Thank You for Publishing Your Book!',
-          `Don't forget to share your book with your friends and family!`)
+        title: "Error! 📖",
+        description: "An error occurred while creating the book.",
       })
     }
     setLoading(false)

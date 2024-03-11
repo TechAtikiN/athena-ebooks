@@ -182,7 +182,26 @@ export const resolvers = {
     },
 
     // add a new book
-    addBook: async (parents: any, args: any, context: Context) => {
+    addBook: async (parents: any, args: any, context: Context) => { 
+      // validation
+      if (!args.authorId) {
+        return { message: 'Author ID is required' }
+      }
+
+      const user = await context.prisma.user.findUnique({
+        where: {
+          id: args.authorId
+        }
+      })
+
+      if (!user) {
+        return { message: 'User does not exist' }
+      }
+
+      if (!args.title || !args.description || !args.bookPdf || !args.category || !args.coverImage) {
+        return { message: 'Title, description, and book PDF are required' }
+      }
+
       // creating a new book
       const newBook = await context.prisma.book.create({
         data: {
