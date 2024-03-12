@@ -1,6 +1,5 @@
 // named imports
 import { getBookCategories, getBooks } from '@/actions/books'
-import { formatCase } from '@/lib/utils'
 
 // default imports
 import Hero from '@/components/books/Hero'
@@ -11,8 +10,7 @@ import AboutPage from '@/components/books/About'
 export const revalidate = 0
 
 export default async function HomePage({ searchParams }: { searchParams?: { category: string } }) {
-  // format category to title case
-  const category = formatCase(searchParams?.category || '') || 'all'
+  const category = searchParams?.category?.toLowerCase() || 'all'
 
   // get books based on category
   const books = await getBooks(category)

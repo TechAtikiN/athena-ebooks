@@ -1,5 +1,7 @@
 // named imports
+import { formatCase, truncateText } from '@/lib/utils'
 import { usePathname, useRouter } from 'next/navigation'
+import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 
 const BASE_COLORS = [
   'from-zinc-300 via-zinc-500 to-zinc-700',
@@ -38,19 +40,28 @@ export default function CategoryItem({ activeCategory, name, index }: { activeCa
   }
 
   return (
-    <div
-      className={`p-[2px] mx-2 rounded-md shadow bg-gradient-to-br ${getColor(index, 'base')} ${getColor(index, 'active')} backdrop-filter backdrop-blur-3xl shadow-inner transition-all duration-150 ease-in-out hover:bg-opacity-90 hover:scale-105 hover:rotate-1 hover:z-20`}
-    >
-      <button
-        onClick={() => handleChangeCategory(name)}
-        className={`bg-white min-w-20 rounded-md py-[6px] px-4 text-gray-600 font-semibold whitespace-nowrap ${getColor(index, 'active')}
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <div
+          className={`p-[2px] mx-2 rounded-md shadow bg-gradient-to-br ${getColor(index, 'base')} ${getColor(index, 'active')} backdrop-filter backdrop-blur-3xl shadow-inner transition-all duration-150 ease-in-out hover:bg-opacity-90 hover:scale-105 hover:rotate-1 hover:z-20`}
+        >
+          <button
+            onClick={() => handleChangeCategory(name)}
+            className={`bg-white min-w-20 rounded-md py-[6px] px-4 text-gray-600 font-semibold whitespace-nowrap ${getColor(index, 'active')}
           ${activeCategory === name ?
-            `text-white bg-gradient-to-br ${getColor(index, 'active')}` : ''}`}
-      >
-        <h3>
-          {name?.charAt(0).toUpperCase() + name?.substring(1)}
-        </h3>
-      </button>
-    </div>
+                `text-white bg-gradient-to-br ${getColor(index, 'active')}` : ''}`}
+          >
+            <h3>
+              {formatCase(truncateText(name, 10))}
+            </h3>
+          </button>
+        </div>
+      </TooltipTrigger>
+      <TooltipContent side='bottom' align='start' sideOffset={5}>
+        <p className='font-medium text-gray-600 text-sm'>
+          {formatCase(name)}
+        </p>
+      </TooltipContent>
+    </Tooltip>
   )
 }

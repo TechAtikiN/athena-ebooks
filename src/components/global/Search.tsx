@@ -3,7 +3,6 @@
 // named imports
 import { useEffect, useState } from 'react'
 import { getBooksByTitleAuthor } from '@/actions/books'
-import { formatCase } from '@/lib/utils'
 import { debounce } from 'lodash'
 import { Popover, PopoverTrigger, PopoverContent } from '../ui/popover'
 
@@ -27,7 +26,7 @@ export default function Search() {
 
   const handleSearch = async (search: string) => {
     setLoading(true)
-    const data = await getBooksByTitleAuthor(formatCase(search))
+    const data = await getBooksByTitleAuthor(search)
     setBooks(data)
     setLoading(false)
   }

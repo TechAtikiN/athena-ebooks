@@ -10,7 +10,6 @@ import {
   GET_FAVORITES
 } from '@/graphql/queries'
 import { ADD_BOOK, ADD_FAVORITE, DELETE_BOOK, UPDATE_BOOK } from '@/graphql/mutations'
-import { formatCase } from '@/lib/utils'
 import { revalidatePath } from 'next/cache'
 
 const NO_CACHE_CONTEXT = {
@@ -23,7 +22,7 @@ const NO_CACHE_CONTEXT = {
 
 // create a new book
 export async function createBook(bookData: any) {
-  bookData.category = formatCase(bookData.category || '')
+  bookData.category = bookData.category.toLowerCase()
   
   const { data } = await getClient().mutate({
     mutation: ADD_BOOK,

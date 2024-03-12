@@ -83,13 +83,15 @@ export const resolvers = {
           OR: [
             {
               title: {
-                contains: args.searchTerm
+                contains: args.searchTerm,
+                mode: 'insensitive'
               }
             },
             {
               author: {
                 name: {
-                  contains: args.searchTerm
+                  contains: args.searchTerm,
+                  mode: 'insensitive'
                 }
               }
             }

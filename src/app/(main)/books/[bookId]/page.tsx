@@ -10,6 +10,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import DownloadButton from '@/components/books/DownloadButton'
 import FavoriteButton from '@/components/books/FavoriteButton'
+import { formatCase } from '@/lib/utils'
 
 export const revalidate = 0
 
@@ -31,12 +32,14 @@ export default async function BookDetailsPage({ params }: { params: { bookId: st
           fill={true}
         />
         <div className='flex items-center absolute top-10 left-10 sm:top-0 sm:left-0'>
-          <div className='relative h-[170px] w-[120px] sm:h-[270px] sm:w-[220px] rounded-lg'>
+          <div className='relative h-[170px] w-[120px] sm:h-[250px] sm:w-[220px] rounded-lg'>
             <Image
               src={book?.coverImage}
               alt='book'
               className='p-0 sm:p-9'
-              fill={true}
+              height={250}
+              width={210}
+              objectFit='contain'
             />
           </div>
 
@@ -68,7 +71,7 @@ export default async function BookDetailsPage({ params }: { params: { bookId: st
         <div className='space-y-3'>
           <h3 className='text-2xl font-semibold text-slate-700'>About the Book</h3>
           <p className='text-sm w-fit font-semibold text-slate-700 px-2 my-2 p-1 bg-accent/30 rounded-full'>
-            {book?.category}
+            {formatCase(book?.category)}
           </p>
           <p>{book?.description}</p>
         </div>

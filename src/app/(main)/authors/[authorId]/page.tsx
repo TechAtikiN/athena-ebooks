@@ -14,7 +14,7 @@ export default async function AuthorDetailsPage({ params }: { params: { authorId
   return (
     <div className=''>
       {/* Background Image */}
-      <div className='relative w-full h-[265px]'>
+      <div className='relative w-full sm:h-[256px] h-[210px]'>
         <Image
           className='object-cover'
           src='/images/author-bg.avif'
@@ -24,9 +24,9 @@ export default async function AuthorDetailsPage({ params }: { params: { authorId
 
         {/* Author Details */}
         <div className='flex items-center absolute top-10 left-10 sm:top-0 sm:left-0'>
-          <div className='relative h-[170px] w-[120px] sm:h-[250px] sm:w-[250px]'>
+          <div className='relative h-[120px] w-[120px] sm:h-[250px] sm:w-[250px]'>
             <Image
-              src={author?.image || '/images/author-placeholder.png'}
+              src={author?.image || '/images/user-avatar.avif'}
               alt='book'
               className='p-0 sm:p-9 rounded-full'
               fill={true}

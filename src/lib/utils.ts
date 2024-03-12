@@ -6,7 +6,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatCase(str: string) {
-  return str.trim().toLowerCase().replace(/\b\w/g, (l) => l.toUpperCase())
+  const formatterStr = str.split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ')
+  return formatterStr
 }
 
 export function formatDate(date: string) {
@@ -15,4 +16,8 @@ export function formatDate(date: string) {
     month: 'long',
     day: 'numeric'
   })
+}
+
+export function truncateText(text: string, length: number) {
+  return text.length > length ? `${text.slice(0, length)}...` : text
 }

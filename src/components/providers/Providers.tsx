@@ -7,6 +7,7 @@ import {
   InMemoryCache,
   ApolloProvider,
 } from '@apollo/client'
+import { TooltipProvider } from '../ui/tooltip'
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const client = new ApolloClient({
@@ -17,7 +18,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <SessionProvider>
       <ApolloProvider client={client}>
-        {children}
+        <TooltipProvider>
+          {children}
+        </TooltipProvider>
       </ApolloProvider>
     </SessionProvider>
   )

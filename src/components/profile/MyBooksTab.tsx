@@ -1,6 +1,6 @@
 // named imports
 import { ExclamationCircleIcon, PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid'
-import { formatDate } from '@/lib/utils'
+import { formatDate, truncateText } from '@/lib/utils'
 
 // default imports
 import Image from 'next/image'
@@ -25,12 +25,14 @@ export default function MyBooksTab({ books }: Props) {
             key={index}
             className='bg-slate-100 hover:bg-accent/20 h-40 flex space-x-4 justify-between items-start rounded-lg p-5'
           >
-            <div className='relative object-cover w-24 h-32 sm:w-32 sm:h-32'>
+            <div className='relative object-cover w-24 h-32 sm:w-28 sm:h-28'>
               <Image
                 src={book?.coverImage}
                 alt='book'
                 className='rounded-sm'
-                fill={true}
+                height={230}
+                width={210}
+                objectFit='contain'
               />
             </div>
             <div className='w-full'>
@@ -39,12 +41,12 @@ export default function MyBooksTab({ books }: Props) {
                 className='flex flex-col justify-start items-start'
               >
                 <p className='sm:text-lg hover:underline font-semibold'>
-                  {book?.title?.length > 30 ? `${book?.title?.slice(0, 30)}...` : book?.title}
+                  {truncateText(book?.title, 30)}
                 </p>
                 <p className='text-gray-600 text-sm mb-2 block'>
-                  {book.description && book?.description?.length > 70 ? `${book?.description?.slice(0, 70)}...` : book?.description}
+                  {truncateText(book?.description!, 75)}
                 </p>
-                <p className='text-gray-600 text-xs mb-2'>Published on&nbsp;
+                <p className='text-gray-600 hidden sm:block text-xs mb-2'>Published on&nbsp;
                   <strong>
                     {formatDate(book?.createdAt!)}
                   </strong>
